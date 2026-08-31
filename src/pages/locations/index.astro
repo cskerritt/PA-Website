@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CTABand from '../../components/CTABand.astro';
+import { SITE } from '../../config/site';
+
+// Router page for /locations/: the canonical coverage page is the
+// nationwide hub, and this index exists to hand visitors (and crawlers
+// that trim the URL) straight to the hub and the four metro pages.
+const title = 'Office Locations';
+const description =
+  'Purinton Analytics is based in Kansas City with offices by appointment in St. Louis, Denver, and Chicago, and accepts engagements from counsel in all 50 states.';
+
+const metroBlurbs: Record<string, string> = {
+  'kansas-city':
+    'Home office. Evaluations, meetings, and testimony across the two-state Kansas City metro and Missouri.',
+  'st-louis':
+    'Serving St. Louis City and County, eastern Missouri, and the Metro East Illinois courts by appointment.',
+  denver:
+    'Vocational expert and life care planning support for Front Range litigation across the Denver metro and Colorado.',
+  chicago:
+    'Employability, earning capacity, and life care planning evaluations for Cook County and Chicagoland counsel.',
+};
+---
+<BaseLayout title={title} description={description} path="/locations/">
+  <div class="container">
+    <Breadcrumbs
+      crumbs={[
+        { name: 'Home', path: '/' },
+        { name: 'Locations', path: '/locations/' },
+      ]}
+    />
+    <h1>Office Locations and National Coverage</h1>
+    <p class="lead">
+      Purinton Analytics is a national practice administered from its Kansas City home office,
+      with meeting locations by appointment in St. Louis, Denver, and Chicago. No engagement
+      depends on geography: remote evaluation and remote testimony are available in every
+      state, and travel is scheduled wherever a matter requires presence. The
+      <a href="/locations/nationwide/">national coverage page</a> explains how the firm serves
+      counsel in all 50 states.
+    </p>
+    <div class="card-grid">
+      <a class="card" href="/locations/nationwide/">
+        <h2 class="card-title">National Coverage</h2>
+        <p>
+          States served, remote and in-person evaluation options, travel and testimony
+          availability, and how labor market and medical cost research stays local to the venue.
+        </p>
+      </a>
+      {SITE.offices.map((office) => (
+        <a class="card" href={`/locations/${office.slug}/`}>
+          <h2 class="card-title">{office.city}, {office.region}</h2>
+          <p>{metroBlurbs[office.slug]}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+  <CTABand />
+</BaseLayout>
