@@ -660,3 +660,129 @@ main {
     padding: 0;
   }
 }
+
+/* ---- Attorney resource library (Task 9 append: keep below existing rules) ---- */
+
+/* Resource index groups */
+.resource-group { margin: 2.5rem 0; }
+
+.resource-group > p { max-width: 56rem; color: var(--ink-soft); }
+
+/* Checklists: printable checkbox lists used in resource markdown bodies */
+.checklist {
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding-left: 0;
+}
+
+.checklist li {
+  position: relative;
+  padding-left: 1.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.checklist li::before {
+  content: "\2610";
+  position: absolute;
+  left: 0;
+  top: -0.1rem;
+  font-size: 1.15rem;
+  line-height: 1.5;
+  color: var(--navy);
+}
+
+/* Tables in template-page bodies (worksheet, role matrix) */
+.table-scroll {
+  overflow-x: auto;
+  margin: 1.25rem 0;
+}
+
+.tp-body table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.95rem;
+}
+
+.tp-body th,
+.tp-body td {
+  border: 1px solid var(--line);
+  padding: 0.55rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+  min-width: 6rem;
+}
+
+.tp-body thead th {
+  background: #eef1f7;
+  color: var(--navy);
+}
+
+/* Print action button (screen only; hidden by print rules below) */
+.print-action { margin: 0.25rem 0 1.5rem; }
+
+.print-button {
+  display: inline-block;
+  background: var(--white);
+  color: var(--navy);
+  border: 2px solid var(--navy);
+  border-radius: 6px;
+  padding: 0.5rem 1.1rem;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.print-button:hover {
+  background: var(--navy);
+  color: var(--white);
+}
+
+/* Print refinements for resource pages: attorneys print or save these as PDFs.
+   Extends the base @media print block above; later rules win where they overlap. */
+@media print {
+  @page { margin: 1.6cm; }
+
+  .breadcrumbs,
+  .print-action,
+  .tp-related,
+  .proof-band {
+    display: none !important;
+  }
+
+  body { font-size: 11pt; }
+
+  h1, h2, h3, h4 { color: #000; }
+
+  h2, h3 { break-after: avoid; }
+
+  .direct-answer,
+  .neutrality-band,
+  .uses-col {
+    background: #fff;
+    border-color: #777;
+  }
+
+  .checklist li,
+  .faq-item,
+  .tp-body tr {
+    break-inside: avoid;
+  }
+
+  .checklist li::before { color: #000; }
+
+  .table-scroll { overflow-x: visible; }
+
+  .tp-body th,
+  .tp-body td { border-color: #000; }
+
+  .tp-body thead th {
+    background: #fff;
+    color: #000;
+  }
+
+  .citations-list a::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+  }
+}

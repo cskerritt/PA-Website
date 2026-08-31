@@ -70,6 +70,17 @@ const byline =
   data.author === data.reviewer
     ? `Written and reviewed by ${data.author}.`
     : `Written by ${data.author}. Reviewed by ${data.reviewer}.`;
+
+// Resource pages are printed by attorneys; label the print action by page kind.
+const printNoun = /checklist$/.test(entry.id)
+  ? 'checklist'
+  : /worksheet$/.test(entry.id)
+    ? 'worksheet'
+    : entry.id === 'glossary'
+      ? 'glossary'
+      : entry.id === 'faq'
+        ? 'page'
+        : 'guide';
 ---
 <BaseLayout
   title={data.title}
@@ -82,6 +93,13 @@ const byline =
       <Breadcrumbs crumbs={crumbs} />
       <h1>{data.h1}</h1>
       <DirectAnswer text={data.directAnswer} />
+      {section === 'resources' && (
+        <p class="print-action">
+          <button type="button" class="print-button" onclick="window.print()">
+            Print or save this {printNoun}
+          </button>
+        </p>
+      )}
       <NeutralityStatement />
 
       <section class="tp-questions">

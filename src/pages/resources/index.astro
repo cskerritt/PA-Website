@@ -1,0 +1,87 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import NeutralityStatement from '../../components/NeutralityStatement.astro';
+import CTABand from '../../components/CTABand.astro';
+
+// Grouped display order. The index reads the collection, so a card renders
+// only when its content file exists; nothing here can produce a broken link.
+const GROUPS = [
+  {
+    heading: 'Checklists',
+    blurb:
+      'Printable, itemized lists of the records that support each analysis, plus a deadline worksheet to plan retention backward from trial. Print any page or save it as a PDF.',
+    slugs: [
+      'vocational-evaluation-records-checklist',
+      'life-care-plan-records-checklist',
+      'economic-loss-records-checklist',
+      'rebuttal-review-checklist',
+      'expert-disclosure-deadline-worksheet',
+    ],
+  },
+  {
+    heading: 'Guides',
+    blurb:
+      'Working guides to how damages experts divide a case and when to engage the coordinated team.',
+    slugs: [
+      'vocational-expert-vs-economist-vs-life-care-planner',
+      'catastrophic-damages-team-referral-guide',
+    ],
+  },
+  {
+    heading: 'Reference',
+    blurb:
+      'Answers to common referral questions and a glossary of the terms that appear in expert reports.',
+    slugs: ['faq', 'glossary'],
+  },
+];
+
+const entries = await getCollection('resources');
+const bySlug = new Map(entries.map((entry) => [entry.id, entry]));
+const groups = GROUPS.map((group) => ({
+  ...group,
+  items: group.slugs
+    .map((slug) => bySlug.get(slug))
+    .filter((entry): entry is NonNullable<typeof entry> => Boolean(entry)),
+}));
+
+const title = 'Attorney Resources and Checklists';
+const description =
+  'Printable records checklists, a deadline worksheet, and reference guides for attorneys retaining vocational, life care planning, and economic damages experts.';
+---
+<BaseLayout title={title} description={description} path="/resources/">
+  <div class="container">
+    <Breadcrumbs
+      crumbs={[
+        { name: 'Home', path: '/' },
+        { name: 'Resources', path: '/resources/' },
+      ]}
+    />
+    <h1>Attorney Resource Library</h1>
+    <p class="lead">
+      Working documents for counsel referring damages experts: records checklists to organize
+      discovery, a worksheet for planning around disclosure deadlines, and reference guides to
+      the role boundaries between vocational experts, life care planners, and the independent
+      economist partners who perform and sign economic analyses. Every page is plain,
+      crawlable HTML, written to the same standard as the firm's reports, and formatted to
+      print cleanly or save as a PDF.
+    </p>
+    <NeutralityStatement />
+    {groups.map((group) => (
+      <section class="resource-group">
+        <h2>{group.heading}</h2>
+        <p>{group.blurb}</p>
+        <div class="card-grid">
+          {group.items.map((entry) => (
+            <a class="card" href={`/resources/${entry.id}/`}>
+              <h3 class="card-title">{entry.data.title}</h3>
+              <p>{entry.data.metaDescription}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
+  <CTABand />
+</BaseLayout>
