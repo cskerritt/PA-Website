@@ -123,6 +123,146 @@ describe('exemplar service page (13-point template)', () => {
   });
 });
 
+const SERVICE_SLUGS = [
+  'vocational-expert-witness',
+  'life-care-planning',
+  'medical-cost-projection',
+  'forensic-economic-damages',
+  'rebuttal-peer-review',
+  'expert-testimony-litigation-consulting',
+  'coordinated-damages-assessment',
+] as const;
+
+describe.each(SERVICE_SLUGS.map((slug) => ({ slug })))(
+  'service page invariants: $slug',
+  ({ slug }) => {
+    const page = `services/${slug}`;
+    const url = `${SITE.domain}/services/${slug}/`;
+
+    it('renders exactly one H1', () => {
+      expect(parseDist(page).querySelectorAll('h1').length).toBe(1);
+    });
+
+    it('renders the direct answer lead box', () => {
+      const box = parseDist(page).querySelector('.direct-answer');
+      expect(box).toBeTruthy();
+      expect(norm(box!.text).trim().length).toBeGreaterThanOrEqual(200);
+    });
+
+    it('carries the neutrality statement in the page body', () => {
+      expect(mainText(page)).toContain(SITE.neutralityStatement);
+    });
+
+    it('renders the conflict-check CTA band with phone strip', () => {
+      const doc = parseDist(page);
+      const primary = doc
+        .querySelectorAll('a[href="/refer-a-case/"]')
+        .map((a) => norm(a.text).trim());
+      expect(primary).toContain('Request a Conflict Check');
+      const secondary = doc
+        .querySelectorAll('a[href="/contact/#cv-fee"]')
+        .map((a) => norm(a.text).trim());
+      expect(secondary).toContain('Request CVs and Fee Information');
+      expect(mainText(page)).toContain(SITE.phoneDisplay);
+    });
+
+    it('emits Service, FAQPage, and BreadcrumbList JSON-LD for this page', () => {
+      const blocks = jsonld(page);
+      const byType = Object.fromEntries(blocks.map((b) => [b['@type'], b]));
+      expect(byType.Service).toBeTruthy();
+      expect(byType.Service.provider.name).toBe(SITE.legalName);
+      expect(byType.Service.areaServed['@type']).toBe('Country');
+      expect(byType.Service.url).toBe(url);
+      expect(byType.FAQPage).toBeTruthy();
+      expect(byType.FAQPage.mainEntity.length).toBeGreaterThanOrEqual(3);
+      expect(byType.BreadcrumbList).toBeTruthy();
+      expect(byType.BreadcrumbList.itemListElement[0].name).toBe('Home');
+      expect(byType.BreadcrumbList.itemListElement.at(-1).item).toBe(url);
+    });
+
+    it('FAQ JSON-LD matches the visible FAQ content (no schema drift)', () => {
+      const faqPage = jsonld(page).find((b) => b['@type'] === 'FAQPage');
+      expect(faqPage).toBeTruthy();
+      const text = mainText(page);
+      for (const q of faqPage!.mainEntity) {
+        expect(text).toContain(norm(q.name));
+        expect(text).toContain(norm(q.acceptedAnswer.text));
+      }
+    });
+
+    it('renders the 13-point template sections', () => {
+      const h2s = parseDist(page)
+        .querySelector('main')!
+        .querySelectorAll('h2')
+        .map((h) => norm(h.text).trim());
+      expect(h2s).toContain('Questions this evaluation addresses');
+      expect(h2s).toContain('Appropriate uses');
+      expect(h2s).toContain('Limitations and inappropriate uses');
+      expect(h2s).toContain('Records typically requested');
+      expect(h2s).toContain('Deliverables');
+      expect(h2s).toContain('Frequently asked questions');
+    });
+
+    it('shows author, reviewer, and publication dates', () => {
+      const text = mainText(page);
+      expect(text).toContain('Jason C. Purinton');
+      expect(text).toMatch(/Published \w+ \d{1,2}, \d{4}\./);
+      expect(text).toMatch(/Updated \w+ \d{1,2}, \d{4}\./);
+    });
+
+    it('links at least one real https citation', () => {
+      const hrefs = parseDist(page)
+        .querySelectorAll('.citations-list a')
+        .map((a) => a.getAttribute('href') ?? '');
+      expect(hrefs.length).toBeGreaterThanOrEqual(1);
+      for (const href of hrefs) expect(href).toMatch(/^https:\/\//);
+    });
+
+    it('renders a substantive body (>= 1200 words in main)', () => {
+      const words = mainText(page).split(/\s+/).filter(Boolean).length;
+      expect(words).toBeGreaterThanOrEqual(1200);
+    });
+
+    it('contains no em dashes or banned strings anywhere in the page', () => {
+      const html = distFile(page);
+      expect(html).not.toContain('—');
+      expect(html).not.toContain('231 S. Bemiston');
+      expect(html).not.toContain('Schedule a Consultation');
+    });
+  },
+);
+
+describe('complete service cluster', () => {
+  it('services index links every one of the 7 service pages', () => {
+    const hrefs = parseDist('services')
+      .querySelectorAll('a')
+      .map((a) => a.getAttribute('href'));
+    for (const slug of SERVICE_SLUGS) {
+      expect(hrefs).toContain(`/services/${slug}/`);
+    }
+  });
+
+  it('titles and meta descriptions are unique across all 7 service pages', () => {
+    const titles = new Set<string>();
+    const descriptions = new Set<string>();
+    for (const slug of SERVICE_SLUGS) {
+      const doc = parseDist(`services/${slug}`);
+      titles.add(norm(doc.querySelector('title')!.text).trim());
+      descriptions.add(
+        doc.querySelector('meta[name="description"]')!.getAttribute('content')!,
+      );
+    }
+    expect(titles.size).toBe(SERVICE_SLUGS.length);
+    expect(descriptions.size).toBe(SERVICE_SLUGS.length);
+  });
+
+  it('the forensic economics page states independent economist partners perform and sign analyses', () => {
+    const text = mainText('services/forensic-economic-damages');
+    expect(text).toContain('performed and signed by independent economist partners');
+    expect(text).toContain('does not issue economist opinions');
+  });
+});
+
 describe('services index', () => {
   it('has one H1 and lists the exemplar service', () => {
     const doc = parseDist('services');
