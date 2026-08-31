@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../config/site';
+
+const title = `${SITE.brand} | Forensic Damages and Rehabilitation Experts`;
+const description =
+  'Nationwide vocational expert, life care planning, and economic damages services for plaintiff and defense counsel, coordinated by Purinton Analytics.';
+---
+<BaseLayout title={title} description={description} path="/">
+  <section class="page-section">
+    <div class="container">
+      <h1>{SITE.tagline}</h1>
+      <p>{SITE.description50}</p>
+      <p>
+        <a class="btn btn-primary" href="/refer-a-case/">Request a Conflict Check</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>

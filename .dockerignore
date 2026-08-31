@@ -1,0 +1,10 @@
+node_modules
+dist
+.astro
+.git
+.gitignore
+docs
+*.log
+.DS_Store
+README.md
+LAUNCH-CHECKLIST.md

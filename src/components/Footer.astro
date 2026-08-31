@@ -1,0 +1,67 @@
+---
+import { SITE } from '../config/site';
+
+const year = new Date().getFullYear();
+
+const exploreLinks = [
+  { label: 'Services', href: '/services/' },
+  { label: 'Matters', href: '/matters/' },
+  { label: 'Experts', href: '/experts/' },
+  { label: 'National Coverage', href: '/locations/nationwide/' },
+  { label: 'Resources', href: '/resources/' },
+];
+
+const firmLinks = [
+  { label: 'About the Firm', href: '/about/' },
+  { label: 'Refer a Case', href: '/refer-a-case/' },
+  { label: 'Contact', href: '/contact/' },
+];
+
+const policyLinks = [
+  { label: 'Privacy', href: '/privacy/' },
+  { label: 'Accessibility', href: '/accessibility/' },
+  { label: 'Disclaimer', href: '/disclaimer/' },
+];
+---
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <img src="/assets/img/logo-light.svg" alt="Purinton Analytics" width="153" height="54" />
+        <p>
+          {SITE.legalName}<br />
+          {SITE.city}, {SITE.region} - offices by appointment nationwide
+        </p>
+        <p>
+          <a href={`tel:${SITE.phoneE164}`}>{SITE.phoneDisplay}</a><br />
+          <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+        </p>
+      </div>
+      <nav class="footer-nav" aria-label="Explore">
+        <h2 class="footer-heading">Explore</h2>
+        <ul>
+          {exploreLinks.map((link) => (
+            <li><a href={link.href}>{link.label}</a></li>
+          ))}
+        </ul>
+      </nav>
+      <nav class="footer-nav" aria-label="Firm">
+        <h2 class="footer-heading">Firm</h2>
+        <ul>
+          {firmLinks.map((link) => (
+            <li><a href={link.href}>{link.label}</a></li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+    <p class="footer-neutrality">{SITE.neutralityStatement}</p>
+    <div class="footer-legal">
+      <span>&copy; {year} {SITE.legalName}</span>
+      <ul>
+        {policyLinks.map((link) => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</footer>

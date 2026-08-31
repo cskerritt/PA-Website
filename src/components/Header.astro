@@ -1,0 +1,62 @@
+---
+import { SITE } from '../config/site';
+
+const navLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'Services', href: '/services/' },
+  { label: 'Matters', href: '/matters/' },
+  { label: 'Experts', href: '/experts/' },
+  { label: 'National Coverage', href: '/locations/nationwide/' },
+  { label: 'Resources', href: '/resources/' },
+  { label: 'About', href: '/about/' },
+  { label: 'Contact', href: '/contact/' },
+];
+---
+<div class="utility-bar">
+  <div class="container utility-bar-inner">
+    <span>Serving plaintiff and defense counsel in all 50 states</span>
+    <a href={`tel:${SITE.phoneE164}`}>{SITE.phoneDisplay}</a>
+  </div>
+</div>
+<header class="site-header">
+  <div class="container site-header-inner">
+    <a class="site-logo" href="/">
+      <img src="/assets/img/logo.svg" alt="Purinton Analytics" width="136" height="48" />
+    </a>
+    <div class="site-nav-wrap">
+      <nav class="site-nav" id="site-nav" data-site-nav aria-label="Main navigation">
+        <ul>
+          {navLinks.map((link) => (
+            <li><a href={link.href}>{link.label}</a></li>
+          ))}
+          <li class="nav-refer"><a href="/refer-a-case/">Refer a Case</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn-primary header-cta" href="/refer-a-case/">Refer a Case</a>
+      <button
+        class="nav-toggle"
+        type="button"
+        data-nav-toggle
+        aria-expanded="false"
+        aria-controls="site-nav"
+      >
+        <span class="sr-only">Menu</span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector('[data-nav-toggle]');
+  const nav = document.querySelector('[data-site-nav]');
+  if (toggle && nav) {
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!open));
+      nav.classList.toggle('is-open', !open);
+    });
+  }
+</script>
