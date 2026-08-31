@@ -1,0 +1,188 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import NeutralityStatement from '../../components/NeutralityStatement.astro';
+import CTABand from '../../components/CTABand.astro';
+import { SITE } from '../../config/site';
+
+const title = 'Experts and Independent Economist Partners';
+const description =
+  'Vocational expert and life care planner Jason C. Purinton and the independent economist partners who perform and sign economic damages analyses on each engagement.';
+const path = '/experts/';
+
+const principalLeadership = [
+  'President, Board of Directors - American Rehabilitation Economics Association',
+  'Board of Directors and Fellow - American Board of Vocational Experts',
+];
+
+const principalFacts = [
+  `${SITE.stats[0].value} ${SITE.stats[0].label}`,
+  'Expert opinions and testimony in civil litigation nationwide since 2019',
+  'Evaluations and testimony available remotely and in person',
+];
+
+// Role-boundary summary rendered as three discipline cards. The same
+// separation is explained in prose on the profile and service pages.
+const roles = [
+  {
+    name: 'Vocational expert',
+    who: 'Jason C. Purinton',
+    scope:
+      'Employability, placeability, transferable skills, labor market access, and lost earning capacity.',
+  },
+  {
+    name: 'Life care planner',
+    who: 'Jason C. Purinton',
+    scope:
+      'Future medical and support needs after catastrophic injury, documented item by item with sourced costs.',
+  },
+  {
+    name: 'Independent economist',
+    who: 'Partner economists',
+    scope:
+      'Present value, discount and growth assumptions, worklife expectancy application, and total economic loss.',
+  },
+];
+---
+<BaseLayout title={title} description={description} path={path}>
+  <div class="container">
+    <Breadcrumbs
+      crumbs={[
+        { name: 'Home', path: '/' },
+        { name: 'Experts', path },
+      ]}
+    />
+    <h1>Experts and Independent Economist Partners</h1>
+    <p class="lead">
+      Purinton Analytics maintains a deliberately small roster. Vocational evaluation and life
+      care planning opinions are provided by the firm's principal, Jason C. Purinton. Forensic
+      economic damages analyses are performed and signed by independent economist partners
+      selected for each engagement. Clear role boundaries keep every opinion within its author's
+      discipline and make the resulting reports easier to defend.
+    </p>
+    <NeutralityStatement />
+
+    <section class="expert-roster" aria-labelledby="principal-heading">
+      <div class="expert-card">
+        <h2 id="principal-heading">{SITE.principal}, {SITE.principalCreds}</h2>
+        <p class="expert-role">Principal - Vocational Expert and Life Care Planner</p>
+        <ul class="expert-lines">
+          {principalLeadership.map((line) => <li>{line}</li>)}
+        </ul>
+        <ul class="expert-lines">
+          {principalFacts.map((line) => <li>{line}</li>)}
+        </ul>
+        <p>
+          Jason evaluates employability, placeability, and earning capacity, prepares life care
+          plans and medical cost projections, and testifies on those opinions at deposition and
+          trial for plaintiff and defense counsel across the United States.
+        </p>
+        <p class="expert-links">
+          <a class="btn btn-secondary" href="/experts/jason-purinton/">View full profile</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="partners" aria-labelledby="partners-heading">
+      <h2 id="partners-heading">Forensic Economics Partners</h2>
+      <p>
+        Forensic economic damages analyses, including present value calculations, worklife
+        expectancy applications, and household services valuations, are performed and signed by
+        independent economists, not by Jason Purinton. Each partner economist issues opinions
+        under that economist's own name and stands behind them at deposition and trial.
+      </p>
+      <p>
+        Partner economists are independent professionals selected for each engagement based on
+        venue, case type, subject matter, and schedule. Purinton Analytics coordinates the
+        conflict check, records exchange, scheduling, and role boundaries so counsel manages one
+        engagement, while the economic analysis itself remains entirely the economist's work.
+        The <a href="/services/coordinated-damages-assessment/">coordinated damages assessment</a>
+        service page explains how the disciplines work together on a single case.
+      </p>
+      <p>
+        Partner economists are identified during the conflict check and engagement process.
+        <a href="/contact/#cv-fee">Request CVs and fee information</a> for the economist proposed
+        for your matter along with the firm's own CV and fee schedule.
+      </p>
+    </section>
+
+    <section class="role-boundaries" aria-labelledby="roles-heading">
+      <h2 id="roles-heading">How responsibilities divide</h2>
+      <p>
+        Each discipline answers a different question, and each opinion is signed by the
+        professional qualified to give it.
+      </p>
+      <div class="card-grid">
+        {roles.map((role) => (
+          <div class="card role-card">
+            <h3>{role.name}</h3>
+            <p class="role-who">{role.who}</p>
+            <p>{role.scope}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  </div>
+  <CTABand />
+</BaseLayout>
+
+<style>
+  .expert-roster {
+    margin: 2.25rem 0;
+  }
+
+  .expert-card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--navy);
+    border-radius: 8px;
+    padding: 1.75rem 2rem;
+    max-width: 56rem;
+  }
+
+  .expert-card h2 {
+    margin-bottom: 0.25rem;
+  }
+
+  .expert-role {
+    color: var(--teal);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .expert-lines {
+    list-style: none;
+    margin: 0 0 1rem;
+    padding: 0;
+  }
+
+  .expert-lines li {
+    padding: 0.3rem 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.95rem;
+  }
+
+  .expert-lines li:last-child {
+    border-bottom: 0;
+  }
+
+  .expert-links {
+    margin: 1.25rem 0 0;
+  }
+
+  .partners,
+  .role-boundaries {
+    margin: 2.75rem 0;
+    max-width: 56rem;
+  }
+
+  .role-card h3 {
+    margin-bottom: 0.2rem;
+  }
+
+  .role-who {
+    color: var(--ink-soft);
+    font-size: 0.88rem;
+    margin-bottom: 0.6rem;
+  }
+</style>

@@ -1,0 +1,358 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import NeutralityStatement from '../../components/NeutralityStatement.astro';
+import CTABand from '../../components/CTABand.astro';
+import { personJsonLd } from '../../lib/jsonld';
+import { SITE } from '../../config/site';
+
+const title = 'Jason C. Purinton, Vocational Expert';
+const description =
+  'Board certified vocational expert and life care planner Jason C. Purinton provides objective evaluations and testimony nationwide for plaintiff and defense counsel.';
+const path = '/experts/jason-purinton/';
+
+// Text credential list (no logo badge strips, per content standards).
+// Source: PA-Site credentials page, CV-verified June 2026.
+const credentials = [
+  {
+    abbr: 'LPC',
+    name: 'Licensed Professional Counselor',
+    issuer: 'Missouri Division of Professional Registration',
+  },
+  {
+    abbr: 'CRC',
+    name: 'Certified Rehabilitation Counselor',
+    issuer: 'Commission on Rehabilitation Counselor Certification',
+  },
+  {
+    abbr: 'CVE',
+    name: 'Certified Vocational Evaluator',
+    issuer: 'Commission on Rehabilitation Counselor Certification',
+  },
+  {
+    abbr: 'CLCP',
+    name: 'Certified Life Care Planner',
+    issuer: 'International Commission on Health Care Certification',
+  },
+  {
+    abbr: 'ABVE/F',
+    name: 'Fellow and Board Certified',
+    issuer: 'American Board of Vocational Experts (2025)',
+  },
+  {
+    abbr: 'IPEC',
+    name: 'International Psychometric Evaluator, Certified',
+    issuer: 'American Board of Vocational Experts (2025)',
+  },
+  {
+    abbr: 'FVE',
+    name: 'Forensic Vocational Expert',
+    issuer: 'American Rehabilitation Economics Association',
+  },
+  {
+    abbr: 'NCC',
+    name: 'National Certified Counselor',
+    issuer: 'National Board for Certified Counselors',
+  },
+  {
+    abbr: 'RN',
+    name: 'Registered Nurse',
+    issuer: 'State of Missouri',
+  },
+];
+
+const leadership = [
+  'President, Board of Directors - American Rehabilitation Economics Association (AREA)',
+  'Board of Directors and Fellow - American Board of Vocational Experts (ABVE)',
+  'Board of Directors, Forensic Section Representative (2022-2024) - International Association of Rehabilitation Professionals (IARP)',
+  'Member - Association for Assessment and Research in Counseling',
+];
+
+const areas = [
+  'Employability, placeability, and earning capacity evaluation',
+  'Transferable skills analysis and labor market research',
+  'Wage loss and lost earning capacity analysis',
+  'Life care planning for catastrophic and non-catastrophic injury',
+  'Medical cost projection',
+  'Vocational rehabilitation and return-to-work analysis',
+  'Expert reports, deposition testimony, and trial testimony',
+];
+
+const education = [
+  { degree: 'M.S., Rehabilitation Counseling', detail: 'Emporia State University (2018-2019, Phi Kappa Phi)' },
+  { degree: 'B.S.N., Nursing', detail: 'MidAmerica Nazarene University (2016-2017)' },
+  { degree: 'E.M.T.', detail: 'Johnson County Community College (2014)' },
+  { degree: 'B.S., Business (Communication Studies)', detail: 'University of Kansas (1993-1997)' },
+];
+
+const stateQualifications = [
+  "Certified Rehabilitation Provider - Missouri Division of Workers' Compensation",
+  "Qualified Rehabilitation Professional - Kansas Division of Workers' Compensation",
+  "Qualified Vocational Rehabilitation Counselor and Job Placement Specialist - Nebraska Workers' Compensation Court",
+  'Certified Trauma Professional - Evergreen Certifications',
+  'Certified Critical Incident Stress Debriefer - Ontario Critical Incident Stress Foundation',
+];
+
+const glance = [
+  { label: 'Principal', value: SITE.principal },
+  { label: 'Credentials', value: SITE.principalCreds },
+  { label: 'Based in', value: `${SITE.city}, Missouri` },
+  { label: 'Forensic practice since', value: SITE.founded },
+  { label: 'Engagements', value: 'Plaintiff and defense' },
+  { label: 'Availability', value: 'Nationwide, remote and in person' },
+  { label: 'Offices by appointment', value: SITE.offices.map((o) => o.city).join(', ') },
+];
+---
+<BaseLayout title={title} description={description} path={path} jsonld={[personJsonLd()]}>
+  <div class="container">
+    <Breadcrumbs
+      crumbs={[
+        { name: 'Home', path: '/' },
+        { name: 'Experts', path: '/experts/' },
+        { name: 'Jason C. Purinton', path },
+      ]}
+    />
+    <h1>{SITE.principal}, {SITE.principalCreds}</h1>
+    <p class="lead">
+      Board certified vocational expert and certified life care planner providing objective
+      evaluations of employability and earning capacity, life care plans and medical cost
+      projections, and expert testimony for plaintiff and defense counsel in litigation across
+      the United States.
+    </p>
+    <NeutralityStatement />
+
+    <div class="expert-split">
+      <div class="expert-main">
+        <section aria-labelledby="background">
+          <h2 id="background">Background</h2>
+          <p>
+            Jason C. Purinton is the principal of {SITE.legalName}, a national forensic damages
+            and rehabilitation consulting firm based in Kansas City, Missouri. He provides
+            vocational expert evaluations, life care plans, and medical cost projections, and he
+            testifies on those opinions at deposition and trial.
+          </p>
+          <p>
+            The practice was founded in {SITE.founded} as Vocational Pros, LLC and was rebranded
+            in 2024 as Purinton Analytics to reflect a broader range of analytical services.
+            Jason serves as a forensic vocational rehabilitation expert witness for the Social
+            Security Administration's Office of Disability Adjudication and Review, with
+            extensive disability hearing testimony across the United States. His evaluation
+            history includes {SITE.stats[0].value} {SITE.stats[0].label}. Since 2019 he has also
+            been retained by both plaintiff and defense counsel to provide opinions and testimony
+            in civil litigation nationwide.
+          </p>
+          <p>
+            His clinical background as a licensed professional counselor and registered nurse,
+            combined with board-level certification in vocational evaluation, allows him to
+            connect medical evidence, functional capacity, and labor market data into opinions
+            that are clinically grounded and transparent about their methods. Evaluations draw on
+            the Dictionary of Occupational Titles, O*NET, the Occupational Requirements Survey,
+            transferable skills analysis, and current labor market data from the Bureau of Labor
+            Statistics and state workforce agencies.
+          </p>
+        </section>
+
+        <section aria-labelledby="leadership">
+          <h2 id="leadership">Professional leadership</h2>
+          <ul>
+            {leadership.map((item) => <li>{item}</li>)}
+          </ul>
+        </section>
+
+        <section aria-labelledby="areas">
+          <h2 id="areas">Areas of evaluation and consultation</h2>
+          <ul>
+            {areas.map((item) => <li>{item}</li>)}
+          </ul>
+        </section>
+
+        <section aria-labelledby="boundaries">
+          <h2 id="boundaries">Scope of opinions and role boundaries</h2>
+          <p>
+            Jason's opinions address vocational and rehabilitation questions: employability,
+            placeability, transferable skills, labor market access, lost earning capacity, and
+            the future care needs documented in a life care plan or medical cost projection. He
+            does not perform or sign forensic economic damages analyses. When a case requires
+            present value calculations or other economic loss opinions, the firm coordinates
+            independent economist partners who perform and sign that work under their own names,
+            so each opinion stays within the boundaries of its author's discipline. The
+            <a href="/experts/">experts overview</a> and the
+            <a href="/services/forensic-economic-damages/">forensic economic damages service page</a>
+            describe this separation in more detail.
+          </p>
+        </section>
+
+        <section aria-labelledby="testimony">
+          <h2 id="testimony">Testimony and availability</h2>
+          <p>
+            Purinton Analytics accepts engagements nationwide. Evaluations are conducted remotely
+            and in person, and deposition and trial testimony are available in either format,
+            subject to court approval and counsel's preference. Jason has provided expert
+            opinions and testimony in civil litigation in the United States and Canada since
+            2019, in addition to extensive Social Security disability hearing testimony. The firm
+            is based in Kansas City, Missouri, with offices available by appointment in
+            St. Louis, Denver, and Chicago.
+          </p>
+        </section>
+
+        <section aria-labelledby="education">
+          <h2 id="education">Education</h2>
+          <ul>
+            {education.map((item) => (
+              <li>
+                <strong>{item.degree}</strong> - {item.detail}
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section aria-labelledby="state-quals">
+          <h2 id="state-quals">Licensure and additional qualifications</h2>
+          <p>
+            Jason is licensed in Missouri as a professional counselor and as a registered nurse,
+            and holds rehabilitation qualifications under the Missouri, Kansas, and Nebraska
+            workers' compensation systems.
+          </p>
+          <ul>
+            {stateQualifications.map((item) => <li>{item}</li>)}
+          </ul>
+        </section>
+      </div>
+
+      <aside class="expert-aside" aria-label="Credentials and quick facts">
+        <div class="aside-card">
+          <h2>Credentials and certifications</h2>
+          <ul class="cred-list">
+            {credentials.map((cred) => (
+              <li>
+                <span class="cred-abbr">{cred.abbr}</span>
+                <span class="cred-detail">
+                  <strong>{cred.name}</strong>
+                  <span class="cred-issuer">{cred.issuer}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="aside-card">
+          <h2>At a glance</h2>
+          <dl class="glance">
+            {glance.map((item) => (
+              <>
+                <dt>{item.label}</dt>
+                <dd>{item.value}</dd>
+              </>
+            ))}
+          </dl>
+          <p class="aside-links">
+            <a href="/contact/#cv-fee">Request the current CV and fee information</a><br />
+            <a href={SITE.sameAs[0]} rel="noopener">Jason C. Purinton on LinkedIn</a>
+          </p>
+        </div>
+      </aside>
+    </div>
+  </div>
+  <CTABand />
+</BaseLayout>
+
+<style>
+  .expert-split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 2.5rem;
+    align-items: start;
+    margin: 2rem 0 1rem;
+  }
+
+  @media (max-width: 900px) {
+    .expert-split {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  .expert-main section {
+    margin: 0 0 2.25rem;
+  }
+
+  .expert-main ul {
+    padding-left: 1.2rem;
+  }
+
+  .expert-main li {
+    margin-bottom: 0.45rem;
+  }
+
+  .aside-card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 1.25rem 1.4rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .aside-card h2 {
+    font-size: 1.05rem;
+  }
+
+  .cred-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .cred-list li {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .cred-list li:last-child {
+    border-bottom: 0;
+  }
+
+  .cred-abbr {
+    flex-shrink: 0;
+    min-width: 4rem;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  .cred-detail {
+    font-size: 0.95rem;
+  }
+
+  .cred-issuer {
+    display: block;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+  }
+
+  .glance {
+    margin: 0;
+  }
+
+  .glance dt {
+    font-weight: 600;
+    color: var(--navy);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-top: 0.75rem;
+  }
+
+  .glance dt:first-child {
+    margin-top: 0;
+  }
+
+  .glance dd {
+    margin: 0.1rem 0 0;
+    font-size: 0.95rem;
+  }
+
+  .aside-links {
+    margin: 1.25rem 0 0;
+    font-size: 0.95rem;
+    line-height: 1.9;
+  }
+</style>
