@@ -22,7 +22,22 @@ const evalStat =
   </p>
   {evalStat && <p class="expert-stat">{evalStat.value} {evalStat.label}</p>}
   <ul class="expert-leadership">
-    {leadership.map((line) => <li>{line}</li>)}
+    {leadership.map((line) => (
+      <li>
+        <svg
+          class="cred-glyph"
+          aria-hidden="true"
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+        >
+          <rect x="1.5" y="1.5" width="13" height="13" rx="2" stroke="currentColor" stroke-width="1.5" />
+          <path d="M4.75 8.25 7 10.5l4.25-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span>{line}</span>
+      </li>
+    ))}
   </ul>
   <p class="expert-note">
     Forensic economic analyses are performed and signed by independent economist partners
@@ -33,24 +48,30 @@ const evalStat =
 
 <style>
   .expert-card {
-    background: var(--white);
-    border: 1px solid var(--line);
-    border-left: 4px solid var(--navy);
-    border-radius: 8px;
-    padding: 1.75rem 2rem;
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-top: 3px solid var(--orange);
+    border-radius: 10px;
+    padding: 2rem 2.25rem 2.1rem;
     max-width: 46rem;
   }
 
   .expert-name {
-    margin-bottom: 0.15rem;
-    font-size: 1.35rem;
+    font-size: 1.75rem;
+    line-height: 1.15;
+    margin-bottom: 0.3rem;
   }
 
   .expert-creds {
-    color: var(--teal);
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    margin-bottom: 0.85rem;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal-deep);
+    border-bottom: 1px solid var(--hairline);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
   }
 
   .expert-role {
@@ -58,23 +79,42 @@ const evalStat =
   }
 
   .expert-stat {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 0.9rem;
+    font-weight: 500;
     color: var(--navy);
-    font-weight: 600;
-    margin-bottom: 0.85rem;
+    margin-bottom: 1.1rem;
   }
 
   .expert-leadership {
-    margin: 0 0 1rem;
-    padding-left: 1.2rem;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 0 1.75rem;
+    margin: 0 0 1.1rem;
+    padding: 0;
   }
 
   .expert-leadership li {
-    margin-bottom: 0.35rem;
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+    border-bottom: 1px solid var(--hairline);
+    padding-block: 0.6rem;
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  .cred-glyph {
+    flex-shrink: 0;
+    margin-top: 0.22rem;
+    color: var(--teal-deep);
   }
 
   .expert-note {
     font-size: 0.9rem;
     color: var(--ink-soft);
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.4rem;
   }
 </style>

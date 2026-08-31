@@ -1,16 +1,39 @@
 ---
 // Renders SITE.stats only. Stats are the single gated source of displayed
 // figures (LAUNCH-CHECKLIST item 2); this component deliberately takes no
-// props so fabricated numbers cannot be introduced at call sites.
+// stat props so fabricated numbers cannot be introduced at call sites. The
+// `variant` prop is purely presentational: "band" is the full-width navy
+// ledger row, "exhibit" is the hero's white exhibit card. Numerals count up
+// on first reveal (reveal.js) and always end on the exact SITE.stats strings.
 import { SITE } from '../config/site';
+
+interface Props {
+  variant?: 'band' | 'exhibit';
+}
+
+const { variant = 'band' } = Astro.props;
 ---
-<section class="proof-band" aria-label="Firm experience">
-  <div class="container proof-grid">
-    {SITE.stats.map((stat) => (
-      <div class="proof-stat">
-        <span class="proof-value">{stat.value}</span>
-        <span class="proof-label">{stat.label}</span>
-      </div>
-    ))}
-  </div>
-</section>
+{variant === 'band' ? (
+  <section class="proof-band" aria-label="Firm experience">
+    <div class="container proof-grid">
+      {SITE.stats.map((stat) => (
+        <div class="proof-stat">
+          <span class="proof-value" data-countup>{stat.value}</span>
+          <span class="proof-label">{stat.label}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+) : (
+  <section class="exhibit-card" aria-label="Firm experience">
+    <p class="exhibit-label">The firm in figures</p>
+    <div class="exhibit-grid">
+      {SITE.stats.map((stat) => (
+        <div class="exhibit-stat">
+          <span class="exhibit-value" data-countup>{stat.value}</span>
+          <span class="exhibit-stat-label">{stat.label}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+)}

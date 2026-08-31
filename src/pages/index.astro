@@ -156,43 +156,50 @@ const referralFaqs = [
   path="/"
   jsonld={[orgJsonLd(), webSiteJsonLd()]}
 >
-  {/* 1. Hero */}
+  {/* 1. Hero: asymmetric two-column, copy left, exhibit card right */}
   <section class="hero">
-    <div class="container">
-      <h1>{SITE.tagline}</h1>
-      <p class="hero-lede">{heroLede}</p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="/refer-a-case/">Request a Conflict Check</a>
-        <a class="btn btn-light" href="/contact/#cv-fee">Request CVs and Fee Information</a>
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="hero-eyebrow fx fx-1">National litigation support</p>
+        <h1 class="fx fx-2">{SITE.tagline}</h1>
+        <p class="hero-lede fx fx-3">{heroLede}</p>
+        <div class="hero-actions fx fx-4">
+          <a class="btn btn-primary" href="/refer-a-case/">Request a Conflict Check</a>
+          <a class="btn btn-light" href="/contact/#cv-fee">Request CVs and Fee Information</a>
+        </div>
+        <p class="hero-urgent fx fx-5">
+          Imminent disclosure, deposition, or trial deadline?
+          <a href={`tel:${SITE.phoneE164}`}>Call {SITE.phoneDisplay}</a>
+        </p>
       </div>
-      <p class="hero-urgent">
-        Imminent disclosure, deposition, or trial deadline?
-        <a href={`tel:${SITE.phoneE164}`}>Call {SITE.phoneDisplay}</a>
-      </p>
+      {/* 2. Proof stats (SITE.stats only), presented as the hero exhibit card */}
+      <div class="hero-exhibit fx fx-6">
+        <ProofBand variant="exhibit" />
+      </div>
     </div>
   </section>
-
-  {/* 2. Proof band (SITE.stats only) */}
-  <ProofBand />
 
   {/* 3. Three principal disciplines */}
   <section class="page-section">
     <div class="container">
-      <h2>Vocational, life care planning, and economic expertise</h2>
-      <p class="lead">
-        Each discipline answers a different damages question. Retain one analysis or the
-        coordinated team; either way, every opinion stays within its author's professional
-        boundaries.
-      </p>
+      <div class="section-head" data-reveal>
+        <p class="eyebrow">Services</p>
+        <h2>Vocational, life care planning, and economic expertise</h2>
+        <p class="lead">
+          Each discipline answers a different damages question. Retain one analysis or the
+          coordinated team; either way, every opinion stays within its author's professional
+          boundaries.
+        </p>
+      </div>
       <div class="card-grid">
-        {disciplines.map((d) => (
-          <a class="card" href={d.href}>
+        {disciplines.map((d, i) => (
+          <a class="card" href={d.href} data-reveal style={`--reveal-delay:${i * 40}ms`}>
             <h3>{d.name}</h3>
             <p>{d.text}</p>
           </a>
         ))}
       </div>
-      <p class="more-services">
+      <p class="more-services" data-reveal>
         Also available:
         {supportingServices.map((s) => (
           <>
@@ -206,8 +213,11 @@ const referralFaqs = [
 
   {/* 4. Coordinated damages assessment explainer */}
   <section class="coordinated">
-    <div class="container">
-      <h2>One coordinated engagement, clearly separated expert roles</h2>
+    <div class="container" data-reveal>
+      <div class="section-head">
+        <p class="eyebrow">Coordinated engagement</p>
+        <h2>One coordinated engagement, clearly separated expert roles</h2>
+      </div>
       <p>
         For catastrophic injury and other complex damages cases, counsel can retain the full
         damages team through a single conflict-checked referral. The vocational expert
@@ -231,43 +241,59 @@ const referralFaqs = [
   {/* 6. Matter-type grid */}
   <section class="page-section">
     <div class="container">
-      <h2>Matters we support</h2>
-      <p class="lead">
-        Vocational, life care, and economic questions appear across the litigation landscape.
-        Select a matter type to see which analyses typically apply and what they address.
-      </p>
+      <div class="section-head" data-reveal>
+        <p class="eyebrow">Matters</p>
+        <h2>Matters we support</h2>
+        <p class="lead">
+          Vocational, life care, and economic questions appear across the litigation landscape.
+          Select a matter type to see which analyses typically apply and what they address.
+        </p>
+      </div>
       {matters.length > 0 && (
         <div class="card-grid matters-grid">
-          {matters.map((matter) => (
-            <a class="card" href={`/matters/${matter.id}/`}>
+          {matters.map((matter, i) => (
+            <a
+              class="card"
+              href={`/matters/${matter.id}/`}
+              data-reveal
+              style={`--reveal-delay:${i * 40}ms`}
+            >
               <h3>{MATTER_LABELS[matter.id] ?? matter.data.h1}</h3>
             </a>
           ))}
         </div>
       )}
-      <p class="section-link">
+      <p class="section-link" data-reveal>
         <a href="/matters/">How we support each matter type</a>
       </p>
     </div>
   </section>
 
   {/* 7. Four-step engagement process */}
-  <div class="container content-narrow">
+  <div class="container content-narrow" data-reveal>
     <ProcessSteps />
   </div>
 
   {/* 8. Expert card */}
   <section class="page-section">
     <div class="container content-narrow">
-      <h2>The firm's principal</h2>
-      <ExpertCard />
+      <div class="section-head" data-reveal>
+        <p class="eyebrow">Experts</p>
+        <h2>The firm's principal</h2>
+      </div>
+      <div data-reveal style="--reveal-delay:60ms">
+        <ExpertCard />
+      </div>
     </div>
   </section>
 
   {/* 9. National coverage strip */}
   <section class="coverage">
-    <div class="container">
-      <h2>National coverage</h2>
+    <div class="container" data-reveal>
+      <div class="section-head">
+        <p class="eyebrow">Coverage</p>
+        <h2>National coverage</h2>
+      </div>
       <p>
         Purinton Analytics is based in {SITE.city}, Missouri, with offices available by
         appointment in {appointmentList}. Referrals are accepted from all 50 states.
@@ -284,20 +310,23 @@ const referralFaqs = [
   {/* 10. Featured resources: records checklists */}
   <section class="page-section">
     <div class="container">
-      <h2>Records checklists for counsel</h2>
-      <p class="lead">
-        Records drive every forensic analysis. These printable checklists let counsel start
-        collection before the expert is retained.
-      </p>
+      <div class="section-head" data-reveal>
+        <p class="eyebrow">Resources</p>
+        <h2>Records checklists for counsel</h2>
+        <p class="lead">
+          Records drive every forensic analysis. These printable checklists let counsel start
+          collection before the expert is retained.
+        </p>
+      </div>
       <div class="card-grid">
-        {featuredResources.map((r) => (
-          <a class="card" href={r.href}>
+        {featuredResources.map((r, i) => (
+          <a class="card" href={r.href} data-reveal style={`--reveal-delay:${i * 40}ms`}>
             <h3>{r.name}</h3>
             <p>{r.text}</p>
           </a>
         ))}
       </div>
-      <p class="section-link">
+      <p class="section-link" data-reveal>
         <a href="/resources/">Browse all attorney resources</a>
       </p>
     </div>
@@ -305,7 +334,7 @@ const referralFaqs = [
 
   {/* 11. Referral FAQs (visible + FAQPage JSON-LD from the same data) */}
   <section class="page-section">
-    <div class="container content-narrow">
+    <div class="container content-narrow" data-reveal>
       <FAQBlock faqs={referralFaqs} heading="Common referral questions" />
     </div>
   </section>
@@ -315,34 +344,75 @@ const referralFaqs = [
 </BaseLayout>
 
 <style>
+  /* The Expert Report hero: layered navy-ink gradient under the analysis
+     grid, with a faint radial glow top-left. Pure CSS, no images. */
   .hero {
-    background: linear-gradient(155deg, var(--navy) 0%, #023678 60%, #034a9c 100%);
+    background:
+      var(--grid-texture),
+      radial-gradient(1100px 620px at 10% -12%, rgba(6, 55, 140, 0.55), transparent 62%),
+      linear-gradient(150deg, var(--navy-ink) 0%, var(--navy) 78%, var(--navy-deep) 135%);
     color: var(--white);
-    padding-block: 3.75rem 3rem;
+    padding-block: 4.25rem 4.5rem;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.55fr) minmax(300px, 1fr);
+    gap: 3.5rem;
+    align-items: center;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    /* #A9C3F0 is 10.6:1 on --navy-ink */
+    color: #A9C3F0;
+    margin: 0 0 1.1rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+    position: relative;
+  }
+
+  .hero-eyebrow::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 32px;
+    height: 2px;
+    background: var(--orange);
   }
 
   .hero h1 {
     color: var(--white);
-    max-width: 56rem;
-    margin-bottom: 0.75rem;
+    font-size: clamp(2.35rem, 3.9vw, 3.35rem);
+    line-height: 1.12;
+    letter-spacing: -0.018em;
+    max-width: 21em;
+    margin-bottom: 1.1rem;
   }
 
   .hero-lede {
     color: #d7ddec;
-    font-size: 1.1rem;
-    max-width: 50rem;
+    font-size: 1.08rem;
+    line-height: 1.7;
+    max-width: 62ch;
   }
 
   .hero-actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
-    margin: 1.5rem 0 1rem;
+    gap: 0.85rem;
+    margin: 1.75rem 0 1.25rem;
   }
 
   .hero-urgent {
     color: #d7ddec;
-    font-size: 0.95rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
     margin: 0;
   }
 
@@ -353,10 +423,20 @@ const referralFaqs = [
     color: var(--white);
     font-weight: 600;
     text-decoration: underline;
+    white-space: nowrap;
   }
 
   .hero-urgent a:hover {
     color: #d7ddec;
+  }
+
+  @media (max-width: 860px) {
+    .hero { padding-block: 3rem 3.25rem; }
+
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
   }
 
   .more-services {
@@ -367,11 +447,11 @@ const referralFaqs = [
   .coordinated {
     background: var(--white);
     border-block: 1px solid var(--line);
-    padding-block: 2.75rem;
+    padding-block: 3rem;
   }
 
   .coordinated p {
-    max-width: 56rem;
+    max-width: 68ch;
   }
 
   .coordinated .btn {
@@ -381,26 +461,26 @@ const referralFaqs = [
   .matters-grid {
     grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
     gap: 0.9rem;
-    margin: 1.5rem 0;
+    margin: 1.75rem 0;
   }
 
-  .matters-grid .card {
-    padding: 1rem 1.15rem;
+  .matters-grid :global(.card) {
+    padding: 1.1rem 1.25rem;
   }
 
-  .matters-grid a.card h3 {
+  .matters-grid :global(.card h3) {
     margin: 0;
-    font-size: 1.02rem;
+    font-size: 1.08rem;
   }
 
   .coverage {
     background: #eef1f7;
     border-block: 1px solid var(--line);
-    padding-block: 2.75rem;
+    padding-block: 3rem;
   }
 
   .coverage p {
-    max-width: 56rem;
+    max-width: 68ch;
   }
 
   .section-link {

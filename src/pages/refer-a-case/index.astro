@@ -328,116 +328,14 @@ const referralSourceOptions = [
 </BaseLayout>
 
 <style>
+  /* Shared form styling (.pa-form, .form-field, hints, errors, honeypot)
+     lives in global.css; only page-specific pieces remain here. */
   .form-warning {
     background: #fdf1e7;
     border: 1px solid #f3d2b3;
-    border-left: 4px solid var(--orange);
+    border-left: 3px solid var(--orange);
     border-radius: 6px;
     padding: 1rem 1.25rem;
     margin: 1.5rem 0;
-  }
-
-  .pa-form fieldset {
-    background: var(--white);
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    padding: 1.1rem 1.35rem 1.35rem;
-    margin: 0 0 1.5rem;
-  }
-
-  .pa-form legend {
-    font-weight: 700;
-    color: var(--navy);
-    padding: 0 0.4rem;
-  }
-
-  .req-note {
-    font-size: 0.9rem;
-    color: var(--ink-soft);
-  }
-
-  .req-mark {
-    /* --orange-deep: 5.02:1 on the white fieldset ground (brand orange is 2.96:1). */
-    color: var(--orange-deep);
-    font-weight: 700;
-  }
-
-  .form-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 0 1.25rem;
-  }
-
-  .form-field {
-    margin-bottom: 1rem;
-  }
-
-  .form-field label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 0.3rem;
-  }
-
-  .form-field input,
-  .form-field select,
-  .form-field textarea {
-    width: 100%;
-    padding: 0.55rem 0.7rem;
-    border: 1px solid #aab1c2;
-    border-radius: 6px;
-    font: inherit;
-    background: var(--white);
-    color: var(--ink);
-  }
-
-  .form-field [aria-invalid='true'] {
-    border-color: #b3261e;
-  }
-
-  .field-hint {
-    font-size: 0.85rem;
-    color: var(--ink-soft);
-    margin: 0.3rem 0 0;
-  }
-
-  .field-error {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #b3261e;
-    margin: 0.3rem 0 0;
-  }
-
-  .form-status {
-    font-weight: 600;
-    background: #eef6f6;
-    border: 1px solid #cfe5e5;
-    border-radius: 6px;
-    padding: 0.75rem 1rem;
-  }
-
-  .form-status-error {
-    background: #fdecea;
-    border-color: #f2c4bf;
-    color: #7a1c14;
-  }
-
-  .hp-wrap {
-    position: absolute !important;
-    left: -9999px !important;
-    top: auto !important;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-  }
-
-  .pa-form button[type='submit'] {
-    border: 2px solid transparent;
-    cursor: pointer;
-    font-size: 1rem;
-  }
-
-  .pa-form button[type='submit']:disabled {
-    opacity: 0.6;
-    cursor: wait;
   }
 </style>

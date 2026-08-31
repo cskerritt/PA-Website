@@ -1,6 +1,11 @@
 ---
 import { SITE } from '../config/site';
 
+// Current-page marking for the nav underline (exact path match only).
+const currentPath = Astro.url.pathname.endsWith('/')
+  ? Astro.url.pathname
+  : `${Astro.url.pathname}/`;
+
 const navLinks = [
   { label: 'Home', href: '/' },
   { label: 'Services', href: '/services/' },
@@ -27,7 +32,12 @@ const navLinks = [
       <nav class="site-nav" id="site-nav" data-site-nav aria-label="Main navigation">
         <ul>
           {navLinks.map((link) => (
-            <li><a href={link.href}>{link.label}</a></li>
+            <li>
+              <a
+                href={link.href}
+                aria-current={link.href === currentPath ? 'page' : undefined}
+              >{link.label}</a>
+            </li>
           ))}
           <li class="nav-refer"><a href="/refer-a-case/">Refer a Case</a></li>
         </ul>
@@ -58,5 +68,26 @@ const navLinks = [
       toggle.setAttribute('aria-expanded', String(!open));
       nav.classList.toggle('is-open', !open);
     });
+  }
+
+  // Sticky header: hairline and shadow appear only once the page scrolls.
+  const header = document.querySelector('.site-header');
+  if (header) {
+    let ticking = false;
+    const update = () => {
+      header.classList.toggle('is-scrolled', window.scrollY > 4);
+      ticking = false;
+    };
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(update);
+        }
+      },
+      { passive: true },
+    );
+    update();
   }
 </script>
