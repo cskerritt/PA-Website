@@ -3,6 +3,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import { SITE } from '../config/site';
 import { contactPageJsonLd } from '../lib/jsonld';
+import { assetVer } from '../lib/assetVer';
+
+const formSrc = `/scripts/form.js?v=${assetVer('scripts/form.js')}`;
 
 const title = 'Contact';
 const description =
@@ -215,7 +218,7 @@ const errorFallback = `Your message could not be sent. Please call ${SITE.phoneD
     </section>
   </div>
 
-  <script is:inline src="/scripts/form.js" defer></script>
+  <script is:inline src={formSrc} defer></script>
 </BaseLayout>
 
 <style>

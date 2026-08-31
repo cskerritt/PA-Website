@@ -4,7 +4,9 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import NeutralityStatement from '../../components/NeutralityStatement.astro';
 import ProcessSteps from '../../components/ProcessSteps.astro';
 import { SITE } from '../../config/site';
+import { assetVer } from '../../lib/assetVer';
 
+const formSrc = `/scripts/form.js?v=${assetVer('scripts/form.js')}`;
 const title = 'Refer a Case - Request a Conflict Check';
 const description =
   'Refer a case to Purinton Analytics. Submit a conflict check request for vocational expert, life care planning, or economic damages engagements nationwide.';
@@ -359,7 +361,7 @@ const referralSourceOptions = [
     </p>
   </div>
 
-  <script is:inline src="/scripts/form.js" defer></script>
+  <script is:inline src={formSrc} defer></script>
 </BaseLayout>
 
 <style>
