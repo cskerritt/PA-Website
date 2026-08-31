@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../config/site';
+
+const title = 'Page Not Found';
+const description =
+  'The page you requested could not be found. Find Purinton Analytics services, attorney resources, and the conflict check referral form from this page.';
+---
+<BaseLayout title={title} description={description} path="/404.html">
+  <div class="container content-narrow">
+    <p class="code-line">404</p>
+    <h1>Page Not Found</h1>
+    <p class="lead">
+      The page you requested does not exist or may have moved. The links below cover the most
+      common destinations, and every page on the site is reachable from the navigation above.
+    </p>
+    <div class="card-grid">
+      <a class="card" href="/">
+        <h2 class="card-title">Homepage</h2>
+        <p>Nationwide vocational expert, life care planning, and economic damages services.</p>
+      </a>
+      <a class="card" href="/services/">
+        <h2 class="card-title">Services</h2>
+        <p>The full service cluster, from vocational evaluation to coordinated damages assessment.</p>
+      </a>
+      <a class="card" href="/refer-a-case/">
+        <h2 class="card-title">Refer a Case</h2>
+        <p>Request a conflict check to start an engagement for plaintiff or defense counsel.</p>
+      </a>
+    </div>
+    <p>
+      If a link brought you here, we would like to fix it: email
+      <a href={`mailto:${SITE.email}`}>{SITE.email}</a> with the address you followed.
+    </p>
+  </div>
+</BaseLayout>
+
+<style>
+  .code-line {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--orange);
+    margin: 2rem 0 0;
+    line-height: 1;
+  }
+</style>

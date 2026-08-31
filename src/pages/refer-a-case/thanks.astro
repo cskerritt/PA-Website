@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { SITE } from '../../config/site';
+
+const title = 'Conflict Check Request Received';
+const description =
+  'Your conflict check request has been received. Response expectations and next steps for referring counsel, including secure record transfer after clearance.';
+---
+<BaseLayout title={title} description={description} path="/refer-a-case/thanks/">
+  <div class="container content-narrow">
+    <Breadcrumbs
+      crumbs={[
+        { name: 'Home', path: '/' },
+        { name: 'Refer a Case', path: '/refer-a-case/' },
+        { name: 'Request Received', path: '/refer-a-case/thanks/' },
+      ]}
+    />
+    <h1>Your Conflict Check Request Has Been Received</h1>
+    <p class="lead">
+      Thank you. Your request is in the queue for conflict review. During business hours we
+      typically respond the same day.
+    </p>
+
+    <div class="urgent-note" role="note">
+      Working against an imminent disclosure, deposition, or trial deadline? Call
+      <a href={`tel:${SITE.phoneE164}`}>{SITE.phoneDisplay}</a> and reference the request you
+      just submitted.
+    </div>
+
+    <h2>What happens next</h2>
+    <ol class="next-steps">
+      <li>
+        <strong>Conflict review.</strong> The caption and parties you provided are screened
+        against the firm's prior and current engagements before any substantive discussion of
+        the case.
+      </li>
+      <li>
+        <strong>Clearance, scope, and secure upload link.</strong> Once the conflict check
+        clears, you receive availability, CVs, fee information, and a secure upload link for
+        case records. Please do not send medical records or other confidential documents by
+        email; wait for the secure link.
+      </li>
+      <li>
+        <strong>Records checklist and scheduling.</strong> A records checklist tailored to the
+        claims at issue accompanies the engagement confirmation, so collection can begin
+        immediately and the evaluation can be scheduled around your disclosure calendar.
+      </li>
+    </ol>
+
+    <h2>While you wait</h2>
+    <p>
+      The <a href="/resources/">attorney resource library</a> includes records checklists for
+      vocational, life care planning, and economic loss engagements. Gathering those records
+      now shortens the time from clearance to a completed report.
+    </p>
+    <p>
+      Return to the <a href="/">homepage</a> or review the
+      <a href="/services/">services overview</a>.
+    </p>
+  </div>
+</BaseLayout>
+
+<style>
+  .urgent-note {
+    background: #fdf1e7;
+    border: 1px solid #f3d2b3;
+    border-left: 4px solid var(--orange);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    font-weight: 600;
+  }
+
+  .next-steps {
+    padding-left: 1.3rem;
+  }
+
+  .next-steps li {
+    margin-bottom: 0.85rem;
+  }
+</style>

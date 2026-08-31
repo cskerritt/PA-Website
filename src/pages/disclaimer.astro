@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { SITE } from '../config/site';
+
+const title = 'Disclaimer';
+const description =
+  'Website disclaimer for Purinton Analytics: informational content only, no legal advice, and no expert engagement until a conflict check and written agreement.';
+---
+<BaseLayout title={title} description={description} path="/disclaimer/">
+  <div class="container content-narrow">
+    <Breadcrumbs
+      crumbs={[
+        { name: 'Home', path: '/' },
+        { name: 'Disclaimer', path: '/disclaimer/' },
+      ]}
+    />
+    <h1>Disclaimer</h1>
+    <p class="lead">
+      This website is informational. Reading it, or submitting a form through it, does not
+      create an engagement with the firm and does not create any professional relationship.
+    </p>
+
+    <h2>No legal advice</h2>
+    <p>
+      Purinton Analytics is not a law firm and nothing on this website is legal advice.
+      Content describing litigation procedure, expert disclosure practice, or evidentiary
+      standards is descriptive background written for retaining counsel. Attorneys and
+      litigants should rely on their own legal judgment and the law of their jurisdiction.
+    </p>
+
+    <h2>No engagement without a conflict check and written agreement</h2>
+    <p>
+      Submitting the conflict check form requests a conflict screen; it does not retain the
+      firm, does not obligate the firm to accept the matter, and does not obligate counsel to
+      proceed. An engagement exists only after the conflict check clears and a written
+      agreement is executed. Until then, do not send confidential case materials.
+    </p>
+
+    <h2>No professional advice for specific situations</h2>
+    <p>
+      General descriptions of vocational evaluation, life care planning, and economic damages
+      methodology on this site are not opinions about any specific person or case. Expert
+      opinions are formed only within an engagement, from case-specific records, and are
+      stated in signed reports and testimony.
+    </p>
+
+    <h2>Independent economist partners</h2>
+    <p>
+      Forensic economic analyses described on this site are performed and signed by
+      independent economist partners coordinated by the firm. Descriptions of economic
+      methodology are informational and are not economist opinions of the firm or its
+      principal.
+    </p>
+
+    <h2>Results depend on the case</h2>
+    <p>
+      Descriptions of the firm's experience, methodology, and prior work do not predict or
+      guarantee the outcome of any matter. Every opinion depends on the records, facts, and
+      law of the specific case, and results vary.
+    </p>
+
+    <h2>External sources</h2>
+    <p>
+      This site cites and links to external sources, including government data series and
+      professional organizations. Those materials belong to their publishers, may change
+      after the date they were cited, and are outside the firm's control.
+    </p>
+
+    <h2>Questions</h2>
+    <p>
+      Questions about this disclaimer can be directed to
+      <a href={`mailto:${SITE.email}`}>{SITE.email}</a> or
+      <a href={`tel:${SITE.phoneE164}`}>{SITE.phoneDisplay}</a>.
+    </p>
+  </div>
+</BaseLayout>

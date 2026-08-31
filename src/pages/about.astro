@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import NeutralityStatement from '../components/NeutralityStatement.astro';
+import ProofBand from '../components/ProofBand.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import CTABand from '../components/CTABand.astro';
+import { SITE } from '../config/site';
+
+const title = 'About the Firm';
+const description =
+  'About Purinton Analytics, LLC: a national forensic damages and rehabilitation consulting firm founded in 2018, serving plaintiff and defense counsel.';
+---
+<BaseLayout title={title} description={description} path="/about/">
+  <div class="container content-narrow">
+    <Breadcrumbs
+      crumbs={[
+        { name: 'Home', path: '/' },
+        { name: 'About', path: '/about/' },
+      ]}
+    />
+    <h1>About Purinton Analytics</h1>
+    <p class="lead">
+      Purinton Analytics, LLC is a national forensic damages and rehabilitation consulting
+      firm. It provides coordinated vocational evaluation, life care planning, and forensic
+      economic analysis for plaintiff and defense counsel in litigation across the United
+      States, with every engagement built on a documented conflict check and a stated,
+      checkable methodology.
+    </p>
+
+    <h2>The firm</h2>
+    <p>
+      The firm was founded in {SITE.founded} by Jason C. Purinton, {SITE.principalCreds}, and
+      is based in Kansas City, Missouri, with by-appointment offices in St. Louis, Denver, and
+      Chicago. Engagements are accepted in state and federal matters nationwide. Evaluations,
+      depositions, and trial testimony are available in person and by remote appearance, so
+      geography does not decide which expert a case gets.
+    </p>
+
+    <h2>Three disciplines, clearly separated roles</h2>
+    <p>
+      Damages cases often need more than one expert, and the experts are only useful if each
+      stays inside the boundaries of their own discipline. Purinton Analytics coordinates
+      three disciplines within one engagement while keeping their opinions separate.
+      Vocational evaluation and life care planning are performed by the firm's principal.
+      Forensic economic analyses are performed and signed by independent economist partners
+      coordinated by the firm; the firm does not issue economist opinions, and the economists
+      do not issue vocational or life care planning opinions. Each expert signs their own
+      report, states their own methodology, and testifies to their own conclusions.
+    </p>
+
+    <h2>Objectivity as a practice standard</h2>
+    <NeutralityStatement />
+    <p>
+      The firm accepts work from both sides of the caption as a deliberate practice standard.
+      The same instruments, the same data sources, and the same reporting structure apply
+      whether the retaining party is plaintiff, defense, insurer, or employer. Opinions that
+      do not depend on the identity of the retaining party hold up better in deposition, at
+      trial, and across the long run of a referral relationship.
+    </p>
+
+    <h2>Professional standards and quality control</h2>
+    <p>
+      Quality control is built into the work product rather than asserted around it. Every
+      report states its methodology, identifies standardized instruments by name, cites the
+      published data series behind each figure, and separates findings from assumptions so
+      the analysis can be retraced step by step. Opinions are expressed to a reasonable
+      degree of professional certainty and stay within the signing expert's discipline.
+    </p>
+    <p>
+      The publication standard is simple: every report is written to be read closely by
+      opposing counsel and opposing experts. The firm's principal holds credentials from
+      national certifying bodies, including Certified Rehabilitation Counselor and Certified
+      Life Care Planner, and is bound by their codes of ethics and standards of practice.
+    </p>
+
+    <h2>Leadership in the field</h2>
+    <p>
+      Jason C. Purinton serves as President of the Board of Directors of the American
+      Rehabilitation Economics Association and as a Fellow and Board member of the American
+      Board of Vocational Experts. He served on the Board of Directors of the International
+      Association of Rehabilitation Professionals as Forensic Section Representative from
+      2022 to 2024. Read the full profile at
+      <a href="/experts/jason-purinton/">the expert page</a>.
+    </p>
+  </div>
+
+  <ProofBand />
+
+  <div class="container content-narrow">
+    <ProcessSteps intro="Every engagement, on either side of the caption, follows the same sequence." />
+  </div>
+
+  <CTABand />
+</BaseLayout>

@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { SITE } from '../config/site';
+
+const title = 'Accessibility Statement';
+const description =
+  'Accessibility statement for the Purinton Analytics website: WCAG 2.2 AA conformance target, measures taken in this build, and how to report barriers.';
+---
+<BaseLayout title={title} description={description} path="/accessibility/">
+  <div class="container content-narrow">
+    <Breadcrumbs
+      crumbs={[
+        { name: 'Home', path: '/' },
+        { name: 'Accessibility', path: '/accessibility/' },
+      ]}
+    />
+    <h1>Accessibility Statement</h1>
+    <p class="lead">
+      Purinton Analytics wants every attorney, paralegal, and member of the public to be able
+      to use this website. The site targets Web Content Accessibility Guidelines (WCAG) 2.2
+      Level AA, and this page describes the specific measures built into the current site
+      rather than aspirational claims.
+    </p>
+    <p><em>This statement was prepared on August 31, 2026.</em></p>
+
+    <h2>Measures built into this site</h2>
+    <ul>
+      <li>Semantic HTML landmarks (header, navigation, main, footer) and a skip-to-content link on every page.</li>
+      <li>A single, descriptive top-level heading per page and a logical heading order.</li>
+      <li>All functionality operable by keyboard, including the mobile navigation menu, which is a real button that reports its expanded state to assistive technology.</li>
+      <li>Visible focus indicators on links, buttons, and form controls.</li>
+      <li>Every form field has a programmatically associated label, and validation errors are written into the field's described-by text and announced through a status region, not conveyed by color alone.</li>
+      <li>No file upload controls, no time limits, and no content that flashes.</li>
+      <li>Text alternatives on informative images, including the firm logo.</li>
+      <li>Color combinations chosen against WCAG contrast thresholds for text on the site's navy, orange, and neutral palette.</li>
+      <li>Motion and smooth scrolling are disabled for visitors whose systems request reduced motion.</li>
+      <li>Responsive layout that reflows for small screens and supports browser zoom, and print stylesheets for resource checklists.</li>
+    </ul>
+
+    <h2>How this is checked</h2>
+    <p>
+      An automated test suite runs against every build of this site and verifies page
+      structure, including single top-level headings, page titles and descriptions, labeled
+      form fields, and working internal links. Keyboard operability and focus visibility are
+      properties of the site's construction rather than afterthoughts: navigation, menus, and
+      forms use native links, buttons, and form controls that carry the browser's standard
+      keyboard behavior, with a shared visible focus style.
+    </p>
+
+    <h2>Known limitations</h2>
+    <p>
+      No unresolved accessibility barriers are known at the date of this statement. External
+      websites linked from this site, including government data sources, are outside the
+      firm's control.
+    </p>
+
+    <h2>Feedback and alternate formats</h2>
+    <p>
+      If any part of this site is difficult to use with your assistive technology, or if you
+      need any content in an alternate format, contact
+      <a href={`mailto:${SITE.email}`}>{SITE.email}</a> or call
+      <a href={`tel:${SITE.phoneE164}`}>{SITE.phoneDisplay}</a>. Please describe the page and
+      the barrier you encountered; reported issues are reviewed and addressed.
+    </p>
+  </div>
+</BaseLayout>

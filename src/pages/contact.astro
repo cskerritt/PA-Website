@@ -1,0 +1,328 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { SITE } from '../config/site';
+import { contactPageJsonLd } from '../lib/jsonld';
+
+const title = 'Contact';
+const description =
+  'Contact Purinton Analytics for general inquiries or to request CVs and fee information. Phone and email contact for plaintiff and defense counsel nationwide.';
+
+const errorFallback = `Your message could not be sent. Please call ${SITE.phoneDisplay} or email ${SITE.email} directly.`;
+---
+<BaseLayout
+  title={title}
+  description={description}
+  path="/contact/"
+  jsonld={[contactPageJsonLd()]}
+>
+  <div class="container content-narrow">
+    <Breadcrumbs
+      crumbs={[
+        { name: 'Home', path: '/' },
+        { name: 'Contact', path: '/contact/' },
+      ]}
+    />
+    <h1>Contact Purinton Analytics</h1>
+    <p class="lead">
+      Reach the firm by phone at <a href={`tel:${SITE.phoneE164}`}>{SITE.phoneDisplay}</a> or by
+      email at <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. The firm is based in
+      {SITE.city}, Missouri, with by-appointment offices in St. Louis, Denver, and Chicago, and
+      accepts engagements nationwide. During business hours we typically respond the same day.
+    </p>
+
+    <h2>Choose the right path</h2>
+    <ul class="path-list">
+      <li>
+        <strong>New case referral.</strong> The fastest route to clearance is the
+        <a href="/refer-a-case/">conflict check form</a>, which collects the caption, venue,
+        and deadlines in one pass.
+      </li>
+      <li>
+        <strong>Rush or rebuttal deadline.</strong> Use the
+        <a href="/refer-a-case/?urgency=rush">conflict check form with the rush flag preset</a>,
+        or call the number above.
+      </li>
+      <li>
+        <strong>CVs and fee information.</strong> Use the
+        <a href="#cv-fee">CV and fee request form below</a>.
+      </li>
+      <li>
+        <strong>Speaking, publications, and media.</strong> Email
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a> with the event or publication details.
+      </li>
+    </ul>
+
+    <p class="sensitive-note" role="note">
+      Do not submit medical records, Social Security numbers, dates of birth, financial
+      records, or confidential documents through this website. A secure upload link for case
+      records is provided after a conflict check clears.
+    </p>
+
+    <h2>General inquiries</h2>
+    <form
+      class="pa-form"
+      method="POST"
+      action="https://api.web3forms.com/submit"
+      data-pa-form="general"
+      data-success-message="Thank you. Your message has been sent. During business hours we typically respond the same day."
+      data-error-fallback={errorFallback}
+    >
+      <input type="hidden" name="access_key" value={SITE.web3formsKey} />
+      <input type="hidden" name="subject" value="[General Inquiry] Website contact form" />
+      <input type="hidden" name="form_started" value="" />
+
+      <div class="form-row">
+        <div class="form-field">
+          <label for="gi-name">Name <span class="req-mark" aria-hidden="true">*</span></label>
+          <input
+            type="text"
+            id="gi-name"
+            name="name"
+            autocomplete="name"
+            required
+            aria-describedby="gi-name-error"
+            data-error-required="Enter your name."
+          />
+          <p class="field-error" id="gi-name-error" hidden></p>
+        </div>
+        <div class="form-field">
+          <label for="gi-email">Email <span class="req-mark" aria-hidden="true">*</span></label>
+          <input
+            type="email"
+            id="gi-email"
+            name="email"
+            autocomplete="email"
+            required
+            aria-describedby="gi-email-error"
+            data-error-required="Enter an email address so we can respond."
+          />
+          <p class="field-error" id="gi-email-error" hidden></p>
+        </div>
+      </div>
+      <div class="form-field">
+        <label for="gi-message">Message <span class="req-mark" aria-hidden="true">*</span></label>
+        <textarea
+          id="gi-message"
+          name="message"
+          rows="5"
+          required
+          aria-describedby="gi-message-hint gi-message-error"
+          data-error-required="Enter your message."
+        ></textarea>
+        <p class="field-hint" id="gi-message-hint">
+          Please keep messages non-confidential. Case referrals move faster through the
+          conflict check form.
+        </p>
+        <p class="field-error" id="gi-message-error" hidden></p>
+      </div>
+
+      <div class="hp-wrap" aria-hidden="true">
+        <label for="gi-contact-preference">Leave this field empty</label>
+        <input
+          type="text"
+          id="gi-contact-preference"
+          name="contact_preference"
+          tabindex="-1"
+          autocomplete="off"
+        />
+      </div>
+
+      <p class="form-status" data-status role="status" hidden></p>
+      <button type="submit" class="btn btn-primary">Send Message</button>
+    </form>
+
+    <section id="cv-fee" class="cv-fee-section" aria-labelledby="cv-fee-heading">
+      <h2 id="cv-fee-heading">Request CVs and Fee Information</h2>
+      <p>
+        Current CVs and fee schedules are provided before retention. Enter your details and
+        they will be sent to the email address you provide.
+      </p>
+      <form
+        class="pa-form"
+        method="POST"
+        action="https://api.web3forms.com/submit"
+        data-pa-form="cv-fee"
+        data-success-message="Thank you. CVs and current fee information will be sent to the email address you provided."
+        data-error-fallback={errorFallback}
+      >
+        <input type="hidden" name="access_key" value={SITE.web3formsKey} />
+        <input type="hidden" name="subject" value="[CV and Fee Request]" />
+        <input type="hidden" name="form_started" value="" />
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="cv-name">Name <span class="req-mark" aria-hidden="true">*</span></label>
+            <input
+              type="text"
+              id="cv-name"
+              name="name"
+              autocomplete="name"
+              required
+              aria-describedby="cv-name-error"
+              data-error-required="Enter your name."
+            />
+            <p class="field-error" id="cv-name-error" hidden></p>
+          </div>
+          <div class="form-field">
+            <label for="cv-email">Email <span class="req-mark" aria-hidden="true">*</span></label>
+            <input
+              type="email"
+              id="cv-email"
+              name="email"
+              autocomplete="email"
+              required
+              aria-describedby="cv-email-error"
+              data-error-required="Enter an email address to receive CVs and fee information."
+            />
+            <p class="field-error" id="cv-email-error" hidden></p>
+          </div>
+          <div class="form-field">
+            <label for="cv-firm">Firm or organization <span class="req-mark" aria-hidden="true">*</span></label>
+            <input
+              type="text"
+              id="cv-firm"
+              name="firm"
+              autocomplete="organization"
+              required
+              aria-describedby="cv-firm-error"
+              data-error-required="Enter the firm or organization name."
+            />
+            <p class="field-error" id="cv-firm-error" hidden></p>
+          </div>
+        </div>
+
+        <div class="hp-wrap" aria-hidden="true">
+          <label for="cv-contact-preference">Leave this field empty</label>
+          <input
+            type="text"
+            id="cv-contact-preference"
+            name="contact_preference"
+            tabindex="-1"
+            autocomplete="off"
+          />
+        </div>
+
+        <p class="form-status" data-status role="status" hidden></p>
+        <button type="submit" class="btn btn-primary">Request CVs and Fee Information</button>
+      </form>
+    </section>
+  </div>
+
+  <script is:inline src="/scripts/form.js" defer></script>
+</BaseLayout>
+
+<style>
+  .path-list {
+    padding-left: 1.3rem;
+  }
+
+  .path-list li {
+    margin-bottom: 0.6rem;
+  }
+
+  .sensitive-note {
+    background: #fdf1e7;
+    border: 1px solid #f3d2b3;
+    border-left: 4px solid var(--orange);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+  }
+
+  .cv-fee-section {
+    margin-top: 3rem;
+    scroll-margin-top: 1.5rem;
+  }
+
+  .pa-form {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 1.25rem 1.35rem;
+    margin: 1rem 0 1.5rem;
+  }
+
+  .req-mark {
+    color: var(--orange);
+    font-weight: 700;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0 1.25rem;
+  }
+
+  .form-field {
+    margin-bottom: 1rem;
+  }
+
+  .form-field label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+  }
+
+  .form-field input,
+  .form-field textarea {
+    width: 100%;
+    padding: 0.55rem 0.7rem;
+    border: 1px solid #aab1c2;
+    border-radius: 6px;
+    font: inherit;
+    background: var(--white);
+    color: var(--ink);
+  }
+
+  .form-field [aria-invalid='true'] {
+    border-color: #b3261e;
+  }
+
+  .field-hint {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    margin: 0.3rem 0 0;
+  }
+
+  .field-error {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #b3261e;
+    margin: 0.3rem 0 0;
+  }
+
+  .form-status {
+    font-weight: 600;
+    background: #eef6f6;
+    border: 1px solid #cfe5e5;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+  }
+
+  .form-status-error {
+    background: #fdecea;
+    border-color: #f2c4bf;
+    color: #7a1c14;
+  }
+
+  .hp-wrap {
+    position: absolute !important;
+    left: -9999px !important;
+    top: auto !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .pa-form button[type='submit'] {
+    border: 2px solid transparent;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  .pa-form button[type='submit']:disabled {
+    opacity: 0.6;
+    cursor: wait;
+  }
+</style>

@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { SITE } from '../config/site';
+
+const title = 'Privacy Policy';
+const description =
+  'Privacy policy for the Purinton Analytics website: what the contact and referral forms collect, how submissions are delivered, and how to reach the firm.';
+---
+<BaseLayout title={title} description={description} path="/privacy/">
+  <div class="container content-narrow">
+    <Breadcrumbs
+      crumbs={[
+        { name: 'Home', path: '/' },
+        { name: 'Privacy Policy', path: '/privacy/' },
+      ]}
+    />
+    <h1>Privacy Policy</h1>
+    <p class="lead">
+      This policy describes what information this website collects, how it is used, and the
+      one rule that matters most: confidential case records do not belong on this website.
+    </p>
+    <p><em>Effective date: August 31, 2026.</em></p>
+
+    <h2>Do not submit confidential material</h2>
+    <p>
+      Do not submit medical records, Social Security numbers, dates of birth, financial
+      records, or confidential documents through any form on this website. The forms exist
+      for conflict screening, CV and fee requests, and general inquiries only, and their
+      contents travel by ordinary email. After a conflict check clears, the firm provides a
+      secure upload link for case records; please wait for that link.
+    </p>
+
+    <h2>What this website collects</h2>
+    <p>
+      The website has no user accounts and collects personal information only when you choose
+      to submit a form: your name, firm, contact details, and the non-confidential case or
+      inquiry information you type in. The site does not set cookies and does not run
+      analytics or advertising trackers.
+    </p>
+
+    <h2>How form submissions are handled</h2>
+    <p>
+      Form submissions are transmitted by Web3Forms, a third-party form delivery service, to
+      the firm's email address, where they are handled as business correspondence. The firm
+      uses submitted information to run conflict checks, respond to inquiries, send requested
+      CVs and fee information, and administer engagements. The firm does not sell personal
+      information and does not use it for advertising.
+    </p>
+
+    <h2>Email and telephone communication</h2>
+    <p>
+      Ordinary email is not a secure channel for protected health information or other
+      sensitive records. If your matter requires transmitting such records, the firm will
+      arrange a secure transfer method after the conflict check clears.
+    </p>
+
+    <h2>Hosting and technical logs</h2>
+    <p>
+      The website is served from third-party hosting infrastructure, which may record
+      standard technical logs such as IP addresses, browser type, and pages requested for
+      security and operations purposes.
+    </p>
+
+    <h2>Retention</h2>
+    <p>
+      Form submissions are retained as email correspondence for as long as needed to maintain
+      accurate conflict-check records and to administer any resulting engagement.
+    </p>
+
+    <h2>External links</h2>
+    <p>
+      Pages on this site link to external sources such as government data series and
+      professional organizations. Those sites operate under their own privacy practices.
+    </p>
+
+    <h2>Questions and requests</h2>
+    <p>
+      For questions about this policy, or to ask what information the firm holds from your
+      website submissions, contact
+      <a href={`mailto:${SITE.email}`}>{SITE.email}</a> or call
+      <a href={`tel:${SITE.phoneE164}`}>{SITE.phoneDisplay}</a>.
+    </p>
+
+    <h2>Changes</h2>
+    <p>
+      Updates to this policy are posted on this page with a revised effective date.
+    </p>
+  </div>
+</BaseLayout>

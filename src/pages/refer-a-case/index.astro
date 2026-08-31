@@ -1,0 +1,442 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import NeutralityStatement from '../../components/NeutralityStatement.astro';
+import ProcessSteps from '../../components/ProcessSteps.astro';
+import { SITE } from '../../config/site';
+
+const title = 'Refer a Case - Request a Conflict Check';
+const description =
+  'Refer a case to Purinton Analytics. Submit a conflict check request for vocational expert, life care planning, or economic damages engagements nationwide.';
+
+const errorFallback = `Your request could not be sent. Please call ${SITE.phoneDisplay} or email ${SITE.email} and we will run the conflict check by phone.`;
+
+const serviceOptions = [
+  'Vocational expert evaluation and testimony',
+  'Life care planning',
+  'Medical cost projection',
+  'Forensic economic damages (independent economist partner)',
+  'Rebuttal or peer review of an opposing report',
+  'Expert testimony and litigation consulting',
+  'Coordinated damages assessment (multiple disciplines)',
+  'Not sure yet',
+];
+
+const caseTypeOptions = [
+  'Personal injury',
+  'Medical malpractice',
+  'Wrongful death',
+  'Pediatric or birth injury',
+  'Employment litigation',
+  'Family law',
+  "Workers' compensation",
+  'ERISA or long-term disability',
+  'Product liability or mass tort',
+  'Veterans or TDIU',
+  'Other',
+];
+
+const referralSourceOptions = [
+  'Referral from another attorney',
+  'Prior engagement with the firm',
+  'Internet search',
+  'Professional directory or association listing',
+  'CLE program or presentation',
+  'Publication or article',
+  'Other',
+];
+---
+<BaseLayout title={title} description={description} path="/refer-a-case/">
+  <div class="container content-narrow">
+    <Breadcrumbs
+      crumbs={[
+        { name: 'Home', path: '/' },
+        { name: 'Refer a Case', path: '/refer-a-case/' },
+      ]}
+    />
+    <h1>Refer a Case: Request a Conflict Check</h1>
+    <p class="lead">
+      Every engagement begins with a documented conflict check. Send the case caption or party
+      names and the basics of the engagement below. During business hours we typically respond
+      the same day with conflict clearance, availability, CVs, and fee information. For an
+      imminent disclosure, deposition, or trial deadline, call
+      <a href={`tel:${SITE.phoneE164}`}>{SITE.phoneDisplay}</a>.
+    </p>
+    <NeutralityStatement />
+
+    <div class="form-warning" role="note">
+      <strong>Do not submit medical records, Social Security numbers, dates of birth,
+      financial records, or confidential documents through this form.</strong>
+      This form is for conflict screening only and travels by ordinary email. A secure upload
+      link for case records is provided after the conflict check clears.
+    </div>
+
+    <form
+      class="pa-form"
+      method="POST"
+      action="https://api.web3forms.com/submit"
+      data-pa-form="refer"
+      data-success="/refer-a-case/thanks/"
+      data-error-fallback={errorFallback}
+    >
+      <input type="hidden" name="access_key" value={SITE.web3formsKey} />
+      <input type="hidden" name="subject" value="[Conflict Check] New case referral" />
+      <input type="hidden" name="redirect" value={`${SITE.domain}/refer-a-case/thanks/`} />
+      <input type="hidden" name="form_started" value="" />
+
+      <p class="req-note">Fields marked <span class="req-mark">*</span> are required.</p>
+
+      <fieldset>
+        <legend>Referring counsel</legend>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="attorney_name">Referring attorney <span class="req-mark" aria-hidden="true">*</span></label>
+            <input
+              type="text"
+              id="attorney_name"
+              name="attorney_name"
+              autocomplete="name"
+              required
+              aria-describedby="attorney_name-error"
+              data-error-required="Enter the referring attorney's name."
+            />
+            <p class="field-error" id="attorney_name-error" hidden></p>
+          </div>
+          <div class="form-field">
+            <label for="firm">Firm or organization <span class="req-mark" aria-hidden="true">*</span></label>
+            <input
+              type="text"
+              id="firm"
+              name="firm"
+              autocomplete="organization"
+              required
+              aria-describedby="firm-error"
+              data-error-required="Enter the firm or organization name."
+            />
+            <p class="field-error" id="firm-error" hidden></p>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="email">Email <span class="req-mark" aria-hidden="true">*</span></label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              autocomplete="email"
+              required
+              aria-describedby="email-error"
+              data-error-required="Enter an email address so we can respond."
+            />
+            <p class="field-error" id="email-error" hidden></p>
+          </div>
+          <div class="form-field">
+            <label for="phone">Phone</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              autocomplete="tel"
+              aria-describedby="phone-error"
+            />
+            <p class="field-error" id="phone-error" hidden></p>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Case information</legend>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="side">Side represented <span class="req-mark" aria-hidden="true">*</span></label>
+            <select
+              id="side"
+              name="side"
+              required
+              aria-describedby="side-error"
+              data-error-required="Select the side you represent."
+            >
+              <option value="">Select an option</option>
+              <option value="Plaintiff">Plaintiff</option>
+              <option value="Defense">Defense</option>
+              <option value="Insurer">Insurer</option>
+              <option value="Employer">Employer</option>
+              <option value="Neutral">Neutral</option>
+            </select>
+            <p class="field-error" id="side-error" hidden></p>
+          </div>
+          <div class="form-field">
+            <label for="service_requested">Service requested <span class="req-mark" aria-hidden="true">*</span></label>
+            <select
+              id="service_requested"
+              name="service_requested"
+              required
+              aria-describedby="service_requested-error"
+              data-error-required="Select the service you are requesting."
+            >
+              <option value="">Select an option</option>
+              {serviceOptions.map((option) => (
+                <option value={option}>{option}</option>
+              ))}
+            </select>
+            <p class="field-error" id="service_requested-error" hidden></p>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="case_type">Case type <span class="req-mark" aria-hidden="true">*</span></label>
+            <select
+              id="case_type"
+              name="case_type"
+              required
+              aria-describedby="case_type-error"
+              data-error-required="Select the case type."
+            >
+              <option value="">Select an option</option>
+              {caseTypeOptions.map((option) => (
+                <option value={option}>{option}</option>
+              ))}
+            </select>
+            <p class="field-error" id="case_type-error" hidden></p>
+          </div>
+          <div class="form-field">
+            <label for="jurisdiction_venue">Jurisdiction and venue <span class="req-mark" aria-hidden="true">*</span></label>
+            <input
+              type="text"
+              id="jurisdiction_venue"
+              name="jurisdiction_venue"
+              required
+              aria-describedby="jurisdiction_venue-hint jurisdiction_venue-error"
+              data-error-required="Enter the jurisdiction and venue."
+            />
+            <p class="field-hint" id="jurisdiction_venue-hint">
+              For example: U.S. District Court, Eastern District of Missouri, or Jackson County, Missouri.
+            </p>
+            <p class="field-error" id="jurisdiction_venue-error" hidden></p>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="caption_parties">Case caption or conflict parties</label>
+          <textarea
+            id="caption_parties"
+            name="caption_parties"
+            rows="3"
+            aria-describedby="caption_parties-hint caption_parties-error"
+          ></textarea>
+          <p class="field-hint" id="caption_parties-hint">
+            The caption or the names of parties, employers, and insurers to screen for conflicts.
+            If you prefer to provide parties by phone, leave this blank and note that in the summary.
+          </p>
+          <p class="field-error" id="caption_parties-error" hidden></p>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Deadlines and urgency</legend>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="disclosure_deadline">Expert disclosure deadline</label>
+            <input
+              type="date"
+              id="disclosure_deadline"
+              name="disclosure_deadline"
+              aria-describedby="disclosure_deadline-hint disclosure_deadline-error"
+            />
+            <p class="field-hint" id="disclosure_deadline-hint">If a deadline has been set.</p>
+            <p class="field-error" id="disclosure_deadline-error" hidden></p>
+          </div>
+          <div class="form-field">
+            <label for="depo_trial_date">Deposition or trial date</label>
+            <input
+              type="date"
+              id="depo_trial_date"
+              name="depo_trial_date"
+              aria-describedby="depo_trial_date-error"
+            />
+            <p class="field-error" id="depo_trial_date-error" hidden></p>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="urgency">Urgency</label>
+          <select id="urgency" name="urgency" aria-describedby="urgency-error">
+            <option value="standard">Standard scheduling</option>
+            <option value="rush">Rush: imminent disclosure, deposition, or trial deadline</option>
+            <option value="rebuttal">Rebuttal: opposing report in hand, response deadline set</option>
+          </select>
+          <p class="field-error" id="urgency-error" hidden></p>
+        </div>
+      </fieldset>
+
+      <div class="hp-wrap" aria-hidden="true">
+        <label for="ref-contact-preference">Leave this field empty</label>
+        <input
+          type="text"
+          id="ref-contact-preference"
+          name="contact_preference"
+          tabindex="-1"
+          autocomplete="off"
+        />
+      </div>
+
+      <fieldset>
+        <legend>Summary and referral source</legend>
+        <div class="form-field">
+          <label for="summary">Brief non-confidential summary <span class="req-mark" aria-hidden="true">*</span></label>
+          <textarea
+            id="summary"
+            name="summary"
+            rows="5"
+            required
+            aria-describedby="summary-hint summary-error"
+            data-error-required="Enter a brief, non-confidential case summary."
+          ></textarea>
+          <p class="field-hint" id="summary-hint">
+            Two or three sentences on the nature of the case and the question the expert work
+            must answer. Do not include protected health information, Social Security numbers,
+            or account numbers.
+          </p>
+          <p class="field-error" id="summary-error" hidden></p>
+        </div>
+        <div class="form-field">
+          <label for="referral_source">How did you hear about the firm?</label>
+          <select id="referral_source" name="referral_source" aria-describedby="referral_source-error">
+            <option value="">Select an option (optional)</option>
+            {referralSourceOptions.map((option) => (
+              <option value={option}>{option}</option>
+            ))}
+          </select>
+          <p class="field-error" id="referral_source-error" hidden></p>
+        </div>
+      </fieldset>
+
+      <p class="form-status" data-status role="status" hidden></p>
+      <button type="submit" class="btn btn-primary">Submit Conflict Check Request</button>
+    </form>
+
+    <ProcessSteps
+      heading="What happens after you submit"
+      intro="Conflict check requests move through the firm's standard engagement sequence."
+    />
+
+    <p>
+      General inquiries that are not case referrals, and requests for CVs and fee schedules
+      without a pending case, can go through the <a href="/contact/">contact page</a>.
+    </p>
+  </div>
+
+  <script is:inline src="/scripts/form.js" defer></script>
+</BaseLayout>
+
+<style>
+  .form-warning {
+    background: #fdf1e7;
+    border: 1px solid #f3d2b3;
+    border-left: 4px solid var(--orange);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+  }
+
+  .pa-form fieldset {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 1.1rem 1.35rem 1.35rem;
+    margin: 0 0 1.5rem;
+  }
+
+  .pa-form legend {
+    font-weight: 700;
+    color: var(--navy);
+    padding: 0 0.4rem;
+  }
+
+  .req-note {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+  }
+
+  .req-mark {
+    color: var(--orange);
+    font-weight: 700;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 0 1.25rem;
+  }
+
+  .form-field {
+    margin-bottom: 1rem;
+  }
+
+  .form-field label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+  }
+
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    width: 100%;
+    padding: 0.55rem 0.7rem;
+    border: 1px solid #aab1c2;
+    border-radius: 6px;
+    font: inherit;
+    background: var(--white);
+    color: var(--ink);
+  }
+
+  .form-field [aria-invalid='true'] {
+    border-color: #b3261e;
+  }
+
+  .field-hint {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    margin: 0.3rem 0 0;
+  }
+
+  .field-error {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #b3261e;
+    margin: 0.3rem 0 0;
+  }
+
+  .form-status {
+    font-weight: 600;
+    background: #eef6f6;
+    border: 1px solid #cfe5e5;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+  }
+
+  .form-status-error {
+    background: #fdecea;
+    border-color: #f2c4bf;
+    color: #7a1c14;
+  }
+
+  .hp-wrap {
+    position: absolute !important;
+    left: -9999px !important;
+    top: auto !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .pa-form button[type='submit'] {
+    border: 2px solid transparent;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  .pa-form button[type='submit']:disabled {
+    opacity: 0.6;
+    cursor: wait;
+  }
+</style>
