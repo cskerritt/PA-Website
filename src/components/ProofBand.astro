@@ -1,0 +1,16 @@
+---
+// Renders SITE.stats only. Stats are the single gated source of displayed
+// figures (LAUNCH-CHECKLIST item 2); this component deliberately takes no
+// props so fabricated numbers cannot be introduced at call sites.
+import { SITE } from '../config/site';
+---
+<section class="proof-band" aria-label="Firm experience">
+  <div class="container proof-grid">
+    {SITE.stats.map((stat) => (
+      <div class="proof-stat">
+        <span class="proof-value">{stat.value}</span>
+        <span class="proof-label">{stat.label}</span>
+      </div>
+    ))}
+  </div>
+</section>

@@ -1,0 +1,41 @@
+---
+interface Props {
+  heading?: string;
+  intro?: string;
+}
+
+const { heading = 'How an engagement proceeds', intro } = Astro.props;
+
+// The firm's standard four-step engagement sequence (single source for every
+// page that renders the process).
+const steps = [
+  {
+    title: 'Conflict check and scope',
+    text: 'Counsel submits case details through the conflict check form or by phone. We confirm the parties, screen for conflicts, and define the questions the engagement must answer before any substantive discussion.',
+  },
+  {
+    title: 'Expert selection and records request',
+    text: 'We confirm the appropriate scope of work, identify whether independent economist partners are needed, and issue a records checklist tailored to the claims at issue so discovery stays efficient.',
+  },
+  {
+    title: 'Evaluation, analysis, and report',
+    text: 'Standardized evaluation and analysis produce a written report with stated methodology, cited data sources, and opinions expressed to a reasonable degree of professional certainty.',
+  },
+  {
+    title: 'Deposition, mediation, and trial support',
+    text: 'Experts are available nationwide for deposition and trial testimony, in person or by remote appearance, and for consultation in mediation and settlement discussions.',
+  },
+];
+---
+<section class="process-steps-section">
+  <h2>{heading}</h2>
+  {intro && <p>{intro}</p>}
+  <ol class="process-steps">
+    {steps.map((step) => (
+      <li>
+        <h3>{step.title}</h3>
+        <p>{step.text}</p>
+      </li>
+    ))}
+  </ol>
+</section>

@@ -1,0 +1,165 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getCollection, render } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import DirectAnswer from '../components/DirectAnswer.astro';
+import NeutralityStatement from '../components/NeutralityStatement.astro';
+import FAQBlock from '../components/FAQBlock.astro';
+import CTABand from '../components/CTABand.astro';
+import { serviceJsonLd, articleJsonLd } from '../lib/jsonld';
+import { formatDate } from '../lib/format';
+
+type TemplateEntry =
+  | CollectionEntry<'services'>
+  | CollectionEntry<'matters'>
+  | CollectionEntry<'resources'>;
+
+interface Props {
+  entry: TemplateEntry;
+  section: 'services' | 'matters' | 'resources';
+  jsonldExtra?: object[];
+}
+
+const { entry, section, jsonldExtra = [] } = Astro.props;
+const { Content } = await render(entry);
+const data = entry.data;
+const path = `/${section}/${entry.id}/`;
+
+const sectionLabels = {
+  services: 'Services',
+  matters: 'Matters',
+  resources: 'Resources',
+} as const;
+
+const questionHeadings = {
+  services: 'Questions this evaluation addresses',
+  matters: 'Questions expert analysis addresses in these matters',
+  resources: 'Questions this resource addresses',
+} as const;
+
+const crumbs = [
+  { name: 'Home', path: '/' },
+  { name: sectionLabels[section], path: `/${section}/` },
+  { name: data.title, path },
+];
+
+// Services carry Service schema; matters and resources carry Article schema.
+// Both are generated from the same frontmatter that renders the visible page.
+const primaryJsonLd =
+  section === 'services'
+    ? serviceJsonLd({ name: data.h1, description: data.metaDescription, path })
+    : articleJsonLd({
+        headline: data.h1,
+        description: data.metaDescription,
+        path,
+        datePublished: data.datePublished,
+        dateModified: data.dateModified,
+        reviewer: data.reviewer,
+      });
+
+// Related service cards resolve against the collection so a slug that does
+// not exist (yet) renders nothing instead of a broken link.
+const allServices = await getCollection('services');
+const related = data.relatedServices
+  .filter((slug) => !(section === 'services' && slug === entry.id))
+  .map((slug) => allServices.find((s) => s.id === slug))
+  .filter((s): s is NonNullable<typeof s> => Boolean(s));
+
+const byline =
+  data.author === data.reviewer
+    ? `Written and reviewed by ${data.author}.`
+    : `Written by ${data.author}. Reviewed by ${data.reviewer}.`;
+---
+<BaseLayout
+  title={data.title}
+  description={data.metaDescription}
+  path={path}
+  jsonld={[primaryJsonLd, ...jsonldExtra]}
+>
+  <article class="template-page">
+    <div class="container content-narrow">
+      <Breadcrumbs crumbs={crumbs} />
+      <h1>{data.h1}</h1>
+      <DirectAnswer text={data.directAnswer} />
+      <NeutralityStatement />
+
+      <section class="tp-questions">
+        <h2>{questionHeadings[section]}</h2>
+        <ul>
+          {data.questionsAddressed.map((q) => <li>{q}</li>)}
+        </ul>
+      </section>
+
+      <section class="tp-uses">
+        <div class="uses-grid">
+          <div class="uses-col">
+            <h2>Appropriate uses</h2>
+            <ul>
+              {data.appropriateUses.map((use) => <li>{use}</li>)}
+            </ul>
+          </div>
+          <div class="uses-col uses-col-limits">
+            <h2>Limitations and inappropriate uses</h2>
+            <ul>
+              {data.inappropriateUses.map((use) => <li>{use}</li>)}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <div class="tp-body">
+        <Content />
+      </div>
+
+      <section class="tp-records">
+        <h2>Records typically requested</h2>
+        <ul class="records-list">
+          {data.recordsRequired.map((record) => <li>{record}</li>)}
+        </ul>
+      </section>
+
+      <section class="tp-deliverables">
+        <h2>Deliverables</h2>
+        <ul>
+          {data.deliverables.map((d) => <li>{d}</li>)}
+        </ul>
+      </section>
+
+      <FAQBlock faqs={data.faqs} />
+
+      <p class="page-meta">
+        {byline}
+        Published {formatDate(data.datePublished)}. Updated {formatDate(data.dateModified)}.
+      </p>
+
+      {data.citations.length > 0 && (
+        <section class="tp-citations">
+          <h2>Sources and references</h2>
+          <ul class="citations-list">
+            {data.citations.map((citation) => (
+              <li>
+                <a href={citation.url}>{citation.label}</a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {related.length > 0 && (
+        <section class="tp-related">
+          <h2>Related services</h2>
+          <div class="card-grid">
+            {related.map((service) => (
+              <a class="card" href={`/services/${service.id}/`}>
+                <h3>{service.data.h1}</h3>
+                <p>{service.data.metaDescription}</p>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+    </div>
+  </article>
+  <CTABand />
+</BaseLayout>

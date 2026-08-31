@@ -1,0 +1,20 @@
+---
+import { faqJsonLd } from '../lib/jsonld';
+
+interface Props {
+  faqs: { q: string; a: string }[];
+  heading?: string;
+}
+
+const { faqs, heading = 'Frequently asked questions' } = Astro.props;
+---
+<section class="faq-block">
+  <h2>{heading}</h2>
+  {faqs.map((faq) => (
+    <div class="faq-item">
+      <h3>{faq.q}</h3>
+      <p>{faq.a}</p>
+    </div>
+  ))}
+</section>
+<script type="application/ld+json" set:html={JSON.stringify(faqJsonLd(faqs))} />

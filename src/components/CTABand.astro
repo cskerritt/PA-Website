@@ -1,0 +1,27 @@
+---
+import { SITE } from '../config/site';
+
+interface Props {
+  heading?: string;
+  lede?: string;
+}
+
+const {
+  heading = 'Start with a conflict check',
+  lede = 'Every engagement begins with a documented conflict check. Send the case caption and parties and we will respond promptly with availability, CVs, and fee information.',
+} = Astro.props;
+---
+<section class="cta-band">
+  <div class="container">
+    <h2>{heading}</h2>
+    <p>{lede}</p>
+    <div class="cta-actions">
+      <a class="btn btn-primary" href="/refer-a-case/">Request a Conflict Check</a>
+      <a class="btn btn-light" href="/contact/#cv-fee">Request CVs and Fee Information</a>
+    </div>
+    <p class="cta-urgent">
+      Imminent disclosure, deposition, or trial deadline?
+      <a href={`tel:${SITE.phoneE164}`}>Call {SITE.phoneDisplay}</a>
+    </p>
+  </div>
+</section>

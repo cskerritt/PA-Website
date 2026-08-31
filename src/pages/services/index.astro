@@ -1,0 +1,67 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import NeutralityStatement from '../../components/NeutralityStatement.astro';
+import ProofBand from '../../components/ProofBand.astro';
+import ProcessSteps from '../../components/ProcessSteps.astro';
+import CTABand from '../../components/CTABand.astro';
+
+// Canonical display order for the service cluster; the index reads the
+// collection, so new pages appear automatically as content lands.
+const ORDER = [
+  'vocational-expert-witness',
+  'life-care-planning',
+  'medical-cost-projection',
+  'forensic-economic-damages',
+  'rebuttal-peer-review',
+  'expert-testimony-litigation-consulting',
+  'coordinated-damages-assessment',
+];
+
+const rank = (id: string) => {
+  const i = ORDER.indexOf(id);
+  return i === -1 ? ORDER.length : i;
+};
+
+const services = (await getCollection('services')).sort(
+  (a, b) => rank(a.id) - rank(b.id) || a.id.localeCompare(b.id),
+);
+
+const title = 'Forensic Damages and Rehabilitation Services';
+const description =
+  'Vocational expert, life care planning, medical cost projection, and forensic economic damages services for plaintiff and defense counsel nationwide.';
+---
+<BaseLayout title={title} description={description} path="/services/">
+  <div class="container">
+    <Breadcrumbs
+      crumbs={[
+        { name: 'Home', path: '/' },
+        { name: 'Services', path: '/services/' },
+      ]}
+    />
+    <h1>Services for Plaintiff and Defense Counsel</h1>
+    <p class="lead">
+      Purinton Analytics provides coordinated forensic damages and rehabilitation services for
+      litigation nationwide. Vocational evaluation and life care planning are performed by the
+      firm's principal. Forensic economic analyses are performed and signed by independent
+      economist partners coordinated by the firm, so each discipline stays within its own
+      professional boundaries. Every engagement begins with a documented conflict check, and
+      every report is written to be read closely by opposing counsel.
+    </p>
+    <NeutralityStatement />
+    <div class="card-grid">
+      {services.map((service) => (
+        <a class="card" href={`/services/${service.id}/`}>
+          <h2 class="card-title">{service.data.h1}</h2>
+          <p>{service.data.metaDescription}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+  <ProofBand />
+  <div class="container content-narrow">
+    <ProcessSteps />
+  </div>
+  <CTABand />
+</BaseLayout>

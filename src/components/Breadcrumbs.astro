@@ -1,0 +1,24 @@
+---
+import { breadcrumbJsonLd } from '../lib/jsonld';
+
+interface Props {
+  crumbs: { name: string; path: string }[];
+}
+
+const { crumbs } = Astro.props;
+const last = crumbs.length - 1;
+---
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol>
+    {crumbs.map((crumb, i) => (
+      <li>
+        {i === last ? (
+          <span aria-current="page">{crumb.name}</span>
+        ) : (
+          <a href={crumb.path}>{crumb.name}</a>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd(crumbs))} />
