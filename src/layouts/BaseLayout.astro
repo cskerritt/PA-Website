@@ -9,9 +9,15 @@ interface Props {
   description: string;
   path: string;
   jsonld?: object[];
+  /**
+   * Keep this page out of search indexes (form-success and error pages).
+   * Noindexed pages are also excluded from sitemap.xml by hand; the sitewide
+   * suite asserts the two lists agree.
+   */
+  noindex?: boolean;
 }
 
-const { title, description, path, jsonld = [] } = Astro.props;
+const { title, description, path, jsonld = [], noindex = false } = Astro.props;
 const fullTitle = path === '/' ? title : `${title} | ${SITE.brand}`;
 const canonical = SITE.domain + path;
 const ogImage = `${SITE.domain}/assets/img/og-default.png`;
@@ -23,6 +29,7 @@ const ogImage = `${SITE.domain}/assets/img/og-default.png`;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
     <meta name="theme-color" content="#012262" />
     <meta property="og:type" content="website" />

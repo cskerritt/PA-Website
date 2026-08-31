@@ -2,6 +2,13 @@
 :root {
   --navy: #012262;
   --orange: #E87722;
+  /* Brand orange (#E87722) is 2.96:1 on white, so it is reserved for text on
+     navy (5.04:1) and for non-text accents on light grounds. The deepened
+     variants below are measured with WCAG relative-luminance math:
+     --orange-deep is 5.02:1 on white and 4.81:1 on --bg (AA for normal text);
+     --orange-focus is >= 3:1 on white, --bg, and navy (AA for non-text). */
+  --orange-deep: #b45309;
+  --orange-focus: #cc5500;
   --teal: #0E7C7B;
   --bg: #FAFAF8;
   --ink: #1a2333;
@@ -57,9 +64,14 @@ a {
 
 a:hover { color: var(--teal); }
 
+/* Two-ring focus indicator: the deep orange outline carries >= 3:1 contrast on
+   the site's light grounds and on navy, and the white inner ring (filling the
+   offset gap) carries it on the hero gradient's lighter blues, where no single
+   color can also pass on white. At least one ring is >= 3:1 everywhere. */
 :focus-visible {
-  outline: 3px solid var(--orange);
+  outline: 3px solid var(--orange-focus);
   outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--white);
   border-radius: 2px;
 }
 
@@ -114,7 +126,9 @@ a:hover { color: var(--teal); }
 }
 
 .btn-primary:hover {
-  background: #d3660f;
+  /* 5.02:1 white on --orange-deep; the lighter #d3660f was 3.70:1 with white
+     and 4.22:1 with the resting dark text, both under AA for button text. */
+  background: var(--orange-deep);
   color: var(--white);
 }
 

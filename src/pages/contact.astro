@@ -70,6 +70,10 @@ const errorFallback = `Your message could not be sent. Please call ${SITE.phoneD
     >
       <input type="hidden" name="access_key" value={SITE.web3formsKey} />
       <input type="hidden" name="subject" value="[General Inquiry] Website contact form" />
+      {/* No-JS fallback only: returns the native POST to this page instead of
+          stranding the visitor on the Web3Forms success page. form.js strips
+          the redirect key from the enhanced JSON payload. */}
+      <input type="hidden" name="redirect" value={`${SITE.domain}/contact/`} />
       <input type="hidden" name="form_started" value="" />
 
       <div class="form-row">
@@ -148,6 +152,8 @@ const errorFallback = `Your message could not be sent. Please call ${SITE.phoneD
       >
         <input type="hidden" name="access_key" value={SITE.web3formsKey} />
         <input type="hidden" name="subject" value="[CV and Fee Request]" />
+        {/* No-JS fallback only; stripped from the enhanced payload by form.js. */}
+        <input type="hidden" name="redirect" value={`${SITE.domain}/contact/`} />
         <input type="hidden" name="form_started" value="" />
 
         <div class="form-row">
@@ -244,7 +250,8 @@ const errorFallback = `Your message could not be sent. Please call ${SITE.phoneD
   }
 
   .req-mark {
-    color: var(--orange);
+    /* --orange-deep: 5.02:1 on the white form ground (brand orange is 2.96:1). */
+    color: var(--orange-deep);
     font-weight: 700;
   }
 

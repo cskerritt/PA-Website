@@ -45,6 +45,7 @@ function norm(s: string): string {
   return s
     .replace(/&#39;|&apos;/g, "'")
     .replace(/&quot;/g, '"')
+    .replace(/&mdash;|&#8212;|&#x2014;/gi, '—') // entity-encoded em dashes render as em dashes
     .replace(/&amp;/g, '&')
     .replace(/\s+/g, ' ');
 }
@@ -117,6 +118,11 @@ describe('6. banned strings appear nowhere', () => {
     for (const banned of BANNED) {
       expect(html, `${file} contains banned string "${banned}"`).not.toContain(banned);
     }
+    // Entity-encoded em dashes pass markdown through to the browser as em
+    // dashes; ban them in the raw HTML so the invariant cannot be evaded.
+    expect(html, `${file} contains an entity-encoded em dash`).not.toMatch(
+      /&mdash;|&#8212;|&#x2014;/i,
+    );
   });
 });
 
@@ -203,5 +209,69 @@ describe('12. the conflict-check CTA is reachable from every page', () => {
       .querySelectorAll('a')
       .map((a) => a.getAttribute('href'));
     expect(hrefs).toContain('/refer-a-case/');
+  });
+});
+
+describe('13. robots noindex appears only on the deliberate exclusion set', () => {
+  // The form-success page (kept out of sitemap.xml) and the error document.
+  // Everything else must stay indexable: a stray noindex ships silently
+  // otherwise, and these two must never lose theirs.
+  const NOINDEX_REQUIRED = new Set(['refer-a-case/thanks/index.html', '404.html']);
+
+  it.each(FILES)('%s', (file) => {
+    const robots = doc(file).querySelector('meta[name="robots"]');
+    const content = robots?.getAttribute('content') ?? '';
+    if (NOINDEX_REQUIRED.has(file)) {
+      expect(content, `${file} must carry robots noindex`).toMatch(/\bnoindex\b/);
+    } else {
+      expect(
+        /noindex|\bnone\b/.test(content),
+        `${file} must not be noindexed (robots content: "${content}")`,
+      ).toBe(false);
+    }
+  });
+});
+
+describe('14. the gated evaluations stat has one source of truth (SITE.stats)', () => {
+  // LAUNCH-CHECKLIST item 2 gates the displayed evaluations figure. The number
+  // also appears in prose (service pages, description150 via llms.txt), so
+  // every rendered occurrence must equal SITE.stats[0].value or a correction
+  // at launch would leave stale copies behind.
+  const stat = SITE.stats[0];
+  const expected = stat.value.replace(/\+$/, '');
+  const PATTERN = /([\d,]+)\s*\+?\s*disability-related\s+vocational\s+evaluations/gi;
+
+  it('the gated stat is the evaluations figure', () => {
+    expect(stat.label).toBe('disability-related vocational evaluations');
+    expect(expected).toMatch(/^[\d,]+$/);
+  });
+
+  it('every rendered occurrence of the figure matches the entity record', () => {
+    let occurrences = 0;
+    const texts: [string, string][] = FILES.map((file) => {
+      const d = doc(file);
+      d.querySelectorAll('script').forEach((s: HTMLElement) => s.remove());
+      return [file, norm(d.text)];
+    });
+    texts.push(['llms.txt', readFileSync(join(DIST, 'llms.txt'), 'utf8')]);
+    for (const [name, text] of texts) {
+      for (const match of text.matchAll(PATTERN)) {
+        occurrences += 1;
+        expect(match[1], `${name}: "${match[0]}" disagrees with SITE.stats`).toBe(expected);
+      }
+    }
+    // The proof band, the prose mentions, and llms.txt all carry it; if this
+    // drops to zero the pattern has drifted from the copy and guards nothing.
+    expect(occurrences).toBeGreaterThanOrEqual(4);
+  });
+});
+
+describe('15. astro.config site stays in lockstep with SITE.domain', () => {
+  it('the config literal equals the entity record domain', () => {
+    const config = readFileSync(join(process.cwd(), 'astro.config.mjs'), 'utf8');
+    const site = config.match(/site:\s*'([^']+)'/)?.[1];
+    expect(site, 'astro.config.mjs must declare site as a single-quoted literal').toBe(
+      SITE.domain,
+    );
   });
 });

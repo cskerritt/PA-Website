@@ -89,9 +89,23 @@ describe('sitemap.xml', () => {
     }
   });
 
-  it('covers every built route so a forgotten page fails loudly (404 excluded)', () => {
+  it('covers every built route so a forgotten page fails loudly (deliberate exclusions noindexed)', () => {
+    // Routes deliberately left out of the sitemap. Each must carry a robots
+    // noindex so the sitemap exclusion and the crawl directive agree; every
+    // other built route must appear, keeping the forgotten-page guard.
+    const EXCLUDED = ['/refer-a-case/thanks/'];
     const locs = new Set(sitemapLocs());
     for (const route of builtRoutes()) {
+      if (EXCLUDED.includes(route)) {
+        expect(locs.has(`${SITE.domain}${route}`), `${route} must stay out of the sitemap`).toBe(
+          false,
+        );
+        expect(
+          distFile(route.replace(/\/$/, '')),
+          `${route} must be noindexed to match its sitemap exclusion`,
+        ).toMatch(/<meta name="robots" content="[^"]*noindex[^"]*"/);
+        continue;
+      }
       expect(locs.has(`${SITE.domain}${route}`), `missing from sitemap: ${route}`).toBe(true);
     }
     expect(locs.has(`${SITE.domain}/404.html`)).toBe(false);

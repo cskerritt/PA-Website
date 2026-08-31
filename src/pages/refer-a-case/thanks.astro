@@ -7,7 +7,10 @@ const title = 'Conflict Check Request Received';
 const description =
   'Your conflict check request has been received. Response expectations and next steps for referring counsel, including secure record transfer after clearance.';
 ---
-<BaseLayout title={title} description={description} path="/refer-a-case/thanks/">
+{/* noindex: post-submission state only; a search visitor who never submitted
+    anything must not land on "your request has been received". Also excluded
+    from sitemap.xml (see STATIC_ROUTES). */}
+<BaseLayout title={title} description={description} path="/refer-a-case/thanks/" noindex>
   <div class="container content-narrow">
     <Breadcrumbs
       crumbs={[

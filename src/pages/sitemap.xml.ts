@@ -9,6 +9,11 @@ const BUILD_DATE = new Date().toISOString().slice(0, 10);
  * Hand-maintained list of the fixed (non-collection) routes. The sitemap
  * test cross-checks this against every built page in dist/, so adding a page
  * without listing it here fails loudly.
+ *
+ * Deliberately absent: /refer-a-case/thanks/ (noindexed form-success state;
+ * search visitors must never land on "your request has been received" without
+ * having submitted anything). The seo-artifacts suite pins the exclusion and
+ * asserts the page carries the matching robots noindex.
  */
 const STATIC_ROUTES = [
   '/',
@@ -22,7 +27,6 @@ const STATIC_ROUTES = [
   '/matters/',
   '/privacy/',
   '/refer-a-case/',
-  '/refer-a-case/thanks/',
   '/resources/',
   '/services/',
 ] as const;

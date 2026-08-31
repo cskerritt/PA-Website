@@ -347,12 +347,16 @@ const referralFaqs = [
   }
 
   .hero-urgent a {
-    color: var(--orange);
+    /* White (8.5:1 on the gradient's lighter end) instead of brand orange,
+       which drops to 2.88:1 there; the underline keeps the link identifiable
+       without relying on color. */
+    color: var(--white);
     font-weight: 600;
+    text-decoration: underline;
   }
 
   .hero-urgent a:hover {
-    color: var(--white);
+    color: #d7ddec;
   }
 
   .more-services {
