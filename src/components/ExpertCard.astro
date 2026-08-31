@@ -1,0 +1,80 @@
+---
+import { SITE } from '../config/site';
+
+// Photo-less by design: no headshots and no credential logo badge strips.
+// Leadership facts below mirror personJsonLd() in src/lib/jsonld.ts; the
+// evaluation figure is read from SITE.stats, the single gated source of
+// displayed statistics (LAUNCH-CHECKLIST item 2).
+const leadership = [
+  'President, Board of Directors, American Rehabilitation Economics Association (AREA)',
+  'Board of Directors and Fellow, American Board of Vocational Experts (ABVE)',
+  'Board of Directors and Forensic Section Representative, International Association of Rehabilitation Professionals (IARP), 2022 to 2024',
+];
+
+const evalStat =
+  SITE.stats.find((stat) => stat.label.includes('vocational evaluations')) ?? null;
+---
+<div class="expert-card">
+  <h3 class="expert-name">{SITE.principal}</h3>
+  <p class="expert-creds">{SITE.principalCreds}</p>
+  <p class="expert-role">
+    Principal of {SITE.legalName}. Vocational expert and Certified Life Care Planner.
+  </p>
+  {evalStat && <p class="expert-stat">{evalStat.value} {evalStat.label}</p>}
+  <ul class="expert-leadership">
+    {leadership.map((line) => <li>{line}</li>)}
+  </ul>
+  <p class="expert-note">
+    Forensic economic analyses are performed and signed by independent economist partners
+    coordinated by the firm.
+  </p>
+  <a class="btn btn-secondary" href="/experts/jason-purinton/">View full profile</a>
+</div>
+
+<style>
+  .expert-card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--navy);
+    border-radius: 8px;
+    padding: 1.75rem 2rem;
+    max-width: 46rem;
+  }
+
+  .expert-name {
+    margin-bottom: 0.15rem;
+    font-size: 1.35rem;
+  }
+
+  .expert-creds {
+    color: var(--teal);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.85rem;
+  }
+
+  .expert-role {
+    margin-bottom: 0.35rem;
+  }
+
+  .expert-stat {
+    color: var(--navy);
+    font-weight: 600;
+    margin-bottom: 0.85rem;
+  }
+
+  .expert-leadership {
+    margin: 0 0 1rem;
+    padding-left: 1.2rem;
+  }
+
+  .expert-leadership li {
+    margin-bottom: 0.35rem;
+  }
+
+  .expert-note {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    margin-bottom: 1.25rem;
+  }
+</style>

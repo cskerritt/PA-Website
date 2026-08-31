@@ -1,19 +1,405 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ProofBand from '../components/ProofBand.astro';
+import NeutralityStatement from '../components/NeutralityStatement.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import ExpertCard from '../components/ExpertCard.astro';
+import FAQBlock from '../components/FAQBlock.astro';
+import CTABand from '../components/CTABand.astro';
 import { SITE } from '../config/site';
+import { orgJsonLd, webSiteJsonLd } from '../lib/jsonld';
 
 const title = `${SITE.brand} | Forensic Damages and Rehabilitation Experts`;
 const description =
   'Nationwide vocational expert, life care planning, and economic damages services for plaintiff and defense counsel, coordinated by Purinton Analytics.';
+
+// Section 1: hero. The H1 is the verbatim national positioning line from the
+// design spec (SITE.tagline); the lede carries the strategy plan's hero copy.
+const heroLede =
+  'Purinton Analytics coordinates vocational evaluation, life care planning, and forensic economic damages analysis for litigation nationwide. The firm provides objective litigation support for plaintiff and defense counsel in personal injury, medical malpractice, wrongful death, employment, and disability matters, with evaluations, depositions, and trial testimony available remotely and in person in all 50 states.';
+
+// Section 3: the three principal disciplines. Economic analyses are performed
+// and signed by independent economist partners, never by the firm's principal.
+const disciplines = [
+  {
+    name: 'Vocational Expert Services',
+    href: '/services/vocational-expert-witness/',
+    text: 'Employability, placeability, earning capacity, transferable skills, and labor market access opinions, with deposition and trial testimony nationwide.',
+  },
+  {
+    name: 'Life Care Planning',
+    href: '/services/life-care-planning/',
+    text: 'Future care needs and costs for catastrophic injury, documented by a Certified Life Care Planner on a foundation of medical records and treating provider input.',
+  },
+  {
+    name: 'Forensic Economic Damages',
+    href: '/services/forensic-economic-damages/',
+    text: 'Present value analyses of lost earning capacity, household services, and life care costs, performed and signed by independent economist partners coordinated by the firm.',
+  },
+];
+
+const supportingServices = [
+  { name: 'medical cost projections', href: '/services/medical-cost-projection/' },
+  {
+    name: 'rebuttal and peer review of opposing expert reports',
+    href: '/services/rebuttal-peer-review/',
+  },
+  {
+    name: 'expert testimony and litigation consulting',
+    href: '/services/expert-testimony-litigation-consulting/',
+  },
+].map((service, i, all) => ({
+  ...service,
+  separator: i === all.length - 1 ? '. ' : i === all.length - 2 ? ', and ' : ', ',
+}));
+
+// Section 6: the matter grid reads the matters collection so it grows as
+// content lands. Canonical display order per the build plan; labels fall back
+// to each entry's own H1 for any slug not listed here.
+const MATTER_ORDER = [
+  'personal-injury',
+  'medical-malpractice',
+  'wrongful-death',
+  'pediatric-birth-injury',
+  'employment-litigation',
+  'family-law',
+  'workers-compensation',
+  'erisa-long-term-disability',
+  'product-liability-mass-tort',
+  'veterans-tdiu',
+];
+
+const MATTER_LABELS: Record<string, string> = {
+  'personal-injury': 'Personal Injury',
+  'medical-malpractice': 'Medical Malpractice',
+  'wrongful-death': 'Wrongful Death',
+  'pediatric-birth-injury': 'Pediatric and Birth Injury',
+  'employment-litigation': 'Employment Litigation',
+  'family-law': 'Family Law',
+  'workers-compensation': "Workers' Compensation",
+  'erisa-long-term-disability': 'ERISA Long-Term Disability',
+  'product-liability-mass-tort': 'Product Liability and Mass Tort',
+  'veterans-tdiu': 'Veterans TDIU',
+};
+
+const rank = (id: string) => {
+  const i = MATTER_ORDER.indexOf(id);
+  return i === -1 ? MATTER_ORDER.length : i;
+};
+
+const matters = (await getCollection('matters')).sort(
+  (a, b) => rank(a.id) - rank(b.id) || a.id.localeCompare(b.id),
+);
+
+// Section 9: coverage strip is built from SITE.offices (no street addresses;
+// every office outside the Kansas City base is by appointment).
+const appointmentCities = SITE.offices
+  .filter((office) => !('primary' in office))
+  .map((office) => office.city);
+const appointmentList =
+  appointmentCities.length > 1
+    ? `${appointmentCities.slice(0, -1).join(', ')}, and ${appointmentCities.at(-1)}`
+    : appointmentCities.join('');
+
+// Section 10: featured records checklists (full resource pages, printable).
+const featuredResources = [
+  {
+    name: 'Vocational Evaluation Records Checklist',
+    href: '/resources/vocational-evaluation-records-checklist/',
+    text: 'The education, employment, wage, and medical records a vocational evaluation is built on.',
+  },
+  {
+    name: 'Life Care Plan Records Checklist',
+    href: '/resources/life-care-plan-records-checklist/',
+    text: 'The medical, therapy, medication, and equipment records a life care plan requires.',
+  },
+  {
+    name: 'Economic Loss Records Checklist',
+    href: '/resources/economic-loss-records-checklist/',
+    text: 'The tax, wage, and benefits records independent economist partners rely on for signed damages analyses.',
+  },
+];
+
+// Section 11: referral FAQs. FAQBlock renders the visible questions and the
+// FAQPage JSON-LD from this same array, so schema and page cannot drift.
+const referralFaqs = [
+  {
+    q: 'Do you accept both plaintiff and defense referrals?',
+    a: 'Yes. Purinton Analytics accepts engagements from plaintiff and defense counsel and applies the same documented methodology regardless of which side issues the retention letter. Opinions are written to withstand review by opposing counsel and cross-examination on either side of the caption.',
+  },
+  {
+    q: 'What happens after I request a conflict check?',
+    a: 'We review the case caption and parties against current and prior engagements and respond promptly, typically the same day during business hours, with availability, CVs, and fee information. Substantive discussion of the case begins only after the conflict check clears.',
+  },
+  {
+    q: 'Who performs and signs the economic damages analysis?',
+    a: 'Independent economist partners coordinated by the firm perform and sign all economic damages analyses. Jason C. Purinton provides the vocational and life care planning opinions. Each opinion is authored, signed, and defended by an expert qualified in that discipline.',
+  },
+  {
+    q: 'Should I send records with my initial referral?',
+    a: 'No. Do not send medical records, Social Security numbers, dates of birth, financial records, or other confidential documents with the initial request. After the conflict check clears, we provide a secure method for sending records along with a checklist of what the analysis requires.',
+  },
+  {
+    q: 'Can you meet a short disclosure, deposition, or trial deadline?',
+    a: `Often, yes. Expedited handling is available when the record can responsibly support it, and rebuttal and peer review engagements are frequently completed on compressed schedules. Call ${SITE.phoneDisplay} with the operative dates and we will confirm what is achievable before you commit.`,
+  },
+  {
+    q: 'Is testimony available outside Missouri?',
+    a: 'Yes. Evaluations, depositions, and trial testimony are available in all 50 states, remotely where the court and the referral questions permit and in person where they do not. Travel logistics and costs are addressed in the fee information provided before retention.',
+  },
+];
 ---
-<BaseLayout title={title} description={description} path="/">
-  <section class="page-section">
+<BaseLayout
+  title={title}
+  description={description}
+  path="/"
+  jsonld={[orgJsonLd(), webSiteJsonLd()]}
+>
+  {/* 1. Hero */}
+  <section class="hero">
     <div class="container">
       <h1>{SITE.tagline}</h1>
-      <p>{SITE.description50}</p>
-      <p>
+      <p class="hero-lede">{heroLede}</p>
+      <div class="hero-actions">
         <a class="btn btn-primary" href="/refer-a-case/">Request a Conflict Check</a>
+        <a class="btn btn-light" href="/contact/#cv-fee">Request CVs and Fee Information</a>
+      </div>
+      <p class="hero-urgent">
+        Imminent disclosure, deposition, or trial deadline?
+        <a href={`tel:${SITE.phoneE164}`}>Call {SITE.phoneDisplay}</a>
       </p>
     </div>
   </section>
+
+  {/* 2. Proof band (SITE.stats only) */}
+  <ProofBand />
+
+  {/* 3. Three principal disciplines */}
+  <section class="page-section">
+    <div class="container">
+      <h2>Vocational, life care planning, and economic expertise</h2>
+      <p class="lead">
+        Each discipline answers a different damages question. Retain one analysis or the
+        coordinated team; either way, every opinion stays within its author's professional
+        boundaries.
+      </p>
+      <div class="card-grid">
+        {disciplines.map((d) => (
+          <a class="card" href={d.href}>
+            <h3>{d.name}</h3>
+            <p>{d.text}</p>
+          </a>
+        ))}
+      </div>
+      <p class="more-services">
+        Also available:
+        {supportingServices.map((s) => (
+          <>
+            <a href={s.href}>{s.name}</a>{s.separator}
+          </>
+        ))}
+        <a href="/services/">View all services</a>.
+      </p>
+    </div>
+  </section>
+
+  {/* 4. Coordinated damages assessment explainer */}
+  <section class="coordinated">
+    <div class="container">
+      <h2>One coordinated engagement, clearly separated expert roles</h2>
+      <p>
+        For catastrophic injury and other complex damages cases, counsel can retain the full
+        damages team through a single conflict-checked referral. The vocational expert
+        establishes what work remains available and what it pays. The life care planner
+        documents future care needs and their costs. Independent economist partners convert
+        those findings into signed present value analyses. Each expert forms and defends
+        independent opinions, so the analyses connect without blurring the lines between
+        disciplines.
+      </p>
+      <a class="btn btn-secondary" href="/services/coordinated-damages-assessment/">
+        How the coordinated damages assessment works
+      </a>
+    </div>
+  </section>
+
+  {/* 5. Neutrality statement band */}
+  <div class="container content-narrow">
+    <NeutralityStatement />
+  </div>
+
+  {/* 6. Matter-type grid */}
+  <section class="page-section">
+    <div class="container">
+      <h2>Matters we support</h2>
+      <p class="lead">
+        Vocational, life care, and economic questions appear across the litigation landscape.
+        Select a matter type to see which analyses typically apply and what they address.
+      </p>
+      {matters.length > 0 && (
+        <div class="card-grid matters-grid">
+          {matters.map((matter) => (
+            <a class="card" href={`/matters/${matter.id}/`}>
+              <h3>{MATTER_LABELS[matter.id] ?? matter.data.h1}</h3>
+            </a>
+          ))}
+        </div>
+      )}
+      <p class="section-link">
+        <a href="/matters/">How we support each matter type</a>
+      </p>
+    </div>
+  </section>
+
+  {/* 7. Four-step engagement process */}
+  <div class="container content-narrow">
+    <ProcessSteps />
+  </div>
+
+  {/* 8. Expert card */}
+  <section class="page-section">
+    <div class="container content-narrow">
+      <h2>The firm's principal</h2>
+      <ExpertCard />
+    </div>
+  </section>
+
+  {/* 9. National coverage strip */}
+  <section class="coverage">
+    <div class="container">
+      <h2>National coverage</h2>
+      <p>
+        Purinton Analytics is based in {SITE.city}, Missouri, with offices available by
+        appointment in {appointmentList}. Referrals are accepted from all 50 states.
+        Evaluations, depositions, and trial testimony proceed remotely or in person, and labor
+        market and medical cost research is built from published federal, state, and regional
+        data for the venue at issue.
+      </p>
+      <p class="section-link">
+        <a href="/locations/nationwide/">Learn about national coverage</a>
+      </p>
+    </div>
+  </section>
+
+  {/* 10. Featured resources: records checklists */}
+  <section class="page-section">
+    <div class="container">
+      <h2>Records checklists for counsel</h2>
+      <p class="lead">
+        Records drive every forensic analysis. These printable checklists let counsel start
+        collection before the expert is retained.
+      </p>
+      <div class="card-grid">
+        {featuredResources.map((r) => (
+          <a class="card" href={r.href}>
+            <h3>{r.name}</h3>
+            <p>{r.text}</p>
+          </a>
+        ))}
+      </div>
+      <p class="section-link">
+        <a href="/resources/">Browse all attorney resources</a>
+      </p>
+    </div>
+  </section>
+
+  {/* 11. Referral FAQs (visible + FAQPage JSON-LD from the same data) */}
+  <section class="page-section">
+    <div class="container content-narrow">
+      <FAQBlock faqs={referralFaqs} heading="Common referral questions" />
+    </div>
+  </section>
+
+  {/* 12. Final CTA band */}
+  <CTABand />
 </BaseLayout>
+
+<style>
+  .hero {
+    background: linear-gradient(155deg, var(--navy) 0%, #023678 60%, #034a9c 100%);
+    color: var(--white);
+    padding-block: 3.75rem 3rem;
+  }
+
+  .hero h1 {
+    color: var(--white);
+    max-width: 56rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-lede {
+    color: #d7ddec;
+    font-size: 1.1rem;
+    max-width: 50rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 1.5rem 0 1rem;
+  }
+
+  .hero-urgent {
+    color: #d7ddec;
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  .hero-urgent a {
+    color: var(--orange);
+    font-weight: 600;
+  }
+
+  .hero-urgent a:hover {
+    color: var(--white);
+  }
+
+  .more-services {
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  .coordinated {
+    background: var(--white);
+    border-block: 1px solid var(--line);
+    padding-block: 2.75rem;
+  }
+
+  .coordinated p {
+    max-width: 56rem;
+  }
+
+  .coordinated .btn {
+    margin-top: 0.5rem;
+  }
+
+  .matters-grid {
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 0.9rem;
+    margin: 1.5rem 0;
+  }
+
+  .matters-grid .card {
+    padding: 1rem 1.15rem;
+  }
+
+  .matters-grid a.card h3 {
+    margin: 0;
+    font-size: 1.02rem;
+  }
+
+  .coverage {
+    background: #eef1f7;
+    border-block: 1px solid var(--line);
+    padding-block: 2.75rem;
+  }
+
+  .coverage p {
+    max-width: 56rem;
+  }
+
+  .section-link {
+    margin: 0.5rem 0 0;
+  }
+</style>
