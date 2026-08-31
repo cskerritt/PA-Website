@@ -31,6 +31,8 @@ export const SITE = {
     'https://x.com/PurintonExpert',
   ],
   web3formsKey: '9a52d3b9-a7cb-4f4f-8479-f0d330f3a6ce',
+  /** IndexNow verification key; must match the public/<key>.txt key file (enforced by test). */
+  indexNowKey: 'a7c1e59f30b64d2fb8e4906cd15a2f77',
   robots: { allowGPTBot: false, allowClaudeBot: false },
   offices: [
     { slug: 'kansas-city', city: 'Kansas City', region: 'MO', regionFull: 'Missouri', primary: true },
