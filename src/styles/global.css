@@ -1699,6 +1699,19 @@ main {
     opacity: 1;
     transform: none;
   }
+}
+
+/* Reveals must never suppress content in print output (checklists are
+   printed) or any other non-interactive rendering context. */
+@media print {
+  html.reveal-armed [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
 
   /* Page-load hero sequence: CSS-only stagger, present at first paint */
   @keyframes rise-in {

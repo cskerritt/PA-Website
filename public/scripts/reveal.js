@@ -89,4 +89,16 @@
   targets.forEach(function (el) {
     revealObserver.observe(el);
   });
+
+  /* Safety net: no element stays hidden past a short grace period, and
+     nothing is ever hidden in print output, regardless of scroll position
+     or IntersectionObserver timing. */
+  function revealAll() {
+    targets.forEach(function (el) {
+      el.classList.add('is-visible');
+      revealObserver.unobserve(el);
+    });
+  }
+  window.addEventListener('beforeprint', revealAll);
+  window.setTimeout(revealAll, 2500);
 })();
