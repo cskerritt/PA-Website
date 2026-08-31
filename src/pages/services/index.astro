@@ -53,6 +53,7 @@ const description =
     <div class="card-grid">
       {services.map((service) => (
         <a class="card" href={`/services/${service.id}/`}>
+          <span class="card-tag">Service</span>
           <h2 class="card-title">{service.data.h1}</h2>
           <p>{service.data.metaDescription}</p>
         </a>

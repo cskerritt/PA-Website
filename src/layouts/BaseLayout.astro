@@ -23,10 +23,16 @@ const canonical = SITE.domain + path;
 const ogImage = `${SITE.domain}/assets/img/og-default.png`;
 
 // The Expert Report type system: Newsreader (display), Public Sans (body),
-// IBM Plex Mono (labels, numerals, legal lines). display=swap so body text
-// never blocks on the webfont.
-const fontsHref =
-  'https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Public+Sans:wght@400;500;600&display=swap';
+// IBM Plex Mono (labels, numerals, legal lines). Self-hosted subset WOFF2s
+// (public/assets/fonts/, @font-face in global.css) with same-origin preloads,
+// so the brand serif is ready at first paint instead of swap-flashing in
+// from a Google Fonts round-trip.
+const preloadFonts = [
+  '/assets/fonts/newsreader-var-latin.woff2',
+  '/assets/fonts/public-sans-var-latin.woff2',
+  '/assets/fonts/ibm-plex-mono-400-latin.woff2',
+  '/assets/fonts/ibm-plex-mono-500-latin.woff2',
+];
 ---
 <!doctype html>
 <html lang="en">
@@ -38,10 +44,9 @@ const fontsHref =
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
     <meta name="theme-color" content="#012262" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href={fontsHref} />
-    <link rel="stylesheet" href={fontsHref} />
+    {preloadFonts.map((href) => (
+      <link rel="preload" as="font" type="font/woff2" href={href} crossorigin />
+    ))}
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={SITE.brand} />
     <meta property="og:title" content={fullTitle} />

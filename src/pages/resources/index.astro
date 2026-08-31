@@ -10,6 +10,7 @@ import CTABand from '../../components/CTABand.astro';
 const GROUPS = [
   {
     heading: 'Checklists',
+    tag: 'Checklist',
     blurb:
       'Printable, itemized lists of the records that support each analysis, plus a deadline worksheet to plan retention backward from trial. Print any page or save it as a PDF.',
     slugs: [
@@ -22,6 +23,7 @@ const GROUPS = [
   },
   {
     heading: 'Guides',
+    tag: 'Guide',
     blurb:
       'Working guides to how damages experts divide a case and when to engage the coordinated team.',
     slugs: [
@@ -31,6 +33,7 @@ const GROUPS = [
   },
   {
     heading: 'Reference',
+    tag: 'Reference',
     blurb:
       'Answers to common referral questions and a glossary of the terms that appear in expert reports.',
     slugs: ['faq', 'glossary'],
@@ -72,9 +75,10 @@ const description =
       <section class="resource-group">
         <h2>{group.heading}</h2>
         <p>{group.blurb}</p>
-        <div class="card-grid">
+        <div class={`card-grid${group.items.length === 2 ? ' card-grid-2' : ''}`}>
           {group.items.map((entry) => (
             <a class="card" href={`/resources/${entry.id}/`}>
+              <span class="card-tag">{group.tag}</span>
               <h3 class="card-title">{entry.data.title}</h3>
               <p>{entry.data.metaDescription}</p>
             </a>

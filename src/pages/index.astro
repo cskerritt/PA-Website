@@ -102,6 +102,10 @@ const appointmentList =
     ? `${appointmentCities.slice(0, -1).join(', ')}, and ${appointmentCities.at(-1)}`
     : appointmentCities.join('');
 
+// The coverage ledger's closing row reads the 50-states figure from
+// SITE.stats (the single gated source of displayed statistics).
+const coverageStat = SITE.stats.find((stat) => stat.label.includes('states')) ?? null;
+
 // Section 10: featured records checklists (full resource pages, printable).
 const featuredResources = [
   {
@@ -194,6 +198,7 @@ const referralFaqs = [
       <div class="card-grid">
         {disciplines.map((d, i) => (
           <a class="card" href={d.href} data-reveal style={`--reveal-delay:${i * 40}ms`}>
+            <span class="card-tag">Service</span>
             <h3>{d.name}</h3>
             <p>{d.text}</p>
           </a>
@@ -211,25 +216,49 @@ const referralFaqs = [
     </div>
   </section>
 
-  {/* 4. Coordinated damages assessment explainer */}
+  {/* 4. Coordinated damages assessment explainer with the role ledger */}
   <section class="coordinated">
     <div class="container" data-reveal>
       <div class="section-head">
         <p class="eyebrow">Coordinated engagement</p>
         <h2>One coordinated engagement, clearly separated expert roles</h2>
       </div>
-      <p>
-        For catastrophic injury and other complex damages cases, counsel can retain the full
-        damages team through a single conflict-checked referral. The vocational expert
-        establishes what work remains available and what it pays. The life care planner
-        documents future care needs and their costs. Independent economist partners convert
-        those findings into signed present value analyses. Each expert forms and defends
-        independent opinions, so the analyses connect without blurring the lines between
-        disciplines.
-      </p>
-      <a class="btn btn-secondary" href="/services/coordinated-damages-assessment/">
-        How the coordinated damages assessment works
-      </a>
+      <div class="coordinated-grid">
+        <div class="coordinated-copy">
+          <p>
+            For catastrophic injury and other complex damages cases, counsel can retain the full
+            damages team through a single conflict-checked referral. The vocational expert
+            establishes what work remains available and what it pays. The life care planner
+            documents future care needs and their costs. Independent economist partners convert
+            those findings into signed present value analyses. Each expert forms and defends
+            independent opinions, so the analyses connect without blurring the lines between
+            disciplines.
+          </p>
+          <a class="btn btn-secondary" href="/services/coordinated-damages-assessment/">
+            How the coordinated damages assessment works
+          </a>
+        </div>
+        {/* Decorative hand-off diagram restating the adjacent paragraph */}
+        <div class="role-ledger" aria-hidden="true">
+          <div class="role-row">
+            <span class="role-num">01</span>
+            <span class="role-name">Vocational expert</span>
+            <span class="role-what">What work remains available and what it pays</span>
+          </div>
+          <div class="role-handoff"></div>
+          <div class="role-row">
+            <span class="role-num">02</span>
+            <span class="role-name">Life care planner</span>
+            <span class="role-what">Future care needs and their costs</span>
+          </div>
+          <div class="role-handoff"></div>
+          <div class="role-row">
+            <span class="role-num">03</span>
+            <span class="role-name">Independent economist partners</span>
+            <span class="role-what">Signed present value analyses</span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -250,18 +279,13 @@ const referralFaqs = [
         </p>
       </div>
       {matters.length > 0 && (
-        <div class="card-grid matters-grid">
-          {matters.map((matter, i) => (
-            <a
-              class="card"
-              href={`/matters/${matter.id}/`}
-              data-reveal
-              style={`--reveal-delay:${i * 40}ms`}
-            >
-              <h3>{MATTER_LABELS[matter.id] ?? matter.data.h1}</h3>
-            </a>
+        <ol class="index-list" data-reveal>
+          {matters.map((matter) => (
+            <li>
+              <a href={`/matters/${matter.id}/`}>{MATTER_LABELS[matter.id] ?? matter.data.h1}</a>
+            </li>
           ))}
-        </div>
+        </ol>
       )}
       <p class="section-link" data-reveal>
         <a href="/matters/">How we support each matter type</a>
@@ -269,14 +293,15 @@ const referralFaqs = [
     </div>
   </section>
 
-  {/* 7. Four-step engagement process */}
-  <div class="container content-narrow" data-reveal>
+  {/* 7. Four-step engagement process. Full-width container so the section
+      rule stacks on the same left margin as every other ruled opener. */}
+  <div class="container" data-reveal>
     <ProcessSteps />
   </div>
 
   {/* 8. Expert card */}
   <section class="page-section">
-    <div class="container content-narrow">
+    <div class="container">
       <div class="section-head" data-reveal>
         <p class="eyebrow">Experts</p>
         <h2>The firm's principal</h2>
@@ -287,23 +312,45 @@ const referralFaqs = [
     </div>
   </section>
 
-  {/* 9. National coverage strip */}
+  {/* 9. National coverage strip with the coverage ledger (SITE.offices and
+      SITE.stats only; no fabricated locations or figures) */}
   <section class="coverage">
     <div class="container" data-reveal>
       <div class="section-head">
         <p class="eyebrow">Coverage</p>
         <h2>National coverage</h2>
       </div>
-      <p>
-        Purinton Analytics is based in {SITE.city}, Missouri, with offices available by
-        appointment in {appointmentList}. Referrals are accepted from all 50 states.
-        Evaluations, depositions, and trial testimony proceed remotely or in person, and labor
-        market and medical cost research is built from published federal, state, and regional
-        data for the venue at issue.
-      </p>
-      <p class="section-link">
-        <a href="/locations/nationwide/">Learn about national coverage</a>
-      </p>
+      <div class="coverage-grid">
+        <div>
+          <p>
+            Purinton Analytics is based in {SITE.city}, Missouri, with offices available by
+            appointment in {appointmentList}. Referrals are accepted from all 50 states.
+            Evaluations, depositions, and trial testimony proceed remotely or in person, and labor
+            market and medical cost research is built from published federal, state, and regional
+            data for the venue at issue.
+          </p>
+          <p class="section-link">
+            <a href="/locations/nationwide/">Learn about national coverage</a>
+          </p>
+        </div>
+        <div class="coverage-ledger" aria-hidden="true">
+          {SITE.offices.map((office) => (
+            <div class="coverage-row">
+              <span class="coverage-city">{office.city}</span>
+              <span class="coverage-region">{office.regionFull}</span>
+              <span class="coverage-note">{'primary' in office ? 'Base office' : 'By appointment'}</span>
+            </div>
+          ))}
+          {coverageStat && (
+            <div class="coverage-row coverage-total">
+              <span class="coverage-city">
+                <span class="coverage-value">{coverageStat.value}</span> {coverageStat.label}
+              </span>
+              <span class="coverage-note">Remote and in person</span>
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   </section>
 
@@ -321,6 +368,7 @@ const referralFaqs = [
       <div class="card-grid">
         {featuredResources.map((r, i) => (
           <a class="card" href={r.href} data-reveal style={`--reveal-delay:${i * 40}ms`}>
+            <span class="card-tag">Checklist</span>
             <h3>{r.name}</h3>
             <p>{r.text}</p>
           </a>
@@ -334,7 +382,7 @@ const referralFaqs = [
 
   {/* 11. Referral FAQs (visible + FAQPage JSON-LD from the same data) */}
   <section class="page-section">
-    <div class="container content-narrow" data-reveal>
+    <div class="container" data-reveal>
       <FAQBlock faqs={referralFaqs} heading="Common referral questions" />
     </div>
   </section>
@@ -355,11 +403,20 @@ const referralFaqs = [
     padding-block: 4.25rem 4.5rem;
   }
 
+  /* Copy and exhibit card top-align on the H1 cap line, and the card fills
+     its column, so the right side carries real weight instead of floating
+     small against a dead navy quadrant. */
   .hero-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1.55fr) minmax(300px, 1fr);
+    grid-template-columns: minmax(0, 1.5fr) minmax(340px, 1fr);
     gap: 3.5rem;
-    align-items: center;
+    align-items: start;
+  }
+
+  .hero-exhibit { margin-top: 3.4rem; }
+
+  @media (max-width: 860px) {
+    .hero-exhibit { margin-top: 0; }
   }
 
   .hero-eyebrow {
@@ -388,18 +445,19 @@ const referralFaqs = [
 
   .hero h1 {
     color: var(--white);
-    font-size: clamp(2.35rem, 3.9vw, 3.35rem);
-    line-height: 1.12;
+    font-size: clamp(2.3rem, 3.5vw, 3.2rem);
+    line-height: 1.1;
     letter-spacing: -0.018em;
     max-width: 21em;
     margin-bottom: 1.1rem;
+    text-wrap: balance;
   }
 
   .hero-lede {
     color: #d7ddec;
     font-size: 1.08rem;
     line-height: 1.7;
-    max-width: 62ch;
+    max-width: 58ch;
   }
 
   .hero-actions {
@@ -450,6 +508,20 @@ const referralFaqs = [
     padding-block: 3rem;
   }
 
+  .coordinated-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 3.5rem;
+    align-items: center;
+  }
+
+  @media (max-width: 900px) {
+    .coordinated-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
   .coordinated p {
     max-width: 68ch;
   }
@@ -458,19 +530,74 @@ const referralFaqs = [
     margin-top: 0.5rem;
   }
 
-  .matters-grid {
-    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-    gap: 0.9rem;
-    margin: 1.75rem 0;
+  /* The role ledger: three ruled rows with mono role labels and hand-off
+     arrows, restating the paragraph as a worksheet diagram. */
+  .role-ledger {
+    border-top: 1px solid var(--hairline);
   }
 
-  .matters-grid :global(.card) {
-    padding: 1.1rem 1.25rem;
+  .role-row {
+    position: relative;
+    display: grid;
+    grid-template-columns: 2.4rem minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    column-gap: 0.4rem;
+    padding: 0.95rem 0 1.05rem;
+    border-bottom: 1px solid var(--hairline);
   }
 
-  .matters-grid :global(.card h3) {
-    margin: 0;
-    font-size: 1.08rem;
+  .role-num {
+    grid-row: 1 / span 2;
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--orange-deep);
+    padding-top: 0.2rem;
+  }
+
+  .role-name {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--navy);
+  }
+
+  .role-what {
+    font-family: var(--font-display);
+    font-size: 1.06rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    line-height: 1.4;
+    margin-top: 0.15rem;
+  }
+
+  .role-handoff {
+    position: relative;
+    height: 1.4rem;
+    margin-left: 2.8rem;
+  }
+
+  .role-handoff::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0.35rem;
+    left: 0;
+    width: 1px;
+    background: var(--teal-deep);
+  }
+
+  .role-handoff::after {
+    content: "";
+    position: absolute;
+    bottom: 0.1rem;
+    left: -3px;
+    border-left: 3.5px solid transparent;
+    border-right: 3.5px solid transparent;
+    border-top: 5px solid var(--teal-deep);
   }
 
   .coverage {
@@ -479,11 +606,79 @@ const referralFaqs = [
     padding-block: 3rem;
   }
 
+  .coverage-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 3.5rem;
+    align-items: center;
+  }
+
+  @media (max-width: 900px) {
+    .coverage-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
   .coverage p {
     max-width: 68ch;
   }
 
+  /* The coverage exhibit: a mono ledger of the offices and the 50-state
+     figure, set in ruled rows like a report appendix. */
+  .coverage-ledger {
+    border-top: 1px solid #c8cfdd;
+    font-family: var(--font-mono);
+  }
+
+  .coverage-row {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.75rem 0.1rem;
+    border-bottom: 1px solid #c8cfdd;
+    font-size: 0.82rem;
+    letter-spacing: 0.02em;
+  }
+
+  .coverage-city {
+    color: var(--navy);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .coverage-region { color: var(--ink-soft); }
+
+  .coverage-note {
+    margin-left: auto;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+  }
+
+  .coverage-total {
+    border-bottom-width: 0;
+    border-top: 2px solid var(--navy);
+    margin-top: -1px;
+    padding-block: 0.9rem;
+  }
+
+  .coverage-total .coverage-city { text-transform: none; letter-spacing: 0.02em; }
+
+  .coverage-value {
+    font-size: 1.35rem;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    color: var(--navy);
+    margin-right: 0.15rem;
+  }
+
+  .coverage-total .coverage-note { color: var(--teal-deep); }
+
   .section-link {
     margin: 0.5rem 0 0;
   }
+
 </style>

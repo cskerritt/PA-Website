@@ -112,7 +112,7 @@ const glance = [
         { name: 'Jason C. Purinton', path },
       ]}
     />
-    <h1>{SITE.principal}, {SITE.principalCreds}</h1>
+    <h1 class="profile-h1">{SITE.principal}, <span class="h1-creds">{SITE.principalCreds}</span></h1>
     <p class="lead">
       Board certified vocational expert and certified life care planner providing objective
       evaluations of employability and earning capacity, life care plans and medical cost
@@ -195,17 +195,6 @@ const glance = [
           </p>
         </section>
 
-        <section aria-labelledby="education">
-          <h2 id="education">Education</h2>
-          <ul>
-            {education.map((item) => (
-              <li>
-                <strong>{item.degree}</strong> - {item.detail}
-              </li>
-            ))}
-          </ul>
-        </section>
-
         <section aria-labelledby="state-quals">
           <h2 id="state-quals">Licensure and additional qualifications</h2>
           <p>
@@ -220,6 +209,17 @@ const glance = [
       </div>
 
       <aside class="expert-aside" aria-label="Credentials and quick facts">
+        {/* Identity block: exhibit-card treatment with a typographic monogram
+            (no photo or logo assets; the portrait slot is art-directed until
+            the headshot clears the launch checklist). */}
+        <div class="identity-block">
+          <p class="identity-label">Principal</p>
+          <div class="identity-figure" aria-hidden="true">
+            <span class="identity-monogram">JP</span>
+          </div>
+          <p class="identity-name" aria-hidden="true">{SITE.principal}</p>
+          <p class="identity-creds" aria-hidden="true">{SITE.principalCreds}</p>
+        </div>
         <div class="aside-card">
           <h2>Credentials and certifications</h2>
           <ul class="cred-list">
@@ -249,6 +249,16 @@ const glance = [
             <a href={SITE.sameAs[0]} rel="noopener">Jason C. Purinton on LinkedIn</a>
           </p>
         </div>
+        <section class="aside-card" aria-labelledby="education">
+          <h2 id="education">Education</h2>
+          <ul class="edu-list">
+            {education.map((item) => (
+              <li>
+                <strong>{item.degree}</strong> - {item.detail}
+              </li>
+            ))}
+          </ul>
+        </section>
       </aside>
     </div>
   </div>
@@ -256,6 +266,24 @@ const glance = [
 </BaseLayout>
 
 <style>
+  /* The H1 balances instead of orphaning the last credential token, and the
+     credential string drops to its own mono line, CV-style. */
+  .profile-h1 {
+    text-wrap: balance;
+    max-width: 24em;
+  }
+
+  .h1-creds {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal-deep);
+    margin-top: 0.7rem;
+  }
+
   .expert-split {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 340px;
@@ -268,6 +296,75 @@ const glance = [
     .expert-split {
       grid-template-columns: minmax(0, 1fr);
     }
+  }
+
+  /* Identity block: the credibility page's visual anchor */
+  .identity-block {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-top: 3px solid var(--orange);
+    border-radius: 10px;
+    padding: 1.25rem 1.4rem 1.35rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-lift);
+  }
+
+  .identity-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--hairline);
+    padding-bottom: 0.7rem;
+    margin: 0 0 1.1rem;
+  }
+
+  .identity-figure {
+    position: relative;
+    display: grid;
+    place-items: center;
+    aspect-ratio: 5 / 4;
+    border-radius: 8px;
+    background:
+      var(--grid-texture),
+      linear-gradient(150deg, var(--navy-ink) 0%, var(--navy) 78%, var(--navy-deep) 140%);
+    overflow: hidden;
+  }
+
+  .identity-figure::after {
+    content: "";
+    position: absolute;
+    inset: 0.6rem;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 5px;
+  }
+
+  .identity-monogram {
+    font-family: var(--font-display);
+    font-size: 3.4rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--white);
+  }
+
+  .identity-name {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin: 1rem 0 0.15rem;
+  }
+
+  .identity-creds {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal-deep);
+    margin: 0;
   }
 
   .expert-main section {
@@ -292,6 +389,31 @@ const glance = [
 
   .aside-card h2 {
     font-size: 1.05rem;
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  .aside-card h2::before { content: none; }
+
+  .edu-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .edu-list li {
+    border-bottom: 1px solid var(--line);
+    padding: 0.55rem 0;
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+
+  .edu-list li:last-child { border-bottom: 0; }
+
+  .edu-list strong {
+    display: block;
+    color: var(--navy);
   }
 
   .cred-list {

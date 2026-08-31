@@ -3,6 +3,84 @@
    with a modern data product. Editorial serif display (Newsreader), federal
    body sans (Public Sans), mono for evidence (IBM Plex Mono). */
 
+/* ---- Self-hosted fonts (subset WOFF2s under public/assets/fonts/) ----
+   Same-origin files, preloaded from BaseLayout, replace the Google Fonts CSS
+   round-trip. Newsreader uses font-display: optional: with the preload it is
+   almost always ready at first paint, and on a genuinely slow connection the
+   page keeps the metric-stable serif fallback instead of reflowing mid-read.
+   Body and mono faces keep swap (their fallbacks are metrically close). */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 500 600;
+  font-display: optional;
+  src: url('/assets/fonts/newsreader-var-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 500 600;
+  font-display: optional;
+  src: url('/assets/fonts/newsreader-var-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Public Sans';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url('/assets/fonts/public-sans-var-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Public Sans';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url('/assets/fonts/public-sans-var-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/ibm-plex-mono-400-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/ibm-plex-mono-400-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/assets/fonts/ibm-plex-mono-500-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/assets/fonts/ibm-plex-mono-500-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
 :root {
   /* Brand */
   --navy: #012262;
@@ -98,7 +176,7 @@ h1 {
 }
 
 h2 {
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(1.6rem, 3.2vw, 2.35rem);
   letter-spacing: -0.01em;
 }
 
@@ -307,13 +385,26 @@ main section > h2:first-child::before {
   text-decoration: underline;
 }
 
+/* On small screens the tagline wrapped to three mono lines and pushed the H1
+   down a third of the first screen; keep a single centered phone line. */
+@media (max-width: 640px) {
+  .utility-tagline { display: none; }
+
+  .utility-bar-inner {
+    justify-content: center;
+    padding-block: 0.35rem;
+  }
+}
+
+/* 0.95 white with plain blur: saturate() smeared bright content (the orange
+   CTA) into a peach blob behind the logo, reading as an artifact, not frost. */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 60;
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(10px) saturate(1.4);
-  -webkit-backdrop-filter: blur(10px) saturate(1.4);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid transparent;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -411,6 +502,21 @@ main section > h2:first-child::before {
   height: 2px;
   background: var(--navy);
   margin: 4px auto;
+  transition: transform 0.2s var(--ease-out), opacity 0.15s ease;
+}
+
+/* Open state: the three bars fold into an X (the toggle's first span is the
+   visually hidden "Menu" label, so the bars are the last three spans). */
+.nav-toggle[aria-expanded='true'] .nav-toggle-bar:nth-last-of-type(3) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded='true'] .nav-toggle-bar:nth-last-of-type(2) {
+  opacity: 0;
+}
+
+.nav-toggle[aria-expanded='true'] .nav-toggle-bar:nth-last-of-type(1) {
+  transform: translateY(-6px) rotate(-45deg);
 }
 
 @media (max-width: 920px) {
@@ -452,7 +558,26 @@ main section > h2:first-child::before {
 
   .header-cta { display: none; }
 
+  /* The one conversion action gets button prominence at the foot of the
+     open menu instead of rendering as a ninth identical list row. */
   .site-nav .nav-refer { display: block; }
+
+  .site-nav .nav-refer a {
+    display: block;
+    margin-top: 0.75rem;
+    padding: 0.8rem 1rem;
+    text-align: center;
+    background: var(--orange);
+    color: #3a1c02;
+    font-weight: 600;
+    border-bottom: 0;
+    border-radius: 6px;
+  }
+
+  .site-nav .nav-refer a:hover {
+    background: var(--orange-deep);
+    color: var(--white);
+  }
 }
 
 @media (min-width: 921px) {
@@ -626,6 +751,19 @@ main {
   font-weight: 500;
 }
 
+/* Small screens: truncate the current-page crumb instead of wrapping it to a
+   second mono line with its "/" separator stranded at the line start. */
+@media (max-width: 640px) {
+  .breadcrumbs [aria-current='page'] {
+    display: inline-block;
+    max-width: 22ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: bottom;
+  }
+}
+
 /* Direct answer: restyled as the report's abstract. Serif lead paragraph
    against a left orange signature rule with a mono "In brief" eyebrow. */
 .direct-answer {
@@ -654,7 +792,12 @@ main {
   line-height: 1.45;
   font-weight: 500;
   color: var(--ink);
-  max-width: 34em;
+  max-width: 30em;
+}
+
+/* The abstract ran two full screens of large serif on mobile; step it down. */
+@media (max-width: 640px) {
+  .direct-answer p { font-size: 1.2rem; }
 }
 
 /* Neutrality statement band */
@@ -709,13 +852,195 @@ main {
 
 .uses-col li:last-child { margin-bottom: 0; }
 
-/* Template page rhythm */
+/* ---- Template page rhythm ----
+   Service, matter, and resource pages run long, so the body is a two-column
+   spread at desktop: the report itself on the left, and a sticky mono
+   "exhibit index" rail (an in-page table of contents) holding the right
+   margin for the entire scroll. */
 .template-page section { margin: 2.75rem 0; }
 
-.tp-questions ul { padding-left: 1.2rem; }
+.tp-layout { min-width: 0; }
 
-.tp-questions li,
+@media (min-width: 1024px) {
+  .tp-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 250px;
+    gap: 4.5rem;
+    align-items: start;
+  }
+}
+
+.tp-main { min-width: 0; }
+
+.tp-rail {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .tp-rail {
+    display: block;
+    position: sticky;
+    top: 5.5rem;
+    max-height: calc(100vh - 6.5rem);
+    overflow-y: auto;
+    padding-bottom: 1rem;
+  }
+}
+
+.exhibit-index-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+  border-top: 1px solid var(--hairline);
+  position: relative;
+  padding-top: 1rem;
+  margin: 0.5rem 0 0.4rem;
+}
+
+.exhibit-index-label::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 32px;
+  height: 2px;
+  background: var(--orange);
+}
+
+.exhibit-index {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: exhibit;
+}
+
+.exhibit-index li {
+  margin: 0;
+  max-width: none;
+}
+
+.exhibit-index a {
+  counter-increment: exhibit;
+  position: relative;
+  display: flex;
+  gap: 0.7rem;
+  align-items: baseline;
+  padding: 0.55rem 0 0.55rem 0.75rem;
+  border-bottom: 1px solid var(--hairline);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  line-height: 1.45;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.exhibit-index li:last-child a { border-bottom: 0; }
+
+.exhibit-index a::before {
+  content: counter(exhibit, decimal-leading-zero);
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  color: var(--teal-deep);
+  flex-shrink: 0;
+  transition: color 0.15s ease;
+}
+
+/* Scroll-position tick: the orange marker travels the index with the reader */
+.exhibit-index a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.75rem;
+  bottom: 0.75rem;
+  width: 2px;
+  background: var(--orange);
+  transform: scaleY(0);
+  transition: transform 0.2s var(--ease-out);
+}
+
+.exhibit-index a:hover { color: var(--navy); }
+
+.exhibit-index a.is-active {
+  color: var(--navy);
+  font-weight: 500;
+}
+
+.exhibit-index a.is-active::before { color: var(--orange-deep); }
+
+.exhibit-index a.is-active::after { transform: scaleY(1); }
+
+/* Questions: a numbered ruled ledger instead of a bullet run */
+.tp-questions ul {
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  counter-reset: question;
+}
+
+.tp-questions li {
+  position: relative;
+  counter-increment: question;
+  border-bottom: 1px solid var(--hairline);
+  padding: 0.8rem 0 0.8rem 3rem;
+  margin: 0;
+}
+
+.tp-questions li:last-child { border-bottom: 0; }
+
+.tp-questions li::before {
+  content: "Q" counter(question);
+  position: absolute;
+  left: 0;
+  top: 0.95rem;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--teal-deep);
+}
+
 .tp-deliverables li { margin-bottom: 0.5rem; }
+
+/* Records: a white worksheet panel breaking the text river */
+.tp-records {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+  padding: 1.6rem 1.75rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.tp-records::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 2px;
+  background: var(--orange);
+}
+
+.tp-records > h2:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.tp-records > h2:first-child::before { content: none; }
+
+@media (min-width: 800px) {
+  .tp-records .records-list {
+    columns: 2;
+    column-gap: 2.5rem;
+  }
+
+  .tp-records .records-list li { break-inside: avoid; }
+}
 
 .records-list {
   list-style: square;
@@ -726,10 +1051,12 @@ main {
 
 .records-list li::marker { color: var(--teal-deep); }
 
-/* FAQ: ruled list, question set in the display serif */
+/* FAQ: ruled list, question set in the display serif. Items cap at reading
+   width even when the section head rules the full container. */
 .faq-item {
   border-bottom: 1px solid var(--hairline);
   padding: 1.35rem 0;
+  max-width: 56rem;
 }
 
 .faq-item:last-child { border-bottom: 0; }
@@ -777,12 +1104,25 @@ main {
 
 .citations-list a:hover { color: var(--navy); }
 
-/* Cards */
+/* Cards: every card rests as a small exhibit, not a bare white box. A 32px
+   orange tick (the section-head fingerprint) sits on the top rule at rest and
+   extends full-width on hover; a mono tag row with a counter numeral files
+   each card like an exhibit sheet. */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.25rem;
   margin: 2rem 0;
+  counter-reset: card;
+}
+
+/* Two-item groups render as two wider cards so the row resolves cleanly. */
+.card-grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 680px) {
+  .card-grid-2 { grid-template-columns: 1fr; }
 }
 
 .card {
@@ -791,15 +1131,27 @@ main {
   background: var(--surface);
   border: 1px solid var(--hairline);
   border-radius: 10px;
-  padding: 1.5rem 1.6rem;
+  padding: 1.35rem 1.6rem 1.5rem;
   text-decoration: none;
   color: var(--ink);
   overflow: hidden;
   cursor: pointer;
+  counter-increment: card;
   transition: transform 0.18s ease-out, border-color 0.18s ease-out, box-shadow 0.18s ease-out;
 }
 
-/* Orange top rule reveals on hover */
+/* Resting identity: the 32px orange tick on the card's top rule */
+.card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 2px;
+  background: var(--orange);
+}
+
+/* Full-width orange rule sweeps over the tick on hover */
 .card::before {
   content: "";
   position: absolute;
@@ -822,6 +1174,30 @@ main {
 
 .card:hover::before { transform: scaleX(1); }
 
+/* Mono tag row: category label left, filing numeral right */
+.card-tag {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+  border-bottom: 1px solid var(--hairline);
+  padding-bottom: 0.7rem;
+  margin-bottom: 0.85rem;
+}
+
+.card-tag::after {
+  content: counter(card, decimal-leading-zero);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
+
 .card h2,
 .card h3,
 .card .card-title {
@@ -834,6 +1210,78 @@ main {
   margin: 0;
   font-size: 0.92rem;
   color: var(--ink-soft);
+}
+
+/* Index list: a ruled two-column ledger of links (mono numeral + title +
+   arrow) used where title-only cards left ragged orphan rows. */
+.index-list {
+  list-style: none;
+  margin: 1.75rem 0;
+  padding: 0;
+  counter-reset: index-row;
+  columns: 2;
+  column-gap: 4rem;
+}
+
+@media (max-width: 760px) {
+  .index-list { columns: 1; }
+}
+
+.index-list li {
+  break-inside: avoid;
+  margin: 0;
+  max-width: none;
+}
+
+.index-list a {
+  counter-increment: index-row;
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.85rem 0.25rem 0.85rem 0;
+  border-bottom: 1px solid var(--hairline);
+  text-decoration: none;
+  color: var(--navy);
+  font-family: var(--font-display);
+  font-size: 1.13rem;
+  font-weight: 500;
+  line-height: 1.3;
+  transition: color 0.15s ease, padding-left 0.18s var(--ease-out);
+}
+
+.index-list a::before {
+  content: counter(index-row, decimal-leading-zero);
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  transition: color 0.15s ease;
+}
+
+.index-list a::after {
+  content: "\2192";
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  transform: translateX(-4px);
+  opacity: 0.55;
+  transition: transform 0.18s var(--ease-out), opacity 0.18s ease, color 0.15s ease;
+}
+
+.index-list a:hover {
+  color: var(--teal-deep);
+  padding-left: 0.35rem;
+}
+
+.index-list a:hover::before { color: var(--orange-deep); }
+
+.index-list a:hover::after {
+  transform: translateX(0);
+  opacity: 1;
+  color: var(--orange-deep);
 }
 
 /* Proof band (SITE.stats only): a hairline-divided ledger row on navy ink
@@ -902,6 +1350,10 @@ main {
 }
 
 .exhibit-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 500;
@@ -911,6 +1363,16 @@ main {
   border-bottom: 1px solid var(--hairline);
   padding-bottom: 0.8rem;
   margin: 0 0 0.25rem;
+  max-width: none;
+}
+
+/* Decorative filing reference in the exhibit card corner */
+.exhibit-ref {
+  position: relative;
+  color: var(--orange-deep);
+  letter-spacing: 0.1em;
+  padding-top: 0.15rem;
+  border-top: 2px solid var(--orange);
 }
 
 .exhibit-grid {
@@ -952,6 +1414,19 @@ main {
   color: var(--ink-soft);
 }
 
+/* Closing ruled row of the exhibit card */
+.exhibit-foot {
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+  border-top: 1px solid var(--hairline);
+  padding-top: 0.9rem;
+  margin: 0;
+  max-width: none;
+}
+
 /* Process steps: a connected vertical rail with mono numerals */
 .process-steps-section { margin: 3rem 0; }
 
@@ -961,6 +1436,7 @@ main {
   padding: 0;
   counter-reset: step;
   display: grid;
+  max-width: 56rem;
 }
 
 .process-steps > li {
@@ -1005,12 +1481,8 @@ main {
   transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
-.process-steps > li:hover::before {
-  background: var(--orange);
-  border-color: var(--orange);
-  color: #3a1c02;
-}
-
+/* No hover fill on the numerals: the steps are plain list items that link
+   nowhere, so an interactive cue would be a false affordance. */
 .process-steps h3 {
   margin-bottom: 0.35rem;
   font-size: 1.19rem;
@@ -1019,11 +1491,13 @@ main {
 
 .process-steps p { margin: 0; }
 
-/* CTA band */
+/* CTA band. The gradient must END on --navy-ink, the exact color the footer
+   starts from, so band and footer read as one continuous ink field with no
+   seam where they meet. */
 .cta-band {
   background:
     var(--grid-texture),
-    linear-gradient(155deg, var(--navy-ink) 0%, var(--navy) 85%);
+    linear-gradient(165deg, var(--navy) 0%, var(--navy-ink) 78%);
   color: var(--white);
   padding-block: 3.5rem;
   margin-top: 4rem;
@@ -1121,6 +1595,27 @@ main {
 }
 
 .form-field textarea { min-height: 6rem; }
+
+/* Custom select chrome: native arrows were the clearest default-template tell
+   inside the styled worksheet. Inline navy chevron on a flat field. */
+.form-field select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' stroke='%23012262' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.8rem center;
+  padding-right: 2.4rem;
+}
+
+/* Native date pickers stay, but their chrome matches the text inputs. */
+.form-field input[type='date'] {
+  min-height: 48px;
+  font-family: inherit;
+}
+
+.form-field input[type='date']::-webkit-date-and-time-value {
+  text-align: left;
+}
 
 .form-field input:hover,
 .form-field select:hover,

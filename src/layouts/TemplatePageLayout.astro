@@ -22,7 +22,7 @@ interface Props {
 }
 
 const { entry, section, jsonldExtra = [] } = Astro.props;
-const { Content } = await render(entry);
+const { Content, headings } = await render(entry);
 const data = entry.data;
 const path = `/${section}/${entry.id}/`;
 
@@ -81,6 +81,24 @@ const printNoun = /checklist$/.test(entry.id)
       : entry.id === 'faq'
         ? 'page'
         : 'guide';
+
+// The exhibit index: an in-page table of contents for the sticky right rail,
+// assembled from the fixed template sections plus the body's own H2s (Astro
+// stamps matching ids on rendered markdown headings). Labels reuse the
+// heading text verbatim; the rail is navigation, not new copy.
+const exhibitIndex = [
+  { id: 'questions', label: questionHeadings[section] },
+  { id: 'appropriate-uses', label: 'Appropriate uses' },
+  { id: 'limitations', label: 'Limitations and inappropriate uses' },
+  ...headings
+    .filter((h) => h.depth === 2)
+    .map((h) => ({ id: h.slug, label: h.text })),
+  { id: 'records', label: 'Records typically requested' },
+  { id: 'deliverables', label: 'Deliverables' },
+  { id: 'faq', label: 'Frequently asked questions' },
+  ...(data.citations.length > 0 ? [{ id: 'sources', label: 'Sources and references' }] : []),
+  ...(related.length > 0 ? [{ id: 'related', label: 'Related services' }] : []),
+];
 ---
 <BaseLayout
   title={data.title}
@@ -89,95 +107,155 @@ const printNoun = /checklist$/.test(entry.id)
   jsonld={[primaryJsonLd, ...jsonldExtra]}
 >
   <article class="template-page">
-    <div class="container content-narrow">
+    <div class="container">
       <Breadcrumbs crumbs={crumbs} />
-      <h1>{data.h1}</h1>
-      <DirectAnswer text={data.directAnswer} />
-      {section === 'resources' && (
-        <p class="print-action">
-          <button type="button" class="print-button" onclick="window.print()">
-            Print or save this {printNoun}
-          </button>
-        </p>
-      )}
-      <NeutralityStatement />
+      <div class="tp-layout">
+        <div class="tp-main">
+          <h1>{data.h1}</h1>
+          <DirectAnswer text={data.directAnswer} />
+          {section === 'resources' && (
+            <p class="print-action">
+              <button type="button" class="print-button" onclick="window.print()">
+                Print or save this {printNoun}
+              </button>
+            </p>
+          )}
+          <NeutralityStatement />
 
-      <section class="tp-questions">
-        <h2>{questionHeadings[section]}</h2>
-        <ul>
-          {data.questionsAddressed.map((q) => <li>{q}</li>)}
-        </ul>
-      </section>
+          <section class="tp-questions" id="questions">
+            <h2>{questionHeadings[section]}</h2>
+            <ul>
+              {data.questionsAddressed.map((q) => <li>{q}</li>)}
+            </ul>
+          </section>
 
-      <section class="tp-uses">
-        <div class="uses-grid">
-          <div class="uses-col">
-            <h2>Appropriate uses</h2>
-            <ul>
-              {data.appropriateUses.map((use) => <li>{use}</li>)}
-            </ul>
+          <section class="tp-uses">
+            <div class="uses-grid">
+              <div class="uses-col" id="appropriate-uses">
+                <h2>Appropriate uses</h2>
+                <ul>
+                  {data.appropriateUses.map((use) => <li>{use}</li>)}
+                </ul>
+              </div>
+              <div class="uses-col uses-col-limits" id="limitations">
+                <h2>Limitations and inappropriate uses</h2>
+                <ul>
+                  {data.inappropriateUses.map((use) => <li>{use}</li>)}
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <div class="tp-body">
+            <Content />
           </div>
-          <div class="uses-col uses-col-limits">
-            <h2>Limitations and inappropriate uses</h2>
-            <ul>
-              {data.inappropriateUses.map((use) => <li>{use}</li>)}
+
+          <section class="tp-records" id="records">
+            <h2>Records typically requested</h2>
+            <ul class="records-list">
+              {data.recordsRequired.map((record) => <li>{record}</li>)}
             </ul>
-          </div>
+          </section>
+
+          <section class="tp-deliverables" id="deliverables">
+            <h2>Deliverables</h2>
+            <ul>
+              {data.deliverables.map((d) => <li>{d}</li>)}
+            </ul>
+          </section>
+
+          <FAQBlock faqs={data.faqs} id="faq" />
+
+          <p class="page-meta">
+            {byline}
+            Published {formatDate(data.datePublished)}. Updated {formatDate(data.dateModified)}.
+          </p>
+
+          {data.citations.length > 0 && (
+            <section class="tp-citations" id="sources">
+              <h2>Sources and references</h2>
+              <ul class="citations-list">
+                {data.citations.map((citation) => (
+                  <li>
+                    <a href={citation.url}>{citation.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {related.length > 0 && (
+            <section class="tp-related" id="related">
+              <h2>Related services</h2>
+              <div class="card-grid">
+                {related.map((service) => (
+                  <a class="card" href={`/services/${service.id}/`}>
+                    <span class="card-tag">Service</span>
+                    <h3>{service.data.h1}</h3>
+                    <p>{service.data.metaDescription}</p>
+                  </a>
+                ))}
+              </div>
+            </section>
+          )}
         </div>
-      </section>
 
-      <div class="tp-body">
-        <Content />
+        <aside class="tp-rail print-hide" aria-label="On this page">
+          <nav data-exhibit-index>
+            <p class="exhibit-index-label" id="exhibit-index-label">Exhibit index</p>
+            <ol class="exhibit-index" aria-labelledby="exhibit-index-label">
+              {exhibitIndex.map((item) => (
+                <li>
+                  <a href={`#${item.id}`}>{item.label}</a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        </aside>
       </div>
-
-      <section class="tp-records">
-        <h2>Records typically requested</h2>
-        <ul class="records-list">
-          {data.recordsRequired.map((record) => <li>{record}</li>)}
-        </ul>
-      </section>
-
-      <section class="tp-deliverables">
-        <h2>Deliverables</h2>
-        <ul>
-          {data.deliverables.map((d) => <li>{d}</li>)}
-        </ul>
-      </section>
-
-      <FAQBlock faqs={data.faqs} />
-
-      <p class="page-meta">
-        {byline}
-        Published {formatDate(data.datePublished)}. Updated {formatDate(data.dateModified)}.
-      </p>
-
-      {data.citations.length > 0 && (
-        <section class="tp-citations">
-          <h2>Sources and references</h2>
-          <ul class="citations-list">
-            {data.citations.map((citation) => (
-              <li>
-                <a href={citation.url}>{citation.label}</a>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
-      {related.length > 0 && (
-        <section class="tp-related">
-          <h2>Related services</h2>
-          <div class="card-grid">
-            {related.map((service) => (
-              <a class="card" href={`/services/${service.id}/`}>
-                <h3>{service.data.h1}</h3>
-                <p>{service.data.metaDescription}</p>
-              </a>
-            ))}
-          </div>
-        </section>
-      )}
     </div>
   </article>
   <CTABand />
 </BaseLayout>
+
+<script>
+  // Exhibit-index scrollspy: the orange tick tracks the section under the
+  // reading line. Pure enhancement; the rail is plain anchors without it.
+  const rail = document.querySelector('[data-exhibit-index]');
+  if (rail) {
+    const links = Array.from(rail.querySelectorAll<HTMLAnchorElement>('a[href^="#"]'));
+    const pairs = links
+      .map((link) => ({
+        link,
+        el: document.getElementById(decodeURIComponent(link.hash.slice(1))),
+      }))
+      .filter((pair): pair is { link: HTMLAnchorElement; el: HTMLElement } => Boolean(pair.el));
+
+    if (pairs.length) {
+      let ticking = false;
+      const update = () => {
+        ticking = false;
+        const line = 140; // px below the viewport top: the reading line
+        let active: (typeof pairs)[number] | null = null;
+        for (const pair of pairs) {
+          if (pair.el.getBoundingClientRect().top <= line) active = pair;
+        }
+        for (const pair of pairs) {
+          pair.link.classList.toggle('is-active', pair === active);
+        }
+      };
+      window.addEventListener(
+        'scroll',
+        () => {
+          if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(update);
+          }
+        },
+        { passive: true },
+      );
+      window.addEventListener('resize', update, { passive: true });
+      update();
+    }
+  }
+</script>

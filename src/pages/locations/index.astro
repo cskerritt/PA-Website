@@ -41,6 +41,7 @@ const metroBlurbs: Record<string, string> = {
     </p>
     <div class="card-grid">
       <a class="card" href="/locations/nationwide/">
+        <span class="card-tag">Coverage</span>
         <h2 class="card-title">National Coverage</h2>
         <p>
           States served, remote and in-person evaluation options, travel and testimony
@@ -49,6 +50,7 @@ const metroBlurbs: Record<string, string> = {
       </a>
       {SITE.offices.map((office) => (
         <a class="card" href={`/locations/${office.slug}/`}>
+          <span class="card-tag">Office</span>
           <h2 class="card-title">{office.city}, {office.region}</h2>
           <p>{metroBlurbs[office.slug]}</p>
         </a>

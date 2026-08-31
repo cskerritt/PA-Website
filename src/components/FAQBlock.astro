@@ -4,11 +4,13 @@ import { faqJsonLd } from '../lib/jsonld';
 interface Props {
   faqs: { q: string; a: string }[];
   heading?: string;
+  /** Optional anchor id so in-page exhibit indexes can target the block. */
+  id?: string;
 }
 
-const { faqs, heading = 'Frequently asked questions' } = Astro.props;
+const { faqs, heading = 'Frequently asked questions', id } = Astro.props;
 ---
-<section class="faq-block">
+<section class="faq-block" id={id}>
   <h2>{heading}</h2>
   {faqs.map((faq) => (
     <div class="faq-item">

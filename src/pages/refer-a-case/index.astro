@@ -47,7 +47,7 @@ const referralSourceOptions = [
 ];
 ---
 <BaseLayout title={title} description={description} path="/refer-a-case/">
-  <div class="container content-narrow">
+  <div class="container">
     <Breadcrumbs
       crumbs={[
         { name: 'Home', path: '/' },
@@ -62,15 +62,19 @@ const referralSourceOptions = [
       imminent disclosure, deposition, or trial deadline, call
       <a href={`tel:${SITE.phoneE164}`}>{SITE.phoneDisplay}</a>.
     </p>
-    <NeutralityStatement />
 
-    <div class="form-warning" role="note">
-      <strong>Do not submit medical records, Social Security numbers, dates of birth,
-      financial records, or confidential documents through this form.</strong>
-      This form is for conflict screening only and travels by ordinary email. A secure upload
-      link for case records is provided after the conflict check clears.
+    <div class="refer-notices">
+      <NeutralityStatement />
+      <div class="form-warning" role="note">
+        <strong>Do not submit medical records, Social Security numbers, dates of birth,
+        financial records, or confidential documents through this form.</strong>
+        This form is for conflict screening only and travels by ordinary email. A secure upload
+        link for case records is provided after the conflict check clears.
+      </div>
     </div>
 
+    <div class="refer-layout">
+      <div class="refer-main">
     <form
       class="pa-form"
       method="POST"
@@ -312,11 +316,42 @@ const referralSourceOptions = [
       <p class="form-status" data-status role="status" hidden></p>
       <button type="submit" class="btn btn-primary">Submit Conflict Check Request</button>
     </form>
+      </div>
 
-    <ProcessSteps
-      heading="What happens after you submit"
-      intro="Conflict check requests move through the firm's standard engagement sequence."
-    />
+      <aside class="refer-rail" aria-label="What to expect">
+        {/* The rail's exhibit card condenses commitments already stated on
+            this page (same-day response window, screening-only scope, records
+            after clearance) into a mono ledger with the phone line. */}
+        <section class="exhibit-card refer-exhibit">
+          <p class="exhibit-label"><span>What to expect</span></p>
+          <ul class="refer-facts">
+            <li>
+              <span class="refer-fact-label">Response</span>
+              <span class="refer-fact-value">Typically same day, business hours</span>
+            </li>
+            <li>
+              <span class="refer-fact-label">This form</span>
+              <span class="refer-fact-value">Conflict screening only</span>
+            </li>
+            <li>
+              <span class="refer-fact-label">Records</span>
+              <span class="refer-fact-value">Secure link after clearance</span>
+            </li>
+            <li>
+              <span class="refer-fact-label">Deadline</span>
+              <span class="refer-fact-value">
+                <a href={`tel:${SITE.phoneE164}`}>{SITE.phoneDisplay}</a>
+              </span>
+            </li>
+          </ul>
+        </section>
+
+        <ProcessSteps
+          heading="What happens after you submit"
+          intro="Conflict check requests move through the firm's standard engagement sequence."
+        />
+      </aside>
+    </div>
 
     <p>
       General inquiries that are not case referrals, and requests for CVs and fee schedules
@@ -330,12 +365,132 @@ const referralSourceOptions = [
 <style>
   /* Shared form styling (.pa-form, .form-field, hints, errors, honeypot)
      lives in global.css; only page-specific pieces remain here. */
+
+  .lead { max-width: 56rem; }
+
+  /* The neutrality note and the do-not-send warning sit side by side in one
+     ruled notice row, so the worksheet starts a screen higher. */
+  .refer-notices {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+    gap: 1rem;
+    align-items: stretch;
+    margin: 1.5rem 0 2rem;
+  }
+
+  @media (max-width: 860px) {
+    .refer-notices { grid-template-columns: 1fr; }
+  }
+
+  .refer-notices :global(.neutrality-band) {
+    margin: 0;
+  }
+
   .form-warning {
     background: #fdf1e7;
     border: 1px solid #f3d2b3;
     border-left: 3px solid var(--orange);
     border-radius: 6px;
-    padding: 1rem 1.25rem;
-    margin: 1.5rem 0;
+    padding: 0.9rem 1.25rem;
+    margin: 0;
+    font-size: 0.95rem;
   }
+
+  .form-warning strong { font-weight: 600; }
+
+  /* Worksheet left, sticky exhibit rail right */
+  .refer-layout { margin-bottom: 2.5rem; }
+
+  @media (min-width: 1024px) {
+    .refer-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(300px, 1fr);
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .refer-rail {
+      position: sticky;
+      top: 5.5rem;
+      max-height: calc(100vh - 6.5rem);
+      overflow-y: auto;
+      padding-bottom: 0.5rem;
+    }
+  }
+
+  .refer-main { min-width: 0; }
+
+  .refer-exhibit {
+    padding: 1.4rem 1.6rem 0.85rem;
+    box-shadow: var(--shadow-lift);
+  }
+
+  .refer-facts {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .refer-facts li {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--hairline);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    line-height: 1.5;
+    max-width: none;
+    margin: 0;
+  }
+
+  .refer-facts li:last-child { border-bottom: 0; }
+
+  .refer-fact-label {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--teal-deep);
+    flex-shrink: 0;
+  }
+
+  .refer-fact-value {
+    text-align: right;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .refer-fact-value a {
+    color: var(--navy);
+    font-weight: 500;
+    text-decoration-color: var(--hairline);
+    white-space: nowrap;
+  }
+
+  /* The rail's process steps run compact */
+  .refer-rail :global(.process-steps-section) { margin: 2.25rem 0 0; }
+
+  .refer-rail :global(.process-steps-section h2) { font-size: 1.25rem; }
+
+  .refer-rail :global(.process-steps > li) {
+    padding-left: 3.2rem;
+    padding-bottom: 1.4rem;
+  }
+
+  .refer-rail :global(.process-steps > li::before) {
+    width: 2.1rem;
+    height: 2.1rem;
+    font-size: 0.78rem;
+  }
+
+  .refer-rail :global(.process-steps > li::after) {
+    left: 1.05rem;
+    top: 2.35rem;
+  }
+
+  .refer-rail :global(.process-steps h3) { font-size: 1.05rem; }
+
+  .refer-rail :global(.process-steps p) { font-size: 0.9rem; }
 </style>

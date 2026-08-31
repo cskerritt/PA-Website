@@ -26,7 +26,10 @@ const { variant = 'band' } = Astro.props;
   </section>
 ) : (
   <section class="exhibit-card" aria-label="Firm experience">
-    <p class="exhibit-label">The firm in figures</p>
+    <p class="exhibit-label">
+      <span>The firm in figures</span>
+      <span class="exhibit-ref" aria-hidden="true">Exh. A</span>
+    </p>
     <div class="exhibit-grid">
       {SITE.stats.map((stat) => (
         <div class="exhibit-stat">
@@ -35,5 +38,6 @@ const { variant = 'band' } = Astro.props;
         </div>
       ))}
     </div>
+    <p class="exhibit-foot">Serving plaintiff and defense counsel in all 50 states</p>
   </section>
 )}

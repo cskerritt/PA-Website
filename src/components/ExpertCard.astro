@@ -15,12 +15,19 @@ const evalStat =
   SITE.stats.find((stat) => stat.label.includes('vocational evaluations')) ?? null;
 ---
 <div class="expert-card">
-  <h3 class="expert-name">{SITE.principal}</h3>
-  <p class="expert-creds">{SITE.principalCreds}</p>
-  <p class="expert-role">
-    Principal of {SITE.legalName}. Vocational expert and Certified Life Care Planner.
-  </p>
-  {evalStat && <p class="expert-stat">{evalStat.value} {evalStat.label}</p>}
+  <div class="expert-identity">
+    <h3 class="expert-name">{SITE.principal}</h3>
+    <p class="expert-creds">{SITE.principalCreds}</p>
+    <p class="expert-role">
+      Principal of {SITE.legalName}. Vocational expert and Certified Life Care Planner.
+    </p>
+    {evalStat && <p class="expert-stat">{evalStat.value} {evalStat.label}</p>}
+    <p class="expert-note">
+      Forensic economic analyses are performed and signed by independent economist partners
+      coordinated by the firm.
+    </p>
+    <a class="btn btn-secondary" href="/experts/jason-purinton/">View full profile</a>
+  </div>
   <ul class="expert-leadership">
     {leadership.map((line) => (
       <li>
@@ -39,21 +46,25 @@ const evalStat =
       </li>
     ))}
   </ul>
-  <p class="expert-note">
-    Forensic economic analyses are performed and signed by independent economist partners
-    coordinated by the firm.
-  </p>
-  <a class="btn btn-secondary" href="/experts/jason-purinton/">View full profile</a>
 </div>
 
 <style>
+  /* The card spans the container so its edges align with the section rule;
+     inside, identity sits left and the leadership ledger right. */
   .expert-card {
     background: var(--surface);
     border: 1px solid var(--hairline);
     border-top: 3px solid var(--orange);
     border-radius: 10px;
     padding: 2rem 2.25rem 2.1rem;
-    max-width: 46rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: 2rem 3rem;
+    align-items: start;
+  }
+
+  @media (max-width: 900px) {
+    .expert-card { grid-template-columns: 1fr; }
   }
 
   .expert-name {
@@ -62,6 +73,8 @@ const evalStat =
     margin-bottom: 0.3rem;
   }
 
+  /* The credential rule runs the full column width, aligned to the card's
+     internal grid rather than stopping mid-air at a text measure. */
   .expert-creds {
     font-family: var(--font-mono);
     font-size: 0.82rem;
@@ -72,6 +85,7 @@ const evalStat =
     border-bottom: 1px solid var(--hairline);
     padding-bottom: 1rem;
     margin-bottom: 1rem;
+    max-width: none;
   }
 
   .expert-role {
@@ -87,13 +101,24 @@ const evalStat =
     margin-bottom: 1.1rem;
   }
 
+  /* Single-column ruled ledger: a divider under every row that exists, none
+     dangling under absent ones. */
   .expert-leadership {
     list-style: none;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 0 1.75rem;
-    margin: 0 0 1.1rem;
+    margin: 0;
     padding: 0;
+    border-top: 1px solid var(--hairline);
+    position: relative;
+  }
+
+  .expert-leadership::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 32px;
+    height: 2px;
+    background: var(--orange);
   }
 
   .expert-leadership li {
@@ -101,10 +126,13 @@ const evalStat =
     gap: 0.6rem;
     align-items: flex-start;
     border-bottom: 1px solid var(--hairline);
-    padding-block: 0.6rem;
+    padding-block: 0.75rem;
     font-size: 0.95rem;
     line-height: 1.55;
+    max-width: none;
   }
+
+  .expert-leadership li:last-child { border-bottom: 0; }
 
   .cred-glyph {
     flex-shrink: 0;
