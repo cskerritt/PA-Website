@@ -1,0 +1,17 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+import TemplatePageLayout from '../../layouts/TemplatePageLayout.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('matters');
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+interface Props {
+  entry: CollectionEntry<'matters'>;
+}
+
+const { entry } = Astro.props;
+---
+<TemplatePageLayout entry={entry} section="matters" />

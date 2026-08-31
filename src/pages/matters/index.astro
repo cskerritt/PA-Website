@@ -1,0 +1,76 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import NeutralityStatement from '../../components/NeutralityStatement.astro';
+import CTABand from '../../components/CTABand.astro';
+
+// Canonical display order for the matter cluster; the index reads the
+// collection, so new pages appear automatically as content lands.
+const ORDER = [
+  'personal-injury',
+  'medical-malpractice',
+  'wrongful-death',
+  'pediatric-birth-injury',
+  'employment-litigation',
+  'family-law',
+  'workers-compensation',
+  'erisa-long-term-disability',
+  'product-liability-mass-tort',
+  'veterans-tdiu',
+];
+
+const rank = (id: string) => {
+  const i = ORDER.indexOf(id);
+  return i === -1 ? ORDER.length : i;
+};
+
+const matters = (await getCollection('matters')).sort(
+  (a, b) => rank(a.id) - rank(b.id) || a.id.localeCompare(b.id),
+);
+
+const title = 'Litigation Matters Served Nationwide';
+const description =
+  'Matter types Purinton Analytics supports nationwide: personal injury, medical malpractice, wrongful death, birth injury, employment, disability, and family law.';
+---
+<BaseLayout title={title} description={description} path="/matters/">
+  <div class="container">
+    <Breadcrumbs
+      crumbs={[
+        { name: 'Home', path: '/' },
+        { name: 'Matters', path: '/matters/' },
+      ]}
+    />
+    <h1>Litigation Matters Served Nationwide</h1>
+    <p class="lead">
+      Different matter types put different damages questions in front of the trier of fact,
+      and each question belongs to a specific discipline. These pages map common litigation
+      matters to the analyses that address them: vocational evaluation and life care planning
+      performed by the firm's principal, and forensic economic analyses performed and signed
+      by independent economist partners coordinated by the firm. Whatever the matter type,
+      every engagement starts with a documented conflict check and ends with work product
+      written to be read closely by opposing counsel.
+    </p>
+    <NeutralityStatement />
+    <div class="card-grid">
+      {matters.map((matter) => (
+        <a class="card" href={`/matters/${matter.id}/`}>
+          <h2 class="card-title">{matter.data.h1}</h2>
+          <p>{matter.data.metaDescription}</p>
+        </a>
+      ))}
+    </div>
+    <div class="content-narrow">
+      <h2>Not sure which analyses your case needs?</h2>
+      <p>
+        Many matters need more than one discipline, and the sequencing matters as much as the
+        selection. A catastrophic injury case may call for a life care plan, a vocational
+        evaluation, and an economic damages analysis that builds on both. An employment case
+        may need only a mitigation review. Describe the case in a conflict check request and
+        the firm will respond with a candid scoping recommendation, including when a narrower
+        engagement or a different kind of expert would serve the case better.
+      </p>
+    </div>
+  </div>
+  <CTABand />
+</BaseLayout>
