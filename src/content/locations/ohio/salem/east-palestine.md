@@ -13,10 +13,10 @@ townSlug: "east-palestine"
 county: "Columbiana County"
 ---
 
-Expert work is calendar work. A disclosure date, a deposition setting, or a
-trial assignment fixes when an opinion must be finished, and an East
-Palestine attorney weighing a retention needs to know whether the expert
-can meet those dates without cutting corners. Purinton Analytics builds its
+A disclosure date, a deposition setting, or a trial assignment fixes when
+an opinion must be finished, and an East Palestine attorney weighing a
+retention needs to know whether the expert can meet those dates without
+cutting corners. Purinton Analytics builds its
 [vocational expert engagements](/services/vocational-expert-witness/),
 [life care plans](/services/life-care-planning/), and
 [medical cost projections](/services/medical-cost-projection/) backward

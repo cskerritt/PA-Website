@@ -13,9 +13,11 @@ townSlug: "walthourville"
 county: "Liberty County"
 ---
 
+Walthourville is a small Liberty County community within the Hinesville metropolitan area, close enough to the metro's principal city that its workers, and its lawsuits, move in Hinesville's orbit. A case arising here is entitled to the same disciplined workup the practice brings to matters in the largest cities it serves, and that workup is available by appointment to counsel on either side of the caption.
+
 ## Expert Services for Walthourville Cases
 
-Walthourville is a small Liberty County community in the Hinesville metropolitan area, and a case arising there is entitled to the same disciplined workup the practice brings to matters in the largest cities it serves. Purinton Analytics provides [vocational expert witness](/services/vocational-expert-witness/) analysis, [life care planning](/services/life-care-planning/), and [medical cost projection](/services/medical-cost-projection/) for injury, employment, and family law matters involving Walthourville parties, on either side of the caption. When a claim requires economic damages, the firm offers [coordinated damages engagements](/services/coordinated-damages-assessment/) in which independent economist partners perform and sign the economic analysis while the vocational and care-planning work proceeds under one engagement structure.
+Purinton Analytics provides [vocational expert witness](/services/vocational-expert-witness/) analysis, [life care planning](/services/life-care-planning/), and [medical cost projection](/services/medical-cost-projection/) for injury, employment, and family law matters involving Walthourville parties. When a claim requires economic damages, the firm offers [coordinated damages engagements](/services/coordinated-damages-assessment/) in which independent economist partners perform and sign the economic analysis while the vocational and care-planning work proceeds under one engagement structure.
 
 ## Liberty County Venue and the Federal Forums
 

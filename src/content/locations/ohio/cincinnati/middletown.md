@@ -15,9 +15,9 @@ county: "Butler County"
 
 Most Middletown referrals arrive with a date already attached: an expert
 disclosure deadline, a deposition notice, a trial setting. Purinton Analytics
-builds every engagement backward from that calendar, so that records
-collection, evaluation, drafting, and counsel review each get the time they
-need before the opinion is due. Plaintiff and defense counsel with matters
+plans the retention from that calendar first, so that records collection,
+evaluation, drafting, and counsel review each get the time they need before
+the opinion is due. Plaintiff and defense counsel with matters
 involving Middletown evaluees retain the firm for
 [vocational expert evaluation](/services/vocational-expert-witness/),
 [life care planning](/services/life-care-planning/), and
