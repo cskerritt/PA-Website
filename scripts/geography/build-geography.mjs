@@ -14,6 +14,15 @@
 //   differs), which is what we fetch. It mixes CBSA, metropolitan division,
 //   and county rows; the LSAD column distinguishes them. Puerto Rico CBSAs
 //   are in a separate prc- file and are out of scope anyway.
+// - Place population: sub-est2024.csv (Vintage 2024 city/town estimates).
+//   Columns: SUMLEV,STATE,COUNTY,PLACE,COUSUB,CONCIT,PRIMGEO_FLAG,FUNCSTAT,
+//   NAME,STNAME,ESTIMATESBASE2020,POPESTIMATE2020..POPESTIMATE2024. SUMLEV
+//   162 = incorporated place (canonical population; its COUNTY field is
+//   000), SUMLEV 157 = the place's part within one county. This vintage has
+//   no county-name column, so county names come from joining STATE+COUNTY
+//   FIPS against the delineation file's county list (which also resolves
+//   Connecticut planning-region equivalents, since both files share the
+//   same FIPS in matching vintages).
 import { mkdirSync, writeFileSync, existsSync, readFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import * as XLSX from 'xlsx';
@@ -29,6 +38,8 @@ const SOURCES = {
     'https://www2.census.gov/programs-surveys/metro-micro/geographies/reference-files/2023/delineation-files/list1_2023.xlsx',
   cbsaPop:
     'https://www2.census.gov/programs-surveys/popest/datasets/2020-2024/metro/totals/cbsa-est2024-alldata.csv',
+  placePop:
+    'https://www2.census.gov/programs-surveys/popest/datasets/2020-2024/cities/totals/sub-est2024.csv',
 };
 
 function fetchCached(url, file) {
@@ -219,4 +230,207 @@ if (zeroPop.length > 0) {
 }
 
 writeFileSync(`${OUT}/metros.json`, JSON.stringify(metros, null, 2) + '\n');
-console.log(`states: ${STATES.length}, metros: ${metros.length}`);
+
+// --- towns.json ---
+// County lookup by FIPS from the delineation rows: "SSCCC" -> county name
+// and CBSA code. Counties belong to exactly one CBSA.
+const countyByFips = new Map();
+for (const r of rows) {
+  if (!r['CBSA Code'] || !r['CBSA Title']) continue;
+  const key =
+    String(r['FIPS State Code']).padStart(2, '0') + String(r['FIPS County Code']).padStart(3, '0');
+  countyByFips.set(key, { name: r['County/County Equivalent'], cbsa: String(r['CBSA Code']) });
+}
+
+// Only metros that made the per-state top-15 cut get town pages.
+const metroByCbsa = new Map(metros.map((m) => [m.cbsa, m]));
+
+// Census place names carry a legal-description suffix ("Overland Park
+// city", "Carmel town (balance)") and consolidated city-county governments
+// carry compound names ("Augusta-Richmond County consolidated government
+// (balance)", "Louisville/Jefferson County metro government (balance)",
+// "Lynchburg, Moore County metropolitan government"). Normalize to the
+// common city name so the principal-city exclusion below matches.
+const CONSOLIDATED_RENAMES = new Map([
+  ['Nashville-Davidson', 'Nashville'],
+  ['Lexington-Fayette', 'Lexington'],
+  ['Butte-Silver Bow', 'Butte'],
+]);
+function cleanPlaceName(raw, stateName) {
+  let n = raw.replace(/ \(balance\)$/, '');
+  n = n.replace(
+    / (city|town|village|borough|CDP|municipality|corporation|metro township|metro government|metropolitan government|unified government|consolidated government|urban county)$/i,
+    '',
+  );
+  // Massachusetts consolidated town-cities are styled "X Town city"
+  // ("Barnstable Town city"); the " Town" is Census styling, not the name.
+  // Only MA uses this styling; "Old Town city" (ME), "Charles Town city"
+  // (WV), and "New Town city" (ND) are real names and keep their Town.
+  if (stateName === 'Massachusetts') n = n.replace(/ Town$/, '');
+  if (n.includes(',')) n = n.split(',')[0]; // "Islamorada, Village of Islands"
+  const cc = n.match(/^(.+?)[-/][^-/]+ County$/); // "Macon-Bibb County" -> "Macon"
+  if (cc) n = cc[1];
+  return CONSOLIDATED_RENAMES.get(n) ?? n;
+}
+
+const placeCsv = readFileSync(fetchCached(SOURCES.placePop, 'place-pop.csv'), 'latin1');
+const placeLines = placeCsv.split(/\r?\n/).filter((l) => l.length > 0);
+const placeHeader = parseCsvLine(placeLines[0]);
+const pcol = (name) => {
+  const i = placeHeader.indexOf(name);
+  if (i === -1) throw new Error(`missing column ${name} in place-pop.csv`);
+  return i;
+};
+const P_SUMLEV = pcol('SUMLEV');
+const P_STATE = pcol('STATE');
+const P_COUNTY = pcol('COUNTY');
+const P_PLACE = pcol('PLACE');
+const P_NAME = pcol('NAME');
+const P_STNAME = pcol('STNAME');
+const P_POP = pcol('POPESTIMATE2024');
+
+const places = new Map(); // key: STATE fips + PLACE fips
+for (const line of placeLines.slice(1)) {
+  const c = parseCsvLine(line);
+  if (c[P_SUMLEV] !== '162') continue;
+  places.set(c[P_STATE] + c[P_PLACE], {
+    name: cleanPlaceName(c[P_NAME], c[P_STNAME]),
+    stateName: c[P_STNAME],
+    population: Number(c[P_POP]),
+    countyParts: [],
+  });
+}
+for (const line of placeLines.slice(1)) {
+  const c = parseCsvLine(line);
+  if (c[P_SUMLEV] !== '157') continue;
+  const p = places.get(c[P_STATE] + c[P_PLACE]);
+  if (p) p.countyParts.push({ fips: c[P_STATE] + c[P_COUNTY], pop: Number(c[P_POP]) });
+}
+
+// District of Columbia places are excluded by construction: STNAME
+// "District of Columbia" is not in the 50-state table, so stateByName
+// misses and the row is skipped. The Washington metro page itself lives
+// under Virginia; its MD/VA/WV suburbs qualify through their own states.
+const towns = [];
+for (const p of places.values()) {
+  const st = stateByName.get(p.stateName);
+  if (!st || p.population < 2500) continue;
+  // Assign the place to the county holding its largest part.
+  const top = p.countyParts.sort((a, b) => b.pop - a.pop || a.fips.localeCompare(b.fips))[0];
+  if (!top) continue;
+  const county = countyByFips.get(top.fips);
+  if (!county) continue; // county is outside every CBSA
+  const metro = metroByCbsa.get(county.cbsa);
+  if (!metro) continue; // CBSA did not make the per-state top 15
+  const slug = slugify(p.name);
+  if (slug === metro.slug && st.slug === metro.stateSlug) continue; // principal city = metro page
+  towns.push({
+    name: p.name,
+    slug,
+    stateSlug: st.slug,
+    metroSlug: metro.slug,
+    metroStateSlug: metro.stateSlug,
+    county: county.name,
+    population: p.population,
+  });
+}
+
+// Top 10 per metro; dedupe slug collisions inside a metro with a county
+// suffix.
+const byMetro = new Map();
+for (const t of towns) {
+  const k = `${t.metroStateSlug}/${t.metroSlug}`;
+  if (!byMetro.has(k)) byMetro.set(k, []);
+  byMetro.get(k).push(t);
+}
+const kept = [];
+for (const list of byMetro.values()) {
+  list.sort(
+    (a, b) => b.population - a.population || a.stateSlug.localeCompare(b.stateSlug) || a.slug.localeCompare(b.slug),
+  );
+  const picked = list.slice(0, 10);
+  const seen = new Set();
+  for (const t of picked) {
+    if (seen.has(`${t.stateSlug}/${t.slug}`)) t.slug = `${t.slug}-${slugify(t.county)}`;
+    seen.add(`${t.stateSlug}/${t.slug}`);
+    kept.push(t);
+  }
+}
+kept.sort(
+  (a, b) =>
+    a.stateSlug.localeCompare(b.stateSlug) ||
+    b.population - a.population ||
+    a.slug.localeCompare(b.slug) ||
+    a.metroSlug.localeCompare(b.metroSlug),
+);
+
+// Sanity checks.
+const op = kept.find((t) => t.slug === 'overland-park');
+if (
+  !op ||
+  op.stateSlug !== 'kansas' ||
+  op.metroSlug !== 'kansas-city' ||
+  op.metroStateSlug !== 'missouri' ||
+  op.county !== 'Johnson County'
+) {
+  throw new Error(`Overland Park sanity check failed: ${JSON.stringify(op)}`);
+}
+// The brief predicted 5,000-7,500 towns, assuming ~10 qualifying towns per
+// metro. Reality: most of the 585 metros are micropolitan with only a few
+// non-principal places at or above the 2,500 floor, so the binding rules
+// (floor 2500, top 10 per metro, principal-city exclusion) yield ~2,250.
+// Measured sweep at floor 2500: cap 10 -> 2,248; cap 15 -> 2,665; uncapped
+// -> 4,875. The range below reflects reality under the binding rules.
+if (kept.length < 2000 || kept.length > 3000) {
+  throw new Error(`unexpected town count: ${kept.length}`);
+}
+if (!kept.some((t) => t.stateSlug === 'connecticut')) {
+  throw new Error('no Connecticut towns survived (planning-region FIPS join broke)');
+}
+const orphanTowns = kept.filter(
+  (t) => !metros.some((m) => m.slug === t.metroSlug && m.stateSlug === t.metroStateSlug),
+);
+if (orphanTowns.length > 0) {
+  throw new Error(`towns pointing at missing metros: ${orphanTowns.length}`);
+}
+
+writeFileSync(`${OUT}/towns.json`, JSON.stringify(kept, null, 2) + '\n');
+
+// --- waves.json: 8 waves, litigation-heavy states first, balanced by town
+// count ---
+const PRIORITY = ['california', 'texas', 'florida', 'new-york', 'pennsylvania', 'illinois', 'ohio', 'georgia', 'north-carolina', 'michigan', 'new-jersey', 'missouri', 'washington', 'massachusetts', 'colorado'];
+const countByState = new Map();
+for (const t of kept) countByState.set(t.stateSlug, (countByState.get(t.stateSlug) ?? 0) + 1);
+const order = [...countByState.keys()].sort((a, b) => {
+  const pa = PRIORITY.indexOf(a), pb = PRIORITY.indexOf(b);
+  if (pa !== -1 || pb !== -1) return (pa === -1 ? 99 : pa) - (pb === -1 ? 99 : pb);
+  return (countByState.get(b) ?? 0) - (countByState.get(a) ?? 0) || a.localeCompare(b);
+});
+// Walk states in order and fill each wave to a per-wave town budget so
+// priority states always land in the earliest waves. The budget is
+// recomputed from the remaining towns at each wave boundary; a fixed
+// ceil(total/8) budget would dump every leftover state into wave 8
+// (measured: 485 pages vs ~250 in waves 1-7).
+const waves = {};
+let remaining = kept.length;
+let wave = 1, load = 0, budget = Math.ceil(remaining / 8);
+for (const s of order) {
+  const n = countByState.get(s);
+  if (load + n > budget && wave < 8) {
+    wave += 1;
+    load = 0;
+    budget = Math.ceil(remaining / (9 - wave));
+  }
+  waves[s] = wave;
+  load += n;
+  remaining -= n;
+}
+const waveNumbers = new Set(Object.values(waves));
+for (let w = 1; w <= 8; w++) {
+  if (!waveNumbers.has(w)) throw new Error(`wave ${w} is empty`);
+}
+if ([...waveNumbers].some((w) => w < 1 || w > 8)) {
+  throw new Error('wave number out of 1..8 range');
+}
+writeFileSync(`${OUT}/waves.json`, JSON.stringify(waves, null, 2) + '\n');
+console.log(`states: ${STATES.length}, metros: ${metros.length}, towns: ${kept.length}, waves: ${waveNumbers.size}`);
