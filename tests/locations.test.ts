@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import type { HTMLElement } from 'node-html-parser';
 import { SITE } from '../src/config/site';
 import { distFile, parseDist, jsonld } from './helpers';
+import { states as geoStates } from '../src/lib/geography';
 
 const HUB = 'locations/nationwide';
 const INDEX = 'locations';
@@ -259,5 +260,22 @@ describe('locations index', () => {
     for (const metro of METROS) {
       expect(hrefs).toContain(`/locations/${metro.slug}/`);
     }
+  });
+});
+
+describe('state hub pages', () => {
+  it('all 50 states build with unique titles and their own court names', () => {
+    const titles = new Set<string>();
+    for (const s of geoStates()) {
+      const html = distFile(`locations/${s.slug}`);
+      const title = html.match(/<title>([^<]+)<\/title>/)![1];
+      expect(titles.has(title), s.slug).toBe(false);
+      titles.add(title);
+      expect(mainText(`locations/${s.slug}`)).toContain(s.trialCourts);
+    }
+  });
+  it('locations index links every state', () => {
+    const html = distFile('locations');
+    for (const s of geoStates()) expect(html, s.slug).toContain(`href="/locations/${s.slug}/"`);
   });
 });
