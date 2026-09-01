@@ -13,9 +13,9 @@ townSlug: "ilion"
 county: "Herkimer County"
 ---
 
-Expert work is calendar work. By the time counsel in an Ilion matter
-reaches for a vocational expert or a life care planner, disclosure
-deadlines are usually already set, and the value of the retention depends
+By the time an Ilion matter needs a vocational expert or a life care
+planner, disclosure deadlines are usually already set, and the value of
+the retention depends
 on whether a defensible report can be built inside them. Purinton
 Analytics scopes every Ilion engagement against that calendar from the
 first call: what the

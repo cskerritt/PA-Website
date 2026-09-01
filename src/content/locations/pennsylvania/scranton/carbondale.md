@@ -13,7 +13,7 @@ townSlug: "carbondale"
 county: "Lackawanna County"
 ---
 
-Expert opinions are only as useful as their timing. A vocational report that arrives after the disclosure deadline, or a life care plan delivered too late to be digested before mediation, has already failed regardless of its merits. For Carbondale counsel, Purinton Analytics builds every engagement backward from the dates that govern it: disclosure, deposition, dispositive motions, trial. That calendar discipline applies equally to affirmative [vocational expert](/services/vocational-expert-witness/) and [life care planning](/services/life-care-planning/) opinions and to [rebuttal and peer review](/services/rebuttal-peer-review/) of the other side's expert work, and it is available to plaintiff and defense counsel on identical terms.
+A vocational report that reaches Carbondale counsel after the disclosure deadline, or a life care plan delivered too late to be digested before mediation, has already failed regardless of its merits. Purinton Analytics therefore plans each Carbondale retention from the dates that govern it, working from disclosure, deposition, dispositive motion, and trial settings back to the present. That calendar discipline applies equally to affirmative [vocational expert](/services/vocational-expert-witness/) and [life care planning](/services/life-care-planning/) opinions and to [rebuttal and peer review](/services/rebuttal-peer-review/) of the other side's expert work, and it is available to plaintiff and defense counsel on identical terms.
 
 ## Lackawanna County venue
 

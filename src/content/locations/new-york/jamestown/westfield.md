@@ -13,10 +13,10 @@ townSlug: "westfield"
 county: "Chautauqua County"
 ---
 
-Expert work is calendar work. By the time counsel in a Westfield matter
-reaches for a vocational expert, the disclosure deadline is usually
-already fixed, and every step that follows, records collection,
-evaluation, drafting, and signature, has to fit inside it. Purinton
+Counsel in a Westfield matter usually retain a vocational expert after
+the disclosure deadline is already fixed, and every step that follows,
+records collection, evaluation, drafting, and signature, has to fit
+inside it. Purinton
 Analytics scopes each
 [vocational evaluation](/services/vocational-expert-witness/) and
 [life care plan](/services/life-care-planning/) against that calendar

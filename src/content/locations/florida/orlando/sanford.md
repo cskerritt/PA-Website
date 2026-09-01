@@ -13,9 +13,9 @@ townSlug: "sanford"
 county: "Seminole County"
 ---
 
-Expert work is calendar work. A Sanford case arrives at Purinton Analytics
-with dates already fixed: a disclosure deadline, a discovery cutoff,
-sometimes a trial setting that cannot move. The practice is built to respect
+A Sanford case rarely reaches Purinton Analytics with an open calendar. It
+arrives with dates already fixed: a disclosure deadline, a discovery
+cutoff, sometimes a trial setting that cannot move. The practice is built to respect
 those dates, which is why intake for Seminole County matters begins by
 mapping the litigation schedule before any opinion work starts. Whether the
 assignment is a
