@@ -80,12 +80,53 @@ const jaccard = (a, b) => {
 };
 const SIMILARITY_MAX = 0.35;
 
+// True when `needle` appears in `haystack` as a word-bounded substring:
+// the characters adjacent to the match (if any) are not letters or digits.
+// Hyphens, periods, and spaces count as boundaries so consolidated names
+// ("Athens-Clarke County") and cross-sentence over-captures ("Idaho. For
+// Box Elder County") can be grounded against dataset county names.
+const isWordChar = (ch) => /[\p{L}\p{N}]/u.test(ch);
+function containsWord(haystack, needle) {
+  let idx = haystack.indexOf(needle);
+  while (idx !== -1) {
+    const before = idx > 0 ? haystack[idx - 1] : '';
+    const after = idx + needle.length < haystack.length ? haystack[idx + needle.length] : '';
+    if ((!before || !isWordChar(before)) && (!after || !isWordChar(after))) return true;
+    idx = haystack.indexOf(needle, idx + 1);
+  }
+  return false;
+}
+
 export function verifyLocationContent(files) {
   const all = files ?? listFiles();
   const problems = [];
   const states = geo('states.json');
   const metrosData = geo('metros.json');
   const countyNames = new Set(metrosData.flatMap((m) => m.counties.map((c) => c.name)));
+  const countyList = [...countyNames];
+  // COUNTY_RE captures can over-reach (leading sentence-starters like "Most
+  // Marshall County") or under-reach (lowercase particles and diacritics stop
+  // the token run, so "Fond du Lac County" captures as "Lac County"). A
+  // capture is grounded when it contains a known county name as a
+  // word-bounded substring, or is itself a word-bounded substring of one.
+  // Every grounding path goes through dataset names; a fully invented
+  // county ("Wakanda County") satisfies neither direction.
+  const isGroundedCounty = (capture) =>
+    countyNames.has(capture)
+    || countyList.some((n) => containsWord(capture, n) || containsWord(n, capture));
+  // "<direction> District of <State>" phrases from states.json, e.g.
+  // "Western District of Missouri", "District of Maine".
+  const districtPhrases = states.flatMap((s) =>
+    s.federalDistricts.map((d) => expandDistrict(d, s.name).replace('United States District Court for the ', '')));
+  // A DISTRICT_RE capture can trail into the next sentence ("District of
+  // Maine The") or name a county-equivalent ("District of Columbia", a
+  // metros.json county for the Washington metro). Grounded when it contains
+  // a known district phrase as a word-bounded substring, is itself a
+  // word-bounded substring of one ("District of Missouri" inside "Western
+  // District of Missouri"), or contains a known county-equivalent name.
+  const isGroundedDistrict = (capture) =>
+    districtPhrases.some((p) => containsWord(capture, p) || containsWord(p, capture))
+    || countyList.some((n) => containsWord(capture, n));
   const docs = [];
 
   for (const file of all) {
@@ -107,11 +148,10 @@ export function verifyLocationContent(files) {
     }
     // Fabrication guards: any "X County" or "District of X" mentioned must be known.
     for (const m of flatBody.matchAll(COUNTY_RE)) {
-      if (!countyNames.has(m[1])) problems.push({ file, rule: 'fabricated-county', detail: m[1] });
+      if (!isGroundedCounty(m[1])) problems.push({ file, rule: 'fabricated-county', detail: m[1] });
     }
     for (const m of flatBody.matchAll(DISTRICT_RE)) {
-      const known = states.some((s) => s.federalDistricts.some((d) => expandDistrict(d, s.name).includes(m[0])));
-      if (!known) problems.push({ file, rule: 'fabricated-court', detail: m[0] });
+      if (!isGroundedDistrict(m[0])) problems.push({ file, rule: 'fabricated-court', detail: m[0] });
     }
     // Numeric hygiene: no dollar figures or percentages in prose.
     if (/\$\d|\b\d+(\.\d+)?\s*(%|percent)\b/.test(flatBody)) {
