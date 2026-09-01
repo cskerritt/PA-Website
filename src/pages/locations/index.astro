@@ -1,8 +1,10 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import CTABand from '../../components/CTABand.astro';
 import { SITE } from '../../config/site';
+import { states, statePath } from '../../lib/geography';
 
 // Router page for /locations/: the canonical coverage page is the
 // nationwide hub, and this index exists to hand visitors (and crawlers
@@ -21,6 +23,15 @@ const metroBlurbs: Record<string, string> = {
   chicago:
     'Employability, earning capacity, and life care planning evaluations for Cook County and Chicagoland counsel.',
 };
+
+// The state list derives from built state entries, not from the geography
+// data directly: state pages land in a later wave, and linking a state
+// before its page is built would ship dead links. Order follows states().
+const entries = await getCollection('locations');
+const builtStateSlugs = new Set(
+  entries.filter((e) => e.data.tier === 'state').map((e) => e.data.stateSlug),
+);
+const stateLinks = states().filter((s) => builtStateSlugs.has(s.slug));
 ---
 <BaseLayout title={title} description={description} path="/locations/">
   <div class="container">
@@ -49,13 +60,42 @@ const metroBlurbs: Record<string, string> = {
         </p>
       </a>
       {SITE.offices.map((office) => (
-        <a class="card" href={`/locations/${office.slug}/`}>
+        <a class="card" href={office.path}>
           <span class="card-tag">Office</span>
           <h2 class="card-title">{office.city}, {office.region}</h2>
           <p>{metroBlurbs[office.slug]}</p>
         </a>
       ))}
     </div>
+    {stateLinks.length > 0 && (
+      <section class="state-coverage">
+        <h2>Coverage by state</h2>
+        <ul class="state-list">
+          {stateLinks.map((s) => (
+            <li><a href={statePath(s)}>{s.name}</a></li>
+          ))}
+        </ul>
+      </section>
+    )}
   </div>
   <CTABand />
 </BaseLayout>
+
+<style>
+  .state-coverage {
+    margin: 2.5rem 0 1rem;
+  }
+
+  .state-list {
+    list-style: none;
+    margin: 1rem 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 0.4rem 1.5rem;
+  }
+
+  .state-list li {
+    margin: 0;
+  }
+</style>

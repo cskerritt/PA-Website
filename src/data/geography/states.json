@@ -1,0 +1,491 @@
+[
+  {
+    "name": "Alabama",
+    "slug": "alabama",
+    "abbr": "AL",
+    "trialCourts": "Circuit Court",
+    "federalDistricts": [
+      "N.D. Ala.",
+      "M.D. Ala.",
+      "S.D. Ala."
+    ]
+  },
+  {
+    "name": "Alaska",
+    "slug": "alaska",
+    "abbr": "AK",
+    "trialCourts": "Superior Court",
+    "federalDistricts": [
+      "D. Alaska"
+    ]
+  },
+  {
+    "name": "Arizona",
+    "slug": "arizona",
+    "abbr": "AZ",
+    "trialCourts": "Superior Court",
+    "federalDistricts": [
+      "D. Ariz."
+    ]
+  },
+  {
+    "name": "Arkansas",
+    "slug": "arkansas",
+    "abbr": "AR",
+    "trialCourts": "Circuit Court",
+    "federalDistricts": [
+      "E.D. Ark.",
+      "W.D. Ark."
+    ]
+  },
+  {
+    "name": "California",
+    "slug": "california",
+    "abbr": "CA",
+    "trialCourts": "Superior Court",
+    "federalDistricts": [
+      "N.D. Cal.",
+      "E.D. Cal.",
+      "C.D. Cal.",
+      "S.D. Cal."
+    ]
+  },
+  {
+    "name": "Colorado",
+    "slug": "colorado",
+    "abbr": "CO",
+    "trialCourts": "District Court",
+    "federalDistricts": [
+      "D. Colo."
+    ]
+  },
+  {
+    "name": "Connecticut",
+    "slug": "connecticut",
+    "abbr": "CT",
+    "trialCourts": "Superior Court",
+    "federalDistricts": [
+      "D. Conn."
+    ]
+  },
+  {
+    "name": "Delaware",
+    "slug": "delaware",
+    "abbr": "DE",
+    "trialCourts": "Superior Court",
+    "federalDistricts": [
+      "D. Del."
+    ]
+  },
+  {
+    "name": "Florida",
+    "slug": "florida",
+    "abbr": "FL",
+    "trialCourts": "Circuit Court",
+    "federalDistricts": [
+      "N.D. Fla.",
+      "M.D. Fla.",
+      "S.D. Fla."
+    ]
+  },
+  {
+    "name": "Georgia",
+    "slug": "georgia",
+    "abbr": "GA",
+    "trialCourts": "Superior Court",
+    "federalDistricts": [
+      "N.D. Ga.",
+      "M.D. Ga.",
+      "S.D. Ga."
+    ]
+  },
+  {
+    "name": "Hawaii",
+    "slug": "hawaii",
+    "abbr": "HI",
+    "trialCourts": "Circuit Court",
+    "federalDistricts": [
+      "D. Haw."
+    ]
+  },
+  {
+    "name": "Idaho",
+    "slug": "idaho",
+    "abbr": "ID",
+    "trialCourts": "District Court",
+    "federalDistricts": [
+      "D. Idaho"
+    ]
+  },
+  {
+    "name": "Illinois",
+    "slug": "illinois",
+    "abbr": "IL",
+    "trialCourts": "Circuit Court",
+    "federalDistricts": [
+      "N.D. Ill.",
+      "C.D. Ill.",
+      "S.D. Ill."
+    ]
+  },
+  {
+    "name": "Indiana",
+    "slug": "indiana",
+    "abbr": "IN",
+    "trialCourts": "Circuit and Superior Courts",
+    "federalDistricts": [
+      "N.D. Ind.",
+      "S.D. Ind."
+    ]
+  },
+  {
+    "name": "Iowa",
+    "slug": "iowa",
+    "abbr": "IA",
+    "trialCourts": "District Court",
+    "federalDistricts": [
+      "N.D. Iowa",
+      "S.D. Iowa"
+    ]
+  },
+  {
+    "name": "Kansas",
+    "slug": "kansas",
+    "abbr": "KS",
+    "trialCourts": "District Court",
+    "federalDistricts": [
+      "D. Kan."
+    ]
+  },
+  {
+    "name": "Kentucky",
+    "slug": "kentucky",
+    "abbr": "KY",
+    "trialCourts": "Circuit Court",
+    "federalDistricts": [
+      "E.D. Ky.",
+      "W.D. Ky."
+    ]
+  },
+  {
+    "name": "Louisiana",
+    "slug": "louisiana",
+    "abbr": "LA",
+    "trialCourts": "District Court",
+    "federalDistricts": [
+      "E.D. La.",
+      "M.D. La.",
+      "W.D. La."
+    ]
+  },
+  {
+    "name": "Maine",
+    "slug": "maine",
+    "abbr": "ME",
+    "trialCourts": "Superior Court",
+    "federalDistricts": [
+      "D. Me."
+    ]
+  },
+  {
+    "name": "Maryland",
+    "slug": "maryland",
+    "abbr": "MD",
+    "trialCourts": "Circuit Court",
+    "federalDistricts": [
+      "D. Md."
+    ]
+  },
+  {
+    "name": "Massachusetts",
+    "slug": "massachusetts",
+    "abbr": "MA",
+    "trialCourts": "Superior Court",
+    "federalDistricts": [
+      "D. Mass."
+    ]
+  },
+  {
+    "name": "Michigan",
+    "slug": "michigan",
+    "abbr": "MI",
+    "trialCourts": "Circuit Court",
+    "federalDistricts": [
+      "E.D. Mich.",
+      "W.D. Mich."
+    ]
+  },
+  {
+    "name": "Minnesota",
+    "slug": "minnesota",
+    "abbr": "MN",
+    "trialCourts": "District Court",
+    "federalDistricts": [
+      "D. Minn."
+    ]
+  },
+  {
+    "name": "Mississippi",
+    "slug": "mississippi",
+    "abbr": "MS",
+    "trialCourts": "Circuit Court",
+    "federalDistricts": [
+      "N.D. Miss.",
+      "S.D. Miss."
+    ]
+  },
+  {
+    "name": "Missouri",
+    "slug": "missouri",
+    "abbr": "MO",
+    "trialCourts": "Circuit Court",
+    "federalDistricts": [
+      "E.D. Mo.",
+      "W.D. Mo."
+    ]
+  },
+  {
+    "name": "Montana",
+    "slug": "montana",
+    "abbr": "MT",
+    "trialCourts": "District Court",
+    "federalDistricts": [
+      "D. Mont."
+    ]
+  },
+  {
+    "name": "Nebraska",
+    "slug": "nebraska",
+    "abbr": "NE",
+    "trialCourts": "District Court",
+    "federalDistricts": [
+      "D. Neb."
+    ]
+  },
+  {
+    "name": "Nevada",
+    "slug": "nevada",
+    "abbr": "NV",
+    "trialCourts": "District Court",
+    "federalDistricts": [
+      "D. Nev."
+    ]
+  },
+  {
+    "name": "New Hampshire",
+    "slug": "new-hampshire",
+    "abbr": "NH",
+    "trialCourts": "Superior Court",
+    "federalDistricts": [
+      "D.N.H."
+    ]
+  },
+  {
+    "name": "New Jersey",
+    "slug": "new-jersey",
+    "abbr": "NJ",
+    "trialCourts": "Superior Court",
+    "federalDistricts": [
+      "D.N.J."
+    ]
+  },
+  {
+    "name": "New Mexico",
+    "slug": "new-mexico",
+    "abbr": "NM",
+    "trialCourts": "District Court",
+    "federalDistricts": [
+      "D.N.M."
+    ]
+  },
+  {
+    "name": "New York",
+    "slug": "new-york",
+    "abbr": "NY",
+    "trialCourts": "Supreme Court",
+    "federalDistricts": [
+      "N.D.N.Y.",
+      "S.D.N.Y.",
+      "E.D.N.Y.",
+      "W.D.N.Y."
+    ]
+  },
+  {
+    "name": "North Carolina",
+    "slug": "north-carolina",
+    "abbr": "NC",
+    "trialCourts": "Superior Court",
+    "federalDistricts": [
+      "E.D.N.C.",
+      "M.D.N.C.",
+      "W.D.N.C."
+    ]
+  },
+  {
+    "name": "North Dakota",
+    "slug": "north-dakota",
+    "abbr": "ND",
+    "trialCourts": "District Court",
+    "federalDistricts": [
+      "D.N.D."
+    ]
+  },
+  {
+    "name": "Ohio",
+    "slug": "ohio",
+    "abbr": "OH",
+    "trialCourts": "Court of Common Pleas",
+    "federalDistricts": [
+      "N.D. Ohio",
+      "S.D. Ohio"
+    ]
+  },
+  {
+    "name": "Oklahoma",
+    "slug": "oklahoma",
+    "abbr": "OK",
+    "trialCourts": "District Court",
+    "federalDistricts": [
+      "N.D. Okla.",
+      "E.D. Okla.",
+      "W.D. Okla."
+    ]
+  },
+  {
+    "name": "Oregon",
+    "slug": "oregon",
+    "abbr": "OR",
+    "trialCourts": "Circuit Court",
+    "federalDistricts": [
+      "D. Or."
+    ]
+  },
+  {
+    "name": "Pennsylvania",
+    "slug": "pennsylvania",
+    "abbr": "PA",
+    "trialCourts": "Court of Common Pleas",
+    "federalDistricts": [
+      "E.D. Pa.",
+      "M.D. Pa.",
+      "W.D. Pa."
+    ]
+  },
+  {
+    "name": "Rhode Island",
+    "slug": "rhode-island",
+    "abbr": "RI",
+    "trialCourts": "Superior Court",
+    "federalDistricts": [
+      "D.R.I."
+    ]
+  },
+  {
+    "name": "South Carolina",
+    "slug": "south-carolina",
+    "abbr": "SC",
+    "trialCourts": "Circuit Court (Court of Common Pleas)",
+    "federalDistricts": [
+      "D.S.C."
+    ]
+  },
+  {
+    "name": "South Dakota",
+    "slug": "south-dakota",
+    "abbr": "SD",
+    "trialCourts": "Circuit Court",
+    "federalDistricts": [
+      "D.S.D."
+    ]
+  },
+  {
+    "name": "Tennessee",
+    "slug": "tennessee",
+    "abbr": "TN",
+    "trialCourts": "Circuit and Chancery Courts",
+    "federalDistricts": [
+      "E.D. Tenn.",
+      "M.D. Tenn.",
+      "W.D. Tenn."
+    ]
+  },
+  {
+    "name": "Texas",
+    "slug": "texas",
+    "abbr": "TX",
+    "trialCourts": "District Court",
+    "federalDistricts": [
+      "N.D. Tex.",
+      "S.D. Tex.",
+      "E.D. Tex.",
+      "W.D. Tex."
+    ]
+  },
+  {
+    "name": "Utah",
+    "slug": "utah",
+    "abbr": "UT",
+    "trialCourts": "District Court",
+    "federalDistricts": [
+      "D. Utah"
+    ]
+  },
+  {
+    "name": "Vermont",
+    "slug": "vermont",
+    "abbr": "VT",
+    "trialCourts": "Superior Court",
+    "federalDistricts": [
+      "D. Vt."
+    ]
+  },
+  {
+    "name": "Virginia",
+    "slug": "virginia",
+    "abbr": "VA",
+    "trialCourts": "Circuit Court",
+    "federalDistricts": [
+      "E.D. Va.",
+      "W.D. Va."
+    ]
+  },
+  {
+    "name": "Washington",
+    "slug": "washington",
+    "abbr": "WA",
+    "trialCourts": "Superior Court",
+    "federalDistricts": [
+      "E.D. Wash.",
+      "W.D. Wash."
+    ]
+  },
+  {
+    "name": "West Virginia",
+    "slug": "west-virginia",
+    "abbr": "WV",
+    "trialCourts": "Circuit Court",
+    "federalDistricts": [
+      "N.D. W. Va.",
+      "S.D. W. Va."
+    ]
+  },
+  {
+    "name": "Wisconsin",
+    "slug": "wisconsin",
+    "abbr": "WI",
+    "trialCourts": "Circuit Court",
+    "federalDistricts": [
+      "E.D. Wis.",
+      "W.D. Wis."
+    ]
+  },
+  {
+    "name": "Wyoming",
+    "slug": "wyoming",
+    "abbr": "WY",
+    "trialCourts": "District Court",
+    "federalDistricts": [
+      "D. Wyo."
+    ]
+  }
+]

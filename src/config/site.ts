@@ -35,9 +35,9 @@ export const SITE = {
   indexNowKey: 'a7c1e59f30b64d2fb8e4906cd15a2f77',
   robots: { allowGPTBot: false, allowClaudeBot: false },
   offices: [
-    { slug: 'kansas-city', city: 'Kansas City', region: 'MO', regionFull: 'Missouri', primary: true },
-    { slug: 'st-louis', city: 'St. Louis', region: 'MO', regionFull: 'Missouri' },
-    { slug: 'denver', city: 'Denver', region: 'CO', regionFull: 'Colorado' },
-    { slug: 'chicago', city: 'Chicago', region: 'IL', regionFull: 'Illinois' },
+    { slug: 'kansas-city', city: 'Kansas City', region: 'MO', regionFull: 'Missouri', path: '/locations/missouri/kansas-city/', primary: true },
+    { slug: 'st-louis', city: 'St. Louis', region: 'MO', regionFull: 'Missouri', path: '/locations/missouri/st-louis/' },
+    { slug: 'denver', city: 'Denver', region: 'CO', regionFull: 'Colorado', path: '/locations/colorado/denver/' },
+    { slug: 'chicago', city: 'Chicago', region: 'IL', regionFull: 'Illinois', path: '/locations/illinois/chicago/' },
   ], // all by appointment; NO street addresses (accuracy guardrail)
 } as const;

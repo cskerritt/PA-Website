@@ -34,9 +34,19 @@ function builtRoutes(): string[] {
     .sort();
 }
 
-function sitemapLocs(): string[] {
+function childSitemaps(): string[] {
   const xml = distFile('sitemap.xml');
+  expect(xml).toContain('<sitemapindex');
   return [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+}
+
+function sitemapLocs(): string[] {
+  const out: string[] = [];
+  for (const child of childSitemaps()) {
+    const file = child.slice(SITE.domain.length).replace(/^\//, '');
+    for (const m of distFile(file).matchAll(/<loc>([^<]+)<\/loc>/g)) out.push(m[1]);
+  }
+  return out;
 }
 
 describe('robots.txt', () => {
@@ -64,15 +74,22 @@ describe('robots.txt', () => {
   });
 });
 
-describe('sitemap.xml', () => {
-  it('is well-formed XML with a urlset declaration', () => {
-    const xml = distFile('sitemap.xml');
-    expect(xml.startsWith('<?xml version="1.0" encoding="UTF-8"?>')).toBe(true);
-    expect(xml).toContain('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
-    expect(xml.trimEnd().endsWith('</urlset>')).toBe(true);
-    expect(xml.match(/<url>/g)?.length).toBe(xml.match(/<\/url>/g)?.length);
+describe('sitemap index', () => {
+  it('lists sitemap-core plus one child per location state', () => {
+    const children = childSitemaps();
+    expect(children).toContain(`${SITE.domain}/sitemap-core.xml`);
+    for (const c of children) expect(c).toMatch(/\/sitemap-(core|loc-[a-z-]+)\.xml$/);
   });
+  it('every child is well-formed and non-empty', () => {
+    for (const child of childSitemaps()) {
+      const xml = distFile(child.slice(SITE.domain.length).replace(/^\//, ''));
+      expect(xml).toContain('<urlset');
+      expect(xml.match(/<url>/g)!.length).toBeGreaterThan(0);
+    }
+  });
+});
 
+describe('sitemap.xml', () => {
   it('lists at least 38 unique URLs', () => {
     const locs = sitemapLocs();
     expect(locs.length).toBeGreaterThanOrEqual(38);
@@ -113,8 +130,10 @@ describe('sitemap.xml', () => {
   });
 
   it('gives every url a YYYY-MM-DD lastmod', () => {
-    const xml = distFile('sitemap.xml');
-    const lastmods = [...xml.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map((m) => m[1]);
+    const lastmods = childSitemaps().flatMap((child) => {
+      const xml = distFile(child.slice(SITE.domain.length).replace(/^\//, ''));
+      return [...xml.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map((m) => m[1]);
+    });
     expect(lastmods.length).toBe(sitemapLocs().length);
     for (const lastmod of lastmods) {
       expect(lastmod).toMatch(/^\d{4}-\d{2}-\d{2}$/);

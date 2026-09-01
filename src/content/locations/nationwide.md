@@ -2,6 +2,7 @@
 title: "Nationwide Expert Witness Coverage"
 metaDescription: "Vocational expert, life care planning, and economic damages engagements in all 50 states, with remote and in-person evaluation, deposition, and trial testimony."
 h1: "Nationwide Coverage for Plaintiff and Defense Counsel"
+tier: hub
 ---
 
 Purinton Analytics is a national practice. The firm is based in Kansas City,
@@ -108,9 +109,9 @@ identified and confirmed during the conflict check and intake process.
 
 ## Offices and meeting locations
 
-The firm's home office is in [Kansas City](/locations/kansas-city/), with
-meeting locations by appointment in [St. Louis](/locations/st-louis/),
-[Denver](/locations/denver/), and [Chicago](/locations/chicago/). None of
+The firm's home office is in [Kansas City](/locations/missouri/kansas-city/), with
+meeting locations by appointment in [St. Louis](/locations/missouri/st-louis/),
+[Denver](/locations/colorado/denver/), and [Chicago](/locations/illinois/chicago/). None of
 these depends on geography to serve a case: evaluations, depositions, and
 trial testimony proceed remotely or by travel wherever the matter is venued.
 

@@ -11,6 +11,7 @@
     "preview": "astro preview",
     "test": "vitest run",
     "check": "astro build && vitest run",
+    "geo:build": "node scripts/geography/build-geography.mjs",
     "astro": "astro"
   },
   "dependencies": {
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@types/node": "^26.4.0",
     "node-html-parser": "^9.0.2",
-    "vitest": "^4.1.11"
+    "vitest": "^4.1.11",
+    "xlsx": "^0.18.5"
   }
 }

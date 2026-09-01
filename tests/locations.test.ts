@@ -2,14 +2,15 @@ import { describe, it, expect } from 'vitest';
 import type { HTMLElement } from 'node-html-parser';
 import { SITE } from '../src/config/site';
 import { distFile, parseDist, jsonld } from './helpers';
+import { states as geoStates, metros as geoMetros } from '../src/lib/geography';
 
 const HUB = 'locations/nationwide';
 const INDEX = 'locations';
 const METROS = [
-  { slug: 'kansas-city', city: 'Kansas City' },
-  { slug: 'st-louis', city: 'St. Louis' },
-  { slug: 'denver', city: 'Denver' },
-  { slug: 'chicago', city: 'Chicago' },
+  { slug: 'missouri/kansas-city', city: 'Kansas City' },
+  { slug: 'missouri/st-louis', city: 'St. Louis' },
+  { slug: 'colorado/denver', city: 'Denver' },
+  { slug: 'illinois/chicago', city: 'Chicago' },
 ];
 const ALL_LOCATION_PATHS = [INDEX, HUB, ...METROS.map((m) => `locations/${m.slug}`)];
 
@@ -200,13 +201,22 @@ describe('metro pages', () => {
     }
   });
 
-  it('names the metro in the H1 and carries the neutrality statement', () => {
+  it('names the metro in the H1; the neutrality statement stays hub-only', () => {
     for (const metro of METROS) {
       const path = `locations/${metro.slug}`;
       const h1 = norm(parseDist(path).querySelector('h1')!.text);
       expect(h1, metro.slug).toContain(metro.city);
-      expect(mainText(path)).toContain(SITE.neutralityStatement);
+      // Among location pages the neutrality statement is mandated on the
+      // nationwide hub only (sitewide suite 10); tiered pages omit it.
+      expect(mainText(path)).not.toContain(SITE.neutralityStatement);
     }
+  });
+
+  it('office panel appears on all four office metro pages and nowhere else sampled', () => {
+    for (const m of METROS) {
+      expect(main(`locations/${m.slug}`).querySelector('.loc-office-facts')).toBeTruthy();
+    }
+    expect(main(HUB).querySelector('.loc-office-facts')).toBeNull();
   });
 
   it('gives each metro a substantive body of at least 300 words', () => {
@@ -249,6 +259,37 @@ describe('locations index', () => {
     expect(hrefs).toContain('/locations/nationwide/');
     for (const metro of METROS) {
       expect(hrefs).toContain(`/locations/${metro.slug}/`);
+    }
+  });
+});
+
+describe('state hub pages', () => {
+  it('all 50 states build with unique titles and their own court names', () => {
+    const titles = new Set<string>();
+    for (const s of geoStates()) {
+      const html = distFile(`locations/${s.slug}`);
+      const title = html.match(/<title>([^<]+)<\/title>/)![1];
+      expect(titles.has(title), s.slug).toBe(false);
+      titles.add(title);
+      expect(mainText(`locations/${s.slug}`)).toContain(s.trialCourts);
+    }
+  });
+  it('locations index links every state', () => {
+    const html = distFile('locations');
+    for (const s of geoStates()) expect(html, s.slug).toContain(`href="/locations/${s.slug}/"`);
+  });
+});
+
+describe('metro pages', () => {
+  it('every metro builds and names its first county', () => {
+    for (const m of geoMetros()) {
+      const text = mainText(`locations/${m.stateSlug}/${m.slug}`);
+      expect(text, `${m.stateSlug}/${m.slug}`).toContain(m.counties[0].name);
+    }
+  });
+  it('every state hub links each of its metros', () => {
+    for (const m of geoMetros()) {
+      expect(distFile(`locations/${m.stateSlug}`), m.slug).toContain(`href="/locations/${m.stateSlug}/${m.slug}/"`);
     }
   });
 });
