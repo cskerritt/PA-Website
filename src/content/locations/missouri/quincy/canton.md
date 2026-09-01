@@ -13,9 +13,11 @@ townSlug: "canton"
 county: "Lewis County"
 ---
 
+Canton is a Lewis County town on the Missouri side of the Quincy metropolitan area, and its commuting market looks across the state line toward the metro's principal city. Cases that arise here deserve the same disciplined workup a matter would receive in a major city, and Purinton Analytics delivers that workup by appointment, with no local office and no pretense of one.
+
 ## A Vocational Expert for Canton and Lewis County
 
-Canton is a small Lewis County town on the Missouri side of the Quincy metropolitan area, and cases that arise here deserve the same disciplined workup a matter would receive in a major city. Purinton Analytics provides [vocational expert witness](/services/vocational-expert-witness/) and [life care planning](/services/life-care-planning/) services for personal injury, employment, workers' compensation, and disability matters involving Canton parties, accepting engagements from counsel on either side of the caption. When the damages theory requires an economic component, the firm offers [coordinated damages engagements](/services/coordinated-damages-assessment/) in which independent economist partners perform and sign the economic analysis while the vocational and care-planning work proceeds under one engagement structure.
+Purinton Analytics provides [vocational expert witness](/services/vocational-expert-witness/) and [life care planning](/services/life-care-planning/) services for personal injury, employment, workers' compensation, and disability matters involving Canton parties, accepting engagements from counsel on either side of the caption. When the damages theory requires an economic component, the firm offers [coordinated damages engagements](/services/coordinated-damages-assessment/) in which independent economist partners perform and sign the economic analysis while the vocational and care-planning work proceeds under one engagement structure.
 
 ## Lewis County Courts and Federal Forums
 

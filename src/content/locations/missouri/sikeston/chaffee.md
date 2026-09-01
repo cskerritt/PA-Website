@@ -13,9 +13,10 @@ townSlug: "chaffee"
 county: "Scott County"
 ---
 
-The most practical question counsel ask about a Chaffee referral is
-logistical: where does the evaluation actually happen? The answer is that
-it happens where the evaluee is. Purinton Analytics runs a remote-first
+Counsel weighing a Chaffee referral often begin with logistics, because
+the evaluee lives in a small Scott County town and most expert practices
+are based somewhere else. Purinton Analytics resolves that mismatch by
+taking the work to the evaluee. The firm runs a remote-first
 [national practice](/locations/nationwide/), and for a small town like
 Chaffee that structure is an advantage rather than a compromise. Records
 review, counsel conferences, scope negotiation, and report drafting all

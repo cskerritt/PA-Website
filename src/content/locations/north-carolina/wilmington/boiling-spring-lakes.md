@@ -13,11 +13,10 @@ townSlug: "boiling-spring-lakes"
 county: "Brunswick County"
 ---
 
-Expert engagements are won or lost on the calendar. A disclosure date,
-a discovery cutoff, or a mediation set for the wrong week can turn a
-strong Boiling Spring Lakes case into a scramble, which is why Purinton
-Analytics builds every engagement backward from the dates the court has
-already fixed. Intake for this small Brunswick County community starts
+A disclosure date, a discovery cutoff, or a mediation set for the wrong
+week can turn a strong Boiling Spring Lakes case into a scramble, which
+is why Purinton Analytics starts from the dates the court has already
+fixed and plans the engagement to fit inside them. Intake for this small Brunswick County community starts
 by mapping the schedule: when the report is due, when depositions are
 likely, and how much record collection must happen first. Only then does
 the substantive work begin, whether the assignment is a [vocational

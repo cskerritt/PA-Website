@@ -13,6 +13,8 @@ townSlug: "california"
 county: "Moniteau County"
 ---
 
+California, Missouri is a small Moniteau County town in the Jefferson City metropolitan area, far enough from major professional centers that expert access becomes its own litigation problem. Purinton Analytics answers that problem by bringing the evaluation to the evaluee, serving California counsel by appointment for plaintiff and defense work alike.
+
 ## Expert Evaluation Without the Travel Burden
 
 For an injured evaluee living in California, Missouri, the practical obstacle to a credible expert workup is often access: the specialists most cases require keep their offices far from small towns, and asking a person with documented impairments to make repeated long trips undermines both the evaluee and the record. Purinton Analytics structures its work so the expert comes to the case instead. [Life care planning](/services/life-care-planning/) and [vocational expert](/services/vocational-expert-witness/) evaluations for California residents are conducted remotely by secure video wherever the referral questions permit, and in person in the evaluee's own community when they do not. The practice serves plaintiff and defense counsel on identical terms, and its methods are the same ones applied in [matters nationwide](/locations/nationwide/).

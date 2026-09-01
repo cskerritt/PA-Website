@@ -13,9 +13,11 @@ townSlug: "tipton"
 county: "Moniteau County"
 ---
 
+A Tipton case reaches an expert with its deadlines already written: the scheduling order fixes disclosure, and everything that follows must fit in front of it. Purinton Analytics plans its Tipton work from that constraint, serving Moniteau County counsel by appointment from its Kansas City home office.
+
 ## Retention Timed to the Disclosure Calendar
 
-An expert opinion is only as useful as its timing. For counsel with a case out of Tipton, the calendar usually decides more than the choice of expert does: records must be gathered, the evaluee interviewed, and a defensible report finished before the disclosure deadline, with room left for deposition preparation. Purinton Analytics builds Tipton engagements backward from those dates. The firm provides [life care planning](/services/life-care-planning/) and [medical cost projection](/services/medical-cost-projection/) alongside vocational opinions, accepts work from either side of the caption, and commits to a schedule in writing at intake so that neither counsel nor the court is surprised late in discovery. The same calendar discipline runs through the firm's [national practice](/locations/nationwide/).
+For counsel with a case out of Tipton, the calendar usually decides more than the choice of expert does: records must be gathered, the evaluee interviewed, and a defensible report finished before the disclosure deadline, with room left for deposition preparation. Purinton Analytics builds Tipton engagements backward from those dates. The firm provides [life care planning](/services/life-care-planning/) and [medical cost projection](/services/medical-cost-projection/) alongside vocational opinions, accepts work from either side of the caption, and commits to a schedule in writing at intake so that neither counsel nor the court is surprised late in discovery. The same calendar discipline runs through the firm's [national practice](/locations/nationwide/).
 
 ## Courts Serving Tipton and Moniteau County
 

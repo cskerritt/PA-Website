@@ -13,6 +13,8 @@ townSlug: "dundee"
 county: "Monroe County"
 ---
 
+Dundee sits in Monroe County, within commuting reach of the wider Monroe area labor market, and litigation involving its residents raises the same expert questions as any metropolitan docket. Purinton Analytics answers those questions for Dundee counsel by appointment, in state and federal forums, with every engagement beginning from a documented conflict check.
+
 ## Serving Counsel with Dundee Matters
 
 Dundee is a small Monroe County community, and cases that arise there tend to turn on the same questions that drive litigation anywhere else: what work an injured person can still perform, what that work pays, and what future care will reasonably cost. Purinton Analytics provides [vocational expert](/services/vocational-expert-witness/) and [life care planning](/services/life-care-planning/) services for Dundee matters on behalf of plaintiff and defense counsel alike, applying the same documented methodology in a village case that it applies in a major metropolitan docket. Counsel who need the broader regional picture can consult the [Monroe metro page](/locations/michigan/monroe/) or the [Michigan overview](/locations/michigan/).

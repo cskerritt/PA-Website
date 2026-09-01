@@ -13,6 +13,8 @@ townSlug: "fulton"
 county: "Callaway County"
 ---
 
+Fulton is a small Callaway County city within the Jefferson City metropolitan area, and the expert opinions its cases require will eventually be read by a cross-examiner. Purinton Analytics writes for that reader from the first draft, serving Fulton counsel by appointment on plaintiff and defense retentions alike.
+
 ## A Vocational Expert for Callaway County Matters
 
 When a Fulton case turns on what an injured or displaced person can still earn, counsel need opinions built to survive cross-examination, not to flatter the retaining side. Purinton Analytics provides [vocational expert witness](/services/vocational-expert-witness/) and [life care planning](/services/life-care-planning/) services to attorneys handling personal injury, workers' compensation, employment, and family law matters in Fulton and the surrounding communities of Callaway County. Plaintiff and defense engagements are accepted on the same terms, and every report is written so that either side of the caption can examine its record. The discipline that supports the firm's [national practice](/locations/nationwide/) governs a Fulton retention in full: a documented conflict check, a defined scope, and sources disclosed in the written opinion.

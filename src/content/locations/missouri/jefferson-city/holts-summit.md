@@ -13,6 +13,8 @@ townSlug: "holts-summit"
 county: "Callaway County"
 ---
 
+Holts Summit is a small Callaway County town whose surrounding economy is anchored by Jefferson City, and no two of its cases call for quite the same expert work. Purinton Analytics begins every Holts Summit engagement with that variability in mind, defining the referral questions before any analysis starts, for plaintiff and defense counsel on equal footing.
+
 ## An Engagement Scoped to the Question
 
 Not every Holts Summit case needs the same expert work, and treating them as if they did is how opinions end up sprawling past the record. Some referrals ask what an injured worker can still earn; some ask what a lifetime of care will require; some ask only whether an opposing expert's conclusions hold together. Purinton Analytics begins each Holts Summit engagement by pinning down which of those questions counsel actually need answered, then commits the answer to a written scope before analysis starts. [Vocational assessment](/services/vocational-expert-witness/) addresses the work questions, [life care planning](/services/life-care-planning/) the care questions, and [rebuttal and peer review](/services/rebuttal-peer-review/) the critique assignments, with plaintiff and defense referrals taken on equal footing. The same scope discipline governs the firm's [national docket](/locations/nationwide/).
