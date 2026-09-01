@@ -900,7 +900,7 @@ const ROOT = 'src/content/locations';
 const geo = (f) => JSON.parse(readFileSync(`src/data/geography/${f}`, 'utf8'));
 
 const BANNED = [
-  /—|&mdash;|&#8212;/,                      // em dash
+  /\u2014|&mdash;|&#8212;/u,            // em dash (unicode escape keeps this file clean)
   /Schedule a Consultation/i,
   /LocalBusiness/,
   /231 S\.? Bemiston/i,
