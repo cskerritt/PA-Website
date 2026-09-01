@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import type { HTMLElement } from 'node-html-parser';
 import { SITE } from '../src/config/site';
 import { distFile, parseDist, jsonld } from './helpers';
-import { states as geoStates } from '../src/lib/geography';
+import { states as geoStates, metros as geoMetros } from '../src/lib/geography';
 
 const HUB = 'locations/nationwide';
 const INDEX = 'locations';
@@ -277,5 +277,19 @@ describe('state hub pages', () => {
   it('locations index links every state', () => {
     const html = distFile('locations');
     for (const s of geoStates()) expect(html, s.slug).toContain(`href="/locations/${s.slug}/"`);
+  });
+});
+
+describe('metro pages', () => {
+  it('every metro builds and names its first county', () => {
+    for (const m of geoMetros()) {
+      const text = mainText(`locations/${m.stateSlug}/${m.slug}`);
+      expect(text, `${m.stateSlug}/${m.slug}`).toContain(m.counties[0].name);
+    }
+  });
+  it('every state hub links each of its metros', () => {
+    for (const m of geoMetros()) {
+      expect(distFile(`locations/${m.stateSlug}`), m.slug).toContain(`href="/locations/${m.stateSlug}/${m.slug}/"`);
+    }
   });
 });

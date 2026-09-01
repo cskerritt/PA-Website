@@ -26,7 +26,8 @@ engagement structure.
 
 The firm accepts matters venued in the District Court for the City and County
 of Denver and the other state district courts of the metro area, including
-Adams, Arapahoe, Jefferson, Douglas, and Boulder counties, as well as in the
+Adams County, Arapahoe County, Jefferson County, Douglas County, and
+Boulder County, as well as in the
 United States District Court for the District of Colorado. Counsel outside
 the metro, from Colorado Springs to Fort Collins and the Western Slope, are
 served through the same combination of remote work and scheduled travel that

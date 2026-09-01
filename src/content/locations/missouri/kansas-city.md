@@ -27,8 +27,8 @@ Kansas City litigation routinely crosses the state line, and the practice is
 built for that. On the Missouri side, the firm serves counsel with matters in
 the circuit courts of Jackson, Clay, Platte, and Cass counties and in the
 United States District Court for the Western District of Missouri. On the
-Kansas side, it serves counsel with matters in Johnson and Wyandotte county
-district courts and in the United States District Court for the District of
+Kansas side, it serves counsel with matters in the Johnson County and
+Wyandotte County district courts and in the United States District Court for the District of
 Kansas. Jason Purinton is a Licensed Professional Counselor in Missouri and
 holds workers' compensation rehabilitation credentials in both states:
 Certified Rehabilitation Provider with the Missouri Division of Workers'

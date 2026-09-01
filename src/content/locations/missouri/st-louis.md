@@ -26,7 +26,8 @@ available to either side of the caption.
 
 St. Louis work spans two state court systems and two federal districts. The
 firm accepts engagements venued in Missouri circuit courts and Illinois
-circuit courts across the metro area, in the United States District Court for
+circuit courts across the metro area, from St. Louis County out to Bond
+County on the Illinois side, in the United States District Court for
 the Eastern District of Missouri, and in the United States District Court for
 the Southern District of Illinois. Because the evaluee pool crosses the river
 as readily as the case filings do, reports for St. Louis matters state plainly
