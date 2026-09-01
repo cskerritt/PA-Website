@@ -57,6 +57,13 @@ actual hiring in a specific corridor of the metro.
 
 ## Starting a Chicago engagement
 
+Chicago referrals most often arise in personal injury, medical malpractice,
+wrongful death, employment, and disability matters, and the firm accepts
+work from either side of the caption. Every engagement here begins the way
+it does everywhere else in the practice: with a documented conflict check, a
+defined scope, and a records request tailored to the claims, so that the
+written opinion rests on a record both sides can examine.
+
 Submit the caption or party names through the
 [conflict check form](/refer-a-case/) and note any imminent disclosure,
 deposition, or trial dates. CVs and fee information follow promptly, and the

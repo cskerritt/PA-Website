@@ -43,7 +43,10 @@ evaluation is available when the referral questions and testing protocols
 permit it. Because the office is local, records conferences, attorney
 meetings, and pre-deposition preparation can be scheduled quickly, and
 last-minute needs around disclosure deadlines, depositions, mediations, and
-trial settings in the metro are easier to accommodate in person.
+trial settings in the metro are easier to accommodate in person. Once a
+conflict check clears, counsel receive a records checklist tailored to the
+claims, and the report timeline is set against the operative disclosure
+calendar rather than left open ended.
 
 ## Labor market research for Kansas City matters
 

@@ -41,7 +41,12 @@ scheduled in the evaluee's community or at counsel's offices, records review
 and interviews proceed remotely where protocols permit, and Jason Purinton
 travels from the Kansas City home office for evaluations, depositions, and
 trial testimony across eastern Missouri and southern Illinois. Scheduling is
-confirmed at intake alongside the disclosure calendar.
+confirmed at intake alongside the disclosure calendar. Rebuttal and peer
+review assignments, which often arrive on compressed timelines after an
+opposing expert's report is served, are handled with the same documented
+method: the opposing report is examined against its own stated sources and
+methodology, and the findings are put in writing so they can support
+deposition and cross examination preparation.
 
 ## A bi-state labor market, measured honestly
 

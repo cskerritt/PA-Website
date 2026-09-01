@@ -57,9 +57,14 @@ in both directions depending on the service category.
 
 ## Qualification for Colorado matters
 
-Jason Purinton's board certifications are national credentials, and
-qualification to testify in a Colorado matter is determined by the forum
-under its rules of evidence. Any venue-specific requirement is identified
-during intake. To explore availability for a Front Range case, start with a
-[conflict check](/refer-a-case/) or review the firm's
-[national coverage](/locations/nationwide/).
+Jason Purinton's board certifications, including Certified Rehabilitation
+Counselor, Certified Vocational Evaluator, Certified Life Care Planner, and
+Fellow of the American Board of Vocational Experts, are issued by national
+credentialing bodies rather than by any single state. Qualification to
+testify in a Colorado matter is determined by the forum under its rules of
+evidence, most commonly Colorado Rule of Evidence 702 in state court and
+Federal Rule of Evidence 702 in federal court. Any venue-specific
+registration or qualification requirement is identified and confirmed during
+the conflict check and intake process. To explore availability for a Front
+Range case, start with a [conflict check](/refer-a-case/) or review the
+firm's [national coverage](/locations/nationwide/).
