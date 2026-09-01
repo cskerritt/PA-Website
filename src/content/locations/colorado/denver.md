@@ -2,8 +2,13 @@
 title: "Denver Vocational Expert Services"
 metaDescription: "Vocational expert and life care planning support for Denver and Front Range litigation across Colorado, with evaluations by appointment, remote, or on site."
 h1: "Denver Vocational Expert and Life Care Planning"
+tier: metro
+state: "Colorado"
+stateSlug: "colorado"
+metro: "Denver-Aurora-Centennial, CO"
+metroSlug: "denver"
+counties: ["Adams County", "Arapahoe County", "Broomfield County", "Clear Creek County", "Denver County", "Douglas County", "Elbert County", "Gilpin County", "Jefferson County", "Park County"]
 city: "Denver"
-regionFull: "Colorado"
 ---
 
 Purinton Analytics supports Front Range litigation with vocational expert and

@@ -6,10 +6,10 @@ import { distFile, parseDist, jsonld } from './helpers';
 const HUB = 'locations/nationwide';
 const INDEX = 'locations';
 const METROS = [
-  { slug: 'kansas-city', city: 'Kansas City' },
-  { slug: 'st-louis', city: 'St. Louis' },
-  { slug: 'denver', city: 'Denver' },
-  { slug: 'chicago', city: 'Chicago' },
+  { slug: 'missouri/kansas-city', city: 'Kansas City' },
+  { slug: 'missouri/st-louis', city: 'St. Louis' },
+  { slug: 'colorado/denver', city: 'Denver' },
+  { slug: 'illinois/chicago', city: 'Chicago' },
 ];
 const ALL_LOCATION_PATHS = [INDEX, HUB, ...METROS.map((m) => `locations/${m.slug}`)];
 
@@ -200,13 +200,22 @@ describe('metro pages', () => {
     }
   });
 
-  it('names the metro in the H1 and carries the neutrality statement', () => {
+  it('names the metro in the H1; the neutrality statement stays hub-only', () => {
     for (const metro of METROS) {
       const path = `locations/${metro.slug}`;
       const h1 = norm(parseDist(path).querySelector('h1')!.text);
       expect(h1, metro.slug).toContain(metro.city);
-      expect(mainText(path)).toContain(SITE.neutralityStatement);
+      // Among location pages the neutrality statement is mandated on the
+      // nationwide hub only (sitewide suite 10); tiered pages omit it.
+      expect(mainText(path)).not.toContain(SITE.neutralityStatement);
     }
+  });
+
+  it('office panel appears on all four office metro pages and nowhere else sampled', () => {
+    for (const m of METROS) {
+      expect(main(`locations/${m.slug}`).querySelector('.loc-office-facts')).toBeTruthy();
+    }
+    expect(main(HUB).querySelector('.loc-office-facts')).toBeNull();
   });
 
   it('gives each metro a substantive body of at least 300 words', () => {

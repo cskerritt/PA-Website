@@ -1,0 +1,232 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import NeutralityStatement from '../../components/NeutralityStatement.astro';
+import ProofBand from '../../components/ProofBand.astro';
+import CTABand from '../../components/CTABand.astro';
+import { SITE } from '../../config/site';
+import { metros, towns, metroPath, townPath, statePath } from '../../lib/geography';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('locations');
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+interface Props {
+  entry: CollectionEntry<'locations'>;
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const data = entry.data;
+const path = `/locations/${entry.id}/`;
+
+// Entry ids equal URL paths under /locations/. Waves land tier by tier, so
+// geography data always knows more pages than the build has; every crumb and
+// related-location link is gated on a built entry to keep intermediate
+// builds free of dead links (the wave that adds the entries lights them up).
+const allEntries = await getCollection('locations');
+const built = new Set(allEntries.map((e) => `/locations/${e.id}/`));
+const ALWAYS_BUILT = ['/', '/locations/'];
+const isBuilt = (href: string): boolean => ALWAYS_BUILT.includes(href) || built.has(href);
+
+// Breadcrumbs by tier.
+let crumbs = [
+  { name: 'Home', path: '/' },
+  { name: 'Locations', path: '/locations/' },
+];
+if (data.tier === 'hub') crumbs.push({ name: 'National Coverage', path });
+if (data.tier === 'state') crumbs.push({ name: data.state, path });
+if (data.tier === 'metro')
+  crumbs.push(
+    { name: data.state, path: `/locations/${data.stateSlug}/` },
+    { name: data.metro, path },
+  );
+if (data.tier === 'town')
+  crumbs.push(
+    { name: data.state, path: `/locations/${data.stateSlug}/` },
+    { name: data.metro, path: `/locations/${data.metroStateSlug}/${data.metroSlug}/` },
+    { name: data.town, path },
+  );
+crumbs = crumbs.filter((crumb, i) => i === crumbs.length - 1 || isBuilt(crumb.path));
+
+// Office panel only where a real office record matches this page. Office
+// facts come from the entity record only: all offices are by appointment
+// with no street address (accuracy guardrail), so this panel renders
+// city/region contact facts and nothing more.
+const office = SITE.offices.find((o) => o.path === path);
+const otherOffices = office ? SITE.offices.filter((o) => o.path !== path) : [];
+
+// Tier-scoped link blocks (cap: no page lists more than ~60 location links).
+// A town's parent metro is identified by metroStateSlug + metroSlug, never
+// by the town's own stateSlug (multi-state metros cross state lines).
+let linkBlocks: { heading: string; links: { name: string; href: string }[] }[] = [];
+if (data.tier === 'state') {
+  linkBlocks = [
+    {
+      heading: `${data.state} metro areas`,
+      links: metros()
+        .filter((m) => m.stateSlug === data.stateSlug)
+        .map((m) => ({ name: m.name, href: metroPath(m) })),
+    },
+  ];
+}
+if (data.tier === 'metro') {
+  const mine = towns().filter(
+    (t) => t.metroStateSlug === data.stateSlug && t.metroSlug === data.metroSlug,
+  );
+  const neighbors = metros()
+    .filter((m) => m.stateSlug === data.stateSlug && m.slug !== data.metroSlug)
+    .slice(0, 8);
+  linkBlocks = [
+    {
+      heading: 'Communities in this metro',
+      links: mine.map((t) => ({ name: t.name, href: townPath(t) })),
+    },
+    {
+      heading: `Other ${data.state} metro areas`,
+      links: neighbors.map((m) => ({ name: m.name, href: metroPath(m) })),
+    },
+  ];
+}
+if (data.tier === 'town') {
+  linkBlocks = [
+    {
+      heading: 'Coverage',
+      links: [
+        { name: `${data.metro} metro`, href: `/locations/${data.metroStateSlug}/${data.metroSlug}/` },
+        { name: data.state, href: statePath(data.stateSlug) },
+        { name: 'National coverage', href: '/locations/nationwide/' },
+      ],
+    },
+  ];
+}
+linkBlocks = linkBlocks
+  .map((block) => ({ ...block, links: block.links.filter((l) => isBuilt(l.href)) }))
+  .filter((block) => block.links.length > 0);
+---
+<BaseLayout title={data.title} description={data.metaDescription} path={path}>
+  <div class="container content-narrow">
+    <Breadcrumbs crumbs={crumbs} />
+    <h1>{data.h1}</h1>
+    {data.tier === 'hub' && <NeutralityStatement />}
+
+    {office && (
+      <aside class="loc-office-facts" aria-label={`${office.city} contact details`}>
+        <dl>
+          <div>
+            <dt>Location</dt>
+            <dd>{office.city}, {office.region} (meetings by appointment)</dd>
+          </div>
+          <div>
+            <dt>Phone</dt>
+            <dd><a href={`tel:${SITE.phoneE164}`}>{SITE.phoneDisplay}</a></dd>
+          </div>
+          <div>
+            <dt>Email</dt>
+            <dd><a href={`mailto:${SITE.email}`}>{SITE.email}</a></dd>
+          </div>
+          <div>
+            <dt>Also serving counsel from</dt>
+            <dd>
+              {otherOffices.map((o, i) => (
+                <>
+                  {i > 0 ? ' · ' : ''}<a href={o.path}>{o.city}</a>
+                </>
+              ))}
+              {' '}and <a href="/locations/nationwide/">nationwide</a>
+            </dd>
+          </div>
+        </dl>
+      </aside>
+    )}
+
+    <div class="loc-body">
+      <Content />
+    </div>
+
+    {linkBlocks.length > 0 && (
+      <nav class="loc-related" aria-label="Related locations">
+        {linkBlocks.map((block) => (
+          <section class="loc-related-block">
+            <h2>{block.heading}</h2>
+            <ul class="loc-link-list">
+              {block.links.map((link) => (
+                <li><a href={link.href}>{link.name}</a></li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </nav>
+    )}
+  </div>
+
+  {data.tier === 'hub' && <ProofBand />}
+  <CTABand />
+</BaseLayout>
+
+<style>
+  .loc-office-facts {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--navy);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+  }
+
+  .loc-office-facts dl {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.75rem 1.5rem;
+    margin: 0;
+  }
+
+  .loc-office-facts dt {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink-soft);
+  }
+
+  .loc-office-facts dd {
+    margin: 0.15rem 0 0;
+    font-weight: 500;
+  }
+
+  .loc-body :global(h2) {
+    margin-top: 2rem;
+  }
+
+  .loc-related {
+    margin-top: 2.5rem;
+  }
+
+  .loc-related-block {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin: 1.25rem 0;
+  }
+
+  .loc-related-block h2 {
+    font-size: 1.1rem;
+    margin: 0 0 0.75rem;
+  }
+
+  .loc-link-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.4rem 1.5rem;
+  }
+
+  .loc-link-list li {
+    margin: 0;
+  }
+</style>

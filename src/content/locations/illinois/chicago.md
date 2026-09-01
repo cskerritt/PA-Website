@@ -2,8 +2,13 @@
 title: "Chicago Vocational Expert Services"
 metaDescription: "Employability, earning capacity, and life care planning evaluations for Cook County and Chicagoland counsel, with meetings by appointment and remote options."
 h1: "Chicago Vocational Expert and Life Care Planning"
+tier: metro
+state: "Illinois"
+stateSlug: "illinois"
+metro: "Chicago-Naperville-Elgin, IL-IN"
+metroSlug: "chicago"
+counties: ["Cook County", "DuPage County", "Grundy County", "McHenry County", "Will County", "DeKalb County", "Kane County", "Kendall County", "Lake County", "Jasper County", "Lake County", "Newton County", "Porter County"]
 city: "Chicago"
-regionFull: "Illinois"
 ---
 
 Purinton Analytics serves Cook County and Chicagoland counsel with

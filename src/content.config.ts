@@ -30,18 +30,48 @@ const templatePage = z.object({
 const mk = (base: string) =>
   defineCollection({ loader: glob({ pattern: '**/*.md', base }), schema: templatePage });
 
+/**
+ * Shared fields for every tier of location page. Content entry ids equal the
+ * URL path under /locations/ (e.g. missouri/kansas-city), and the tier field
+ * is the authoritative discriminator for routing and link blocks.
+ */
+const locBase = {
+  title: z.string(),
+  metaDescription: z.string().min(70).max(165),
+  h1: z.string(),
+};
+
 export const collections = {
   services: mk('./src/content/services'),
   matters: mk('./src/content/matters'),
   resources: mk('./src/content/resources'),
   locations: defineCollection({
     loader: glob({ pattern: '**/*.md', base: './src/content/locations' }),
-    schema: z.object({
-      title: z.string(),
-      metaDescription: z.string(),
-      h1: z.string(),
-      city: z.string().optional(),
-      regionFull: z.string().optional(),
-    }),
+    schema: z.discriminatedUnion('tier', [
+      z.object({ tier: z.literal('hub'), ...locBase }),
+      z.object({ tier: z.literal('state'), ...locBase, state: z.string(), stateSlug: z.string() }),
+      z.object({
+        tier: z.literal('metro'),
+        ...locBase,
+        state: z.string(),
+        stateSlug: z.string(),
+        metro: z.string(),
+        metroSlug: z.string(),
+        counties: z.array(z.string()).min(1),
+        city: z.string().optional(), // kept for the office panel + breadcrumbs
+      }),
+      z.object({
+        tier: z.literal('town'),
+        ...locBase,
+        state: z.string(),
+        stateSlug: z.string(),
+        metro: z.string(),
+        metroSlug: z.string(),
+        metroStateSlug: z.string(),
+        town: z.string(),
+        townSlug: z.string(),
+        county: z.string(),
+      }),
+    ]),
   }),
 };

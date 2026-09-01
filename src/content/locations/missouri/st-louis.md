@@ -2,8 +2,13 @@
 title: "St. Louis Vocational Expert Services"
 metaDescription: "Vocational expert and life care planning services for St. Louis counsel, serving eastern Missouri and Metro East Illinois courts, with meetings by appointment."
 h1: "St. Louis Vocational Expert and Life Care Planning"
+tier: metro
+state: "Missouri"
+stateSlug: "missouri"
+metro: "St. Louis, MO-IL"
+metroSlug: "st-louis"
+counties: ["Bond County", "Calhoun County", "Clinton County", "Jersey County", "Macoupin County", "Madison County", "Monroe County", "St. Clair County", "Franklin County", "Jefferson County", "Lincoln County", "St. Charles County", "St. Louis County", "Warren County", "St. Louis city"]
 city: "St. Louis"
-regionFull: "Missouri"
 ---
 
 Purinton Analytics serves plaintiff and defense counsel throughout the

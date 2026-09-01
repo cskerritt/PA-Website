@@ -2,8 +2,13 @@
 title: "Kansas City Vocational Expert Services"
 metaDescription: "Kansas City is the home office of Purinton Analytics, serving Missouri and Kansas counsel with vocational expert and life care planning services by appointment."
 h1: "Kansas City Vocational Expert and Life Care Planning"
+tier: metro
+state: "Missouri"
+stateSlug: "missouri"
+metro: "Kansas City, MO-KS"
+metroSlug: "kansas-city"
+counties: ["Johnson County", "Leavenworth County", "Linn County", "Miami County", "Wyandotte County", "Bates County", "Caldwell County", "Cass County", "Clay County", "Clinton County", "Jackson County", "Lafayette County", "Platte County", "Ray County"]
 city: "Kansas City"
-regionFull: "Missouri"
 ---
 
 Kansas City is the home office of Purinton Analytics. The firm's principal,
