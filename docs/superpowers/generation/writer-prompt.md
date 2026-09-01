@@ -15,9 +15,9 @@ For EACH brief below, write one markdown file:
 - Every page must open with a different first-paragraph angle from its
   sibling pages (`facts.siblings` lists them).
 - Include each link from `links` at least once as a markdown link.
-- Hyphens only, never an em dash. Never render any number in prose: no
-  dollar figures, percentages, populations, distances, years, rule numbers,
-  or counts of any kind, numeral or spelled out. `facts.populationScale` is
+- Hyphens only, never an em dash. Never render any number in prose or in
+  `metaDescription`: no dollar figures, percentages, populations, distances,
+  years, rule numbers, or counts of any kind, numeral or spelled out. `facts.populationScale` is
   calibration only, so you know whether to write "small suburb" or "major
   city"; it is never rendered, in any form.
 - Never include the site's neutrality statement (the sentence beginning

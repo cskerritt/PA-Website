@@ -124,6 +124,10 @@ if (mode === 'states') {
       },
     });
   }
+  if (written === 0) {
+    const valid = [...new Set(Object.values(waves))].sort((a, b) => a - b);
+    fail(`wave ${wave} matches no towns; valid waves in waves.json: ${valid.join(', ')}`);
+  }
 } else {
   fail(mode ? `unknown mode: ${mode}` : 'missing mode');
 }

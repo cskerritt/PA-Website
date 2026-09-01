@@ -59,7 +59,10 @@ Positive example (Denver, travel framing):
 Use ONLY facts that appear in the brief's `facts` and `links` objects. Never
 invent a court, courthouse, county, neighborhood, employer, highway, address,
 statistic, or local characteristic. If a fact is not in the brief, write
-around it.
+around it. The example excerpts in this guide contain facts specific to
+their source page (flight logistics, court names, market character) and
+must never be reused for another location; only the brief's facts may
+appear.
 
 - Courts: always by full expanded name on first mention, using the expansion
   convention `United States District Court for the Western District of
