@@ -3,8 +3,14 @@
 The national website for Purinton Analytics, LLC: a forensic damages and
 rehabilitation consulting firm providing coordinated vocational evaluation,
 life care planning, and forensic economic analysis for plaintiff and defense
-counsel. Attorney-referral funnel (`/refer-a-case/`), ~46 static pages, full
-JSON-LD, and AI-crawler configuration.
+counsel. Attorney-referral funnel (`/refer-a-case/`), full JSON-LD, and
+AI-crawler configuration.
+
+Core site is 46 static pages. A three-tier locations architecture (state hub
+pages, metro pages, and town pages, all sourced from a single geography JSON)
+adds up to roughly 3,530 pages once fully staged. Wave 0 (50 state hubs and
+581 metro pages) merged 2026-09-01; the remaining town-page waves ship one PR
+per week per `LAUNCH-CHECKLIST.md`'s locations rollout calendar.
 
 - Design spec: `docs/superpowers/specs/2026-08-31-pa-website-design.md`
 - Build plan: `docs/superpowers/plans/2026-08-31-pa-website-build.md`
@@ -20,7 +26,12 @@ JSON-LD, and AI-crawler configuration.
   phone, email, verified stats, neutrality statement, robots flags, offices.
   Visible content and JSON-LD both render from it, so they cannot drift.
 - **Content collections** (`src/content/{services,matters,resources,locations}`)
-  with a zod schema enforcing the 13-point page template.
+  with a zod schema enforcing the 13-point page template. `locations` is
+  itself three-tiered: state hubs, metro pages, and town pages, all generated
+  from `scripts/geography/build-geography.mjs`'s output rather than
+  hand-authored - see `CLAUDE.md`'s "Locations at scale" section for the
+  content rules and `scripts/geography/verify-content.mjs` for the checks
+  that must pass before committing.
 - **vitest** suites crawl `dist/` and enforce the site-wide invariants
   (H1/title/canonical uniqueness, JSON-LD validity, link integrity, banned
   strings, neutrality-statement coverage, stat single-sourcing, noindex

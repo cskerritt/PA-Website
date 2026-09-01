@@ -40,6 +40,32 @@ work; `LAUNCH-CHECKLIST.md` lists what is gated on Jason/Chris.
   (see the token comments in `src/styles/global.css`). `/accessibility/`
   claims only what the build actually does; keep it true.
 
+## Locations at scale
+
+- **The geography JSON is the only source of location facts** (state names,
+  abbreviations, FIPS, metro/town membership, coordinates). Never hand-type a
+  town name, county, or population figure into a page or component - it comes
+  from the geography layer or it doesn't render.
+- **`scripts/geography/verify-content.mjs` must pass before committing any
+  location content** (state hub, metro page, or town page). It checks
+  fact-grounding against the geography JSON, cross-page uniqueness, and
+  neutrality-statement placement; do not hand-wave a failure.
+- **Wave PRs merge weekly, one per wave, per the calendar in
+  `LAUNCH-CHECKLIST.md`.** Don't merge a wave early and don't batch waves
+  together - each is its own PR and its own GSC observation window.
+- **Never add the neutrality statement to state, metro, or town pages.** It is
+  scoped to the pages listed above (homepage, service pages, matter pages, the
+  expert profile, `/refer-a-case/`, `/locations/nationwide/`) - the locations
+  tier intentionally excludes it.
+- **Town pages never render population numbers or any other figures.** No
+  Census counts, no rankings, no distances-in-miles, no dates - qualitative
+  scale language only ("a small city near," "one of the larger towns in").
+  This applies to metro pages too, not just towns.
+- **Town and metro prose links only to:** the state page, the metro page (for
+  a town), `/refer-a-case/`, `/locations/nationwide/`, and service pages.
+  Never link a town/metro page to another town/metro page directly, and never
+  to a matter page.
+
 ## Build and test
 
 ```bash
