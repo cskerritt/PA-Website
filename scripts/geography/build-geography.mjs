@@ -151,14 +151,22 @@ if (popByCbsa.size < 900) {
   throw new Error(`unexpected CBSA count in population file: ${popByCbsa.size}`);
 }
 
+// Non-state county equivalents keep a consistent two-letter code.
+const EXTRA_COUNTY_STATE_ABBRS = new Map([['District of Columbia', 'DC']]);
+
 // Assign each CBSA to the first state in its title (largest component by
-// Census convention), rank within state, keep top 15.
+// Census convention). If that abbreviation is not one of the 50 states
+// (only DC leads any such title), fall back to the next abbreviation in
+// the title's list that is (so "Washington-Arlington-Alexandria,
+// DC-VA-MD-WV" lands under Virginia). Titles with no 50-state
+// abbreviation at all (Puerto Rico) are skipped. Rank within state,
+// keep top 15.
 const metrosByState = new Map(STATES.map((s) => [s.slug, []]));
 for (const [code, m] of byCbsa) {
   const title = m.title; // e.g. "Kansas City, MO-KS"
-  const abbr = title.split(',').pop().trim().split('-')[0];
-  const st = stateByAbbr.get(abbr);
-  if (!st) continue; // DC and PR CBSAs are out of scope
+  const abbrs = title.split(',').pop().trim().split('-');
+  const st = abbrs.map((a) => stateByAbbr.get(a)).find(Boolean);
+  if (!st) continue; // PR CBSAs are out of scope
   const principalCity = principalCityOf(title);
   metrosByState.get(st.slug).push({
     cbsa: code,
@@ -169,7 +177,7 @@ for (const [code, m] of byCbsa) {
     kind: m.kind,
     counties: m.counties.map((c) => ({
       name: c.name,
-      state: stateByName.get(c.state)?.abbr ?? c.state,
+      state: stateByName.get(c.state)?.abbr ?? EXTRA_COUNTY_STATE_ABBRS.get(c.state) ?? c.state,
     })),
     population: popByCbsa.get(code) ?? 0,
   });
@@ -203,6 +211,8 @@ if (!kc) throw new Error('KC sanity check failed');
 if (kc.principalCity !== 'Kansas City' || !kc.population) {
   throw new Error('KC record malformed');
 }
+const dc = metros.find((m) => m.name.startsWith('Washington-Arlington') && m.stateSlug === 'virginia');
+if (!dc) throw new Error('Washington DC metro sanity check failed');
 const zeroPop = metros.filter((m) => !m.population);
 if (zeroPop.length > 0) {
   throw new Error(`metros with no population: ${zeroPop.map((m) => m.name).join('; ')}`);

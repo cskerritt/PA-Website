@@ -10839,6 +10839,109 @@
     "population": 37039
   },
   {
+    "cbsa": "47900",
+    "name": "Washington-Arlington-Alexandria, DC-VA-MD-WV",
+    "slug": "washington",
+    "stateSlug": "virginia",
+    "principalCity": "Washington",
+    "kind": "Metropolitan Statistical Area",
+    "counties": [
+      {
+        "name": "Arlington County",
+        "state": "VA"
+      },
+      {
+        "name": "Clarke County",
+        "state": "VA"
+      },
+      {
+        "name": "Culpeper County",
+        "state": "VA"
+      },
+      {
+        "name": "Fairfax County",
+        "state": "VA"
+      },
+      {
+        "name": "Fauquier County",
+        "state": "VA"
+      },
+      {
+        "name": "Loudoun County",
+        "state": "VA"
+      },
+      {
+        "name": "Prince William County",
+        "state": "VA"
+      },
+      {
+        "name": "Rappahannock County",
+        "state": "VA"
+      },
+      {
+        "name": "Spotsylvania County",
+        "state": "VA"
+      },
+      {
+        "name": "Stafford County",
+        "state": "VA"
+      },
+      {
+        "name": "Warren County",
+        "state": "VA"
+      },
+      {
+        "name": "Alexandria city",
+        "state": "VA"
+      },
+      {
+        "name": "Fairfax city",
+        "state": "VA"
+      },
+      {
+        "name": "Falls Church city",
+        "state": "VA"
+      },
+      {
+        "name": "Fredericksburg city",
+        "state": "VA"
+      },
+      {
+        "name": "Manassas city",
+        "state": "VA"
+      },
+      {
+        "name": "Manassas Park city",
+        "state": "VA"
+      },
+      {
+        "name": "Jefferson County",
+        "state": "WV"
+      },
+      {
+        "name": "Frederick County",
+        "state": "MD"
+      },
+      {
+        "name": "Montgomery County",
+        "state": "MD"
+      },
+      {
+        "name": "District of Columbia",
+        "state": "DC"
+      },
+      {
+        "name": "Charles County",
+        "state": "MD"
+      },
+      {
+        "name": "Prince George's County",
+        "state": "MD"
+      }
+    ],
+    "population": 6436489
+  },
+  {
     "cbsa": "47260",
     "name": "Virginia Beach-Chesapeake-Norfolk, VA-NC",
     "slug": "virginia-beach",
