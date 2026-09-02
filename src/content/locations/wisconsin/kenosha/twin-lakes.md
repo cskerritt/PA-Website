@@ -13,7 +13,7 @@ townSlug: "twin-lakes"
 county: "Kenosha County"
 ---
 
-Expert work is calendar work. By the time counsel in a Twin Lakes case starts looking for a vocational expert or life care planner, a scheduling order usually already exists, and every step that follows, from records collection to report signature, has to fit inside it. Purinton Analytics builds engagements backward from those dates: disclosure deadlines, deposition windows, and trial settings are collected at intake and drive the work plan from the outset. Counsel on either side of a Twin Lakes matter can retain the firm for [vocational expert witness](/services/vocational-expert-witness/) or [life care planning](/services/life-care-planning/) work through its [Kenosha metro practice](/locations/wisconsin/kenosha/).
+A scheduling order usually exists before anyone in a Twin Lakes case starts looking for a vocational expert or life care planner, and every step that follows, from records collection to report signature, has to fit inside it. Purinton Analytics collects disclosure deadlines, deposition windows, and trial settings at intake and lets those dates drive the work plan from the outset. Counsel on either side of a Twin Lakes matter can retain the firm for [vocational expert witness](/services/vocational-expert-witness/) or [life care planning](/services/life-care-planning/) work through its [Kenosha metro practice](/locations/wisconsin/kenosha/).
 
 ## The courts that set those calendars
 

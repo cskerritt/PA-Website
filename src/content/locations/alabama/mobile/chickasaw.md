@@ -14,8 +14,8 @@ county: "Mobile County"
 ---
 
 Expert work in a Chickasaw case is governed less by geography than by the
-scheduling order, and Purinton Analytics builds every engagement backward
-from the dates counsel must meet. Disclosure deadlines, deposition windows,
+scheduling order, and Purinton Analytics takes the dates counsel must meet
+as the starting point of the engagement. Disclosure deadlines, deposition windows,
 and trial settings are collected at intake, and the sequence of the work,
 from records request to signed report, is planned against them from the
 outset. That calendar discipline serves plaintiff and defense retentions

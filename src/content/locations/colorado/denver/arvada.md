@@ -13,7 +13,7 @@ townSlug: "arvada"
 county: "Jefferson County"
 ---
 
-Expert work is calendar work. By the time an Arvada attorney is searching for a vocational expert or life care planner, a disclosure deadline is usually already visible on the docket, and the realistic question is whether a defensible report can be completed before it. Purinton Analytics scopes every Arvada engagement against that calendar from the first call, for plaintiff and defense counsel alike, and will say plainly at intake whether the remaining runway supports a full [vocational evaluation](/services/vocational-expert-witness/), a [life care plan](/services/life-care-planning/), or only a narrower consulting role. The firm's [Denver metro practice](/locations/colorado/denver/) supplies the infrastructure behind that answer.
+By the time an Arvada attorney is searching for a vocational expert or life care planner, a disclosure deadline is usually already visible on the docket, and the realistic question is whether a defensible report can be completed before it. Purinton Analytics scopes every Arvada engagement against that calendar from the first call, for plaintiff and defense counsel alike, and will say plainly at intake whether the remaining runway supports a full [vocational evaluation](/services/vocational-expert-witness/), a [life care plan](/services/life-care-planning/), or only a narrower consulting role. The firm's [Denver metro practice](/locations/colorado/denver/) supplies the infrastructure behind that answer.
 
 ## Jefferson County venue for Arvada matters
 
