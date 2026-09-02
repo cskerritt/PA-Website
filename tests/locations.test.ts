@@ -1,8 +1,10 @@
 import { describe, it, expect } from 'vitest';
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 import type { HTMLElement } from 'node-html-parser';
 import { SITE } from '../src/config/site';
 import { distFile, parseDist, jsonld } from './helpers';
-import { states as geoStates, metros as geoMetros } from '../src/lib/geography';
+import { states as geoStates, metros as geoMetros, towns as geoTowns } from '../src/lib/geography';
 
 const HUB = 'locations/nationwide';
 const INDEX = 'locations';
@@ -290,6 +292,22 @@ describe('metro pages', () => {
   it('every state hub links each of its metros', () => {
     for (const m of geoMetros()) {
       expect(distFile(`locations/${m.stateSlug}`), m.slug).toContain(`href="/locations/${m.stateSlug}/${m.slug}/"`);
+    }
+  });
+});
+
+describe('town pages', () => {
+  // On main today the town-page waves have not merged yet, so `dist/` has
+  // zero town pages and the loop below runs zero iterations - the test
+  // passes vacuously. As each weekly wave PR (per LAUNCH-CHECKLIST.md's
+  // locations rollout calendar) lands its town pages in `dist/`, this test
+  // starts actually asserting against them.
+  it('names its own county in the body text of every built town page', () => {
+    const DIST = join(process.cwd(), 'dist');
+    for (const t of geoTowns()) {
+      const path = `locations/${t.stateSlug}/${t.metroSlug}/${t.slug}`;
+      if (!existsSync(join(DIST, path, 'index.html'))) continue;
+      expect(mainText(path), path).toContain(t.county);
     }
   });
 });

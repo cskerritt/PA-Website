@@ -59,7 +59,8 @@ above - waves can merge and be observed on the Railway preview URL before
 purintonanalytics.com is registered.
 
 Town inventory is 2,247 (Census incorporated places only, per the no-invented-
-geography rule); the full site across all waves is approximately 3,530 pages.
+geography rule); the full site across all waves is approximately 2,920 pages
+(46 core pages + 631 state/metro pages + 2,247 town pages).
 
 | Wave | PR | States | Pages | Merge week |
 | --- | --- | --- | --- | --- |

@@ -8,9 +8,9 @@ AI-crawler configuration.
 
 Core site is 46 static pages. A three-tier locations architecture (state hub
 pages, metro pages, and town pages, all sourced from a single geography JSON)
-adds up to roughly 3,530 pages once fully staged. Wave 0 (50 state hubs and
-581 metro pages) merged 2026-09-01; the remaining town-page waves ship one PR
-per week per `LAUNCH-CHECKLIST.md`'s locations rollout calendar.
+adds up to approximately 2,920 pages once fully staged. Wave 0 (50 state hubs
+and 581 metro pages) merged 2026-09-01; the remaining town-page waves ship one
+PR per week per `LAUNCH-CHECKLIST.md`'s locations rollout calendar.
 
 - Design spec: `docs/superpowers/specs/2026-08-31-pa-website-design.md`
 - Build plan: `docs/superpowers/plans/2026-08-31-pa-website-build.md`
