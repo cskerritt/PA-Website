@@ -13,9 +13,9 @@ townSlug: "manassas"
 county: "Manassas city"
 ---
 
-The practical question counsel ask first about a Manassas engagement is
-usually logistical: where does the evaluation actually happen? For most
-referrals the answer is that it happens where the evaluee already is.
+Counsel usually open a Manassas engagement with a logistical question, and
+for most referrals the answer is that the evaluation happens where the
+evaluee already is.
 Purinton Analytics runs a remote-first practice, so records review,
 structured vocational interviews by video, and standardized testing under
 publisher protocols are completed without asking an injured person in

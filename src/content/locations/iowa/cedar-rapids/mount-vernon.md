@@ -16,7 +16,8 @@ county: "Linn County"
 By the time counsel in a Mount Vernon case reaches for a vocational
 expert, the calendar is usually already set: disclosure deadlines
 docketed, depositions penciled in, a trial date on the horizon. Purinton
-Analytics builds every engagement backward from those dates. The
+Analytics treats those dates as fixed points and plans the rest of the
+engagement around them. The
 workplan for a Mount Vernon matter fixes when records must arrive, when
 the evaluation occurs, and when a signed report will be in counsel's
 hands, so the expert file is ready when the schedule says it must be.

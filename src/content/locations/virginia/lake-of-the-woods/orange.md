@@ -13,9 +13,15 @@ townSlug: "orange"
 county: "Orange County"
 ---
 
+Orange is a small Virginia town whose civil disputes are typically heard in
+its own county's Circuit Court while its expert witnesses arrive from
+elsewhere. Purinton Analytics is candid about being one of those outside
+experts: it keeps no office here, serves Orange counsel by appointment, and
+stakes its credibility on method rather than proximity.
+
 ## Vocational and Life Care Planning Work in Orange
 
-Orange is a small Virginia town, and litigation arising there tends to put the
+Litigation arising there tends to put the
 question of work at the center of the case: what an injured or displaced
 person did for a living, what they can still do, and what it will cost to
 care for them going forward. Purinton Analytics answers those questions for
