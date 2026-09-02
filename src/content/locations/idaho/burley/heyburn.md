@@ -13,6 +13,8 @@ townSlug: "heyburn"
 county: "Minidoka County"
 ---
 
+Heyburn is a small Minidoka County town, and the person being evaluated there matters more to the engagement's design than any courthouse does. Purinton Analytics shapes its Heyburn work around that person, keeping the process rigorous without making it a burden, for plaintiff and defense counsel alike.
+
 ## An Evaluee in Heyburn, Not a File in a Distant Office
 
 The practical question for counsel retaining an expert in a Heyburn case is rarely abstract: it is how a specific injured person, living in a small Idaho town, will be interviewed, tested, and assessed without the process itself becoming a burden. Purinton Analytics builds its Heyburn engagements around that question. Remote interviews and standardized testing handle much of the work when the referral allows, and when the assignment requires sitting across from the evaluee, the evaluation happens in Heyburn or nearby, with travel scheduled from the Kansas City home office. The firm keeps no local storefront and publishes no street address here, because accuracy about offices belongs to the same discipline that governs its reports. Plaintiff and defense referrals are accepted on equal terms.

@@ -13,6 +13,8 @@ townSlug: "pleasant-valley"
 county: "Marion County"
 ---
 
+A Pleasant Valley case is tried close to home and worked up against a regional record. Purinton Analytics serves this Marion County municipality by appointment, bringing records-based vocational and care-planning opinions to counsel on either side of the caption, with the same discipline it applies in any venue.
+
 ## Vocational Expert Services in Pleasant Valley
 
 Pleasant Valley is a small municipality in Marion County, West Virginia, and its residents' working lives are woven into the surrounding [Fairmont metro area](/locations/west-virginia/fairmont/). When a Pleasant Valley resident is the injured worker, the terminated employee, or the catastrophically injured plaintiff at the center of a case, counsel on either side of the caption can retain Purinton Analytics for [vocational expert](/services/vocational-expert-witness/) opinions and [life care planning](/services/life-care-planning/). The work product is the same disciplined, records-based report the firm produces everywhere: a documented conflict check, a defined scope, and opinions that rest on evidence both sides can examine.

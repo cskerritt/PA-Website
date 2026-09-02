@@ -13,6 +13,8 @@ townSlug: "groton"
 county: "Southeastern Connecticut Planning Region"
 ---
 
+Groton is a small town in the Southeastern Connecticut Planning Region, and the people at the center of its lawsuits, injured workers, accident plaintiffs, claimants whose earning capacity is disputed, are the starting point of the firm's work here. Purinton Analytics serves Groton counsel by appointment, on either side of the caption, with assessments grounded in the evaluee's actual history and market.
+
 ## When Counsel Retains for a Groton Evaluee
 
 The most common Groton engagement starts with a person, not a courthouse: an injured worker, an accident plaintiff, or a claimant whose earning capacity a defendant needs tested. Purinton Analytics builds each of these files the same way for either side of the caption, beginning with a [vocational assessment](/services/vocational-expert-witness/) grounded in the evaluee's actual work history and, where the injuries require it, a [life care plan](/services/life-care-planning/) that prices future care from cited sources rather than assumption. Groton is a small town, and the practice treats that as an analytical fact: transferable skills and placement prospects are examined against the labor market the evaluee can realistically reach, not an abstraction borrowed from a larger city.

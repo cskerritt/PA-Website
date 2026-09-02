@@ -13,9 +13,11 @@ townSlug: "claremont"
 county: "Sullivan County"
 ---
 
+The Lebanon-Claremont metro area carries Claremont's name in its title, and the town's workers move through a labor market that spans the New Hampshire and Vermont sides of the region. When a Claremont case needs vocational or life care planning opinions, Purinton Analytics takes the engagement by appointment, for plaintiff or defense counsel, and builds it on that regional reality.
+
 ## A Vocational Expert for Claremont Matters
 
-Claremont is a small city on the New Hampshire side of the Lebanon-Claremont, NH-VT metro area, and cases that arise there deserve the same disciplined workup as cases from any principal city. Purinton Analytics provides [vocational expert witness](/services/vocational-expert-witness/) and [life care planning](/services/life-care-planning/) services for Claremont matters in personal injury, workers' compensation, employment, and family law disputes, accepting engagements from either side of the caption. The practice is national in scope, as the [nationwide page](/locations/nationwide/) describes, and every Claremont engagement begins the same way: a documented conflict check, a defined scope, and a records request tailored to the claims.
+Claremont is a small city, and cases that arise there deserve the same disciplined workup as cases from any principal city. Purinton Analytics provides [vocational expert witness](/services/vocational-expert-witness/) and [life care planning](/services/life-care-planning/) services for Claremont matters in personal injury, workers' compensation, employment, and family law disputes, accepting engagements from either side of the caption. The practice is national in scope, as the [nationwide page](/locations/nationwide/) describes, and every Claremont engagement begins the same way: a documented conflict check, a defined scope, and a records request tailored to the claims.
 
 ## Sullivan County Courts and Available Forums
 

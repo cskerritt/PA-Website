@@ -13,6 +13,8 @@ townSlug: "jewett-city"
 county: "Southeastern Connecticut Planning Region"
 ---
 
+Jewett City is one of the smaller communities in the Norwich-New London-Willimantic area, but its cases run on the same court clocks as everyone else's. Purinton Analytics takes that clock seriously from the first call, serving plaintiff and defense counsel by appointment with reports timed to the disclosure calendar.
+
 ## Built Around the Disclosure Calendar
 
 A Jewett City case is usually retained against a deadline: an expert disclosure date, a discovery cutoff, a mediation the parties want anchored by a defensible number. Purinton Analytics organizes its work backward from those dates. From the first intake call, the question is what the court's schedule requires and when the [life care plan](/services/life-care-planning/) or [vocational opinion](/services/vocational-expert-witness/) must be in opposing counsel's hands, so that the report arrives complete rather than rushed. Plaintiff and defense firms receive identical treatment on that score; the calendar discipline does not change with the side of the caption.

@@ -13,6 +13,8 @@ townSlug: "rupert"
 county: "Minidoka County"
 ---
 
+A Rupert injury or employment claim carries the same evidentiary burdens as one filed from a major city, and the expert work behind it must meet the same tests. Purinton Analytics applies its national methodology to Rupert matters by appointment, accepting work from counsel on either side of the caption.
+
 ## Vocational and Life Care Planning Opinions for Rupert Litigation
 
 When a personal injury, employment, or disability claim arises in Rupert, the vocational and life care planning questions deserve the same rigor they would receive in any major venue. Purinton Analytics provides [vocational expert](/services/vocational-expert-witness/) and [life care planning](/services/life-care-planning/) opinions for Rupert matters as part of a [national practice](/locations/nationwide/), and it accepts work from counsel on either side of the caption. Each engagement begins with a documented conflict check, a defined scope, and a records request tailored to the claims, so the written opinion rests on a record both sides can examine.

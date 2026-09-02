@@ -13,6 +13,8 @@ townSlug: "cozad"
 county: "Dawson County"
 ---
 
+The distance between Cozad and any expert's office should be the expert's problem, not the evaluee's. Purinton Analytics runs its Cozad engagements on that principle, serving Dawson County counsel by appointment with remote-first evaluation and in-community assessment when the referral requires it.
+
 ## An Evaluation Practice That Comes to the Evaluee
 
 When the injured worker or claimant at the center of a case lives in Cozad, the evaluation should not require that person to reorganize life around a distant expert's calendar. Purinton Analytics structures [vocational expert](/services/vocational-expert-witness/) and [life care planning](/services/life-care-planning/) engagements for Cozad matters around the evaluee's own community: records review and testing that can proceed remotely, interviews conducted by secure video where the referral questions permit, and in-person evaluation arranged in or near Cozad when the assessment calls for it. Counsel on either side of the caption receive the same methodology, the same documentation, and a written opinion prepared to withstand cross-examination.

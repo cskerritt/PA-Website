@@ -13,6 +13,8 @@ townSlug: "gothenburg"
 county: "Dawson County"
 ---
 
+Gothenburg sits a long way from any major legal market, but its scheduling orders read like everyone else's. Purinton Analytics manages Gothenburg engagements against those orders from the first call, for plaintiff and defense counsel alike, committing deliverables to the court's dates rather than to loose estimates.
+
 ## Built for the Disclosure Calendar
 
 Litigation deadlines do not adjust for how far a case sits from a major legal market, and counsel with a Gothenburg matter face the same disclosure, deposition, and trial dates as counsel anywhere else. Purinton Analytics accepts Gothenburg engagements from plaintiff and defense counsel alike and manages them against that calendar from the first call: scope is defined in writing, the records request is tailored to the claims, and report delivery is committed against the operative scheduling order rather than promised loosely. [Expert testimony and litigation consulting](/services/expert-testimony-litigation-consulting/) support continues through deposition and trial, and [rebuttal and peer review](/services/rebuttal-peer-review/) work is available when the assignment is to examine an opposing expert's file rather than to build one.

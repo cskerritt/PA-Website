@@ -13,6 +13,8 @@ townSlug: "new-london"
 county: "Southeastern Connecticut Planning Region"
 ---
 
+Few communities the practice serves sit at the center of their own metropolitan area the way New London does. Purinton Analytics serves counsel here by appointment, preparing vocational and life care planning opinions that read the same whichever side of a New London caption commissions them.
+
 ## A Named Center of Its Metropolitan Area
 
 New London lends its name to the Norwich-New London-Willimantic metropolitan area, and litigation arising here draws on the same regional record that shapes cases across southeastern Connecticut. Purinton Analytics provides [vocational expert](/services/vocational-expert-witness/) and [life care planning](/services/life-care-planning/) services for New London matters on behalf of plaintiff and defense counsel alike. The work product is the same regardless of which side of the caption issues the retention: a documented methodology, sources cited in full, and conclusions that hold up when the opposing expert reads them line by line. Counsel who want the broader regional picture can start with the [Norwich metro page](/locations/connecticut/norwich/).
