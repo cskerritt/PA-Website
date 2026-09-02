@@ -13,9 +13,8 @@ townSlug: "blanchard"
 county: "Caddo Parish"
 ---
 
-The question counsel tend to open with on a Blanchard engagement is
-practical: where does the evaluation actually happen? The answer is that it
-happens where the evaluee is. Purinton Analytics runs a remote-first
+Counsel opening a Blanchard engagement usually raise logistics first, and
+the firm's answer is simple: the evaluation happens where the evaluee is. Purinton Analytics runs a remote-first
 practice in which records review, counsel conferences, and analysis proceed
 at a distance, while
 [vocational evaluations](/services/vocational-expert-witness/) that require

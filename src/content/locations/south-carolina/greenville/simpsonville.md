@@ -13,10 +13,9 @@ townSlug: "simpsonville"
 county: "Greenville County"
 ---
 
-Expert work is calendar work. By the time counsel in a Simpsonville case
-reaches for a vocational expert or a life care planner, a scheduling order
-usually already exists, and the real question is whether a defensible opinion
-can be produced inside it. Purinton Analytics takes that question seriously
+Most Simpsonville cases already carry a scheduling order by the time counsel
+reaches for a vocational expert or a life care planner, and the real
+question is whether a defensible opinion can be produced inside it. Purinton Analytics takes that question seriously
 from the first contact: intake asks for disclosure, deposition, and trial
 dates up front, and the engagement is scoped backward from them. For
 Simpsonville matters that means

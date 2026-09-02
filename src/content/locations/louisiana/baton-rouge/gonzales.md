@@ -13,6 +13,8 @@ townSlug: "gonzales"
 county: "Ascension Parish"
 ---
 
+Every expert engagement has a destination, and for a Gonzales case that destination is usually the Ascension Parish courtroom where the matter will be tried. Purinton Analytics prepares its Gonzales opinions for that room from the outset, under a national methodology whose every step is documented for examination.
+
 ## Ascension Parish Venue, National Standards
 
 Gonzales litigation belongs, in the first instance, to Ascension Parish: civil actions arising in the city are tried in the parish's District Court, and it is that courtroom, and the judge and jury in it, that the expert report must ultimately serve. Purinton Analytics writes for that room. Every [vocational expert](/services/vocational-expert-witness/) opinion and [life care plan](/services/life-care-planning/) prepared for a Gonzales matter follows the same national methodology the firm applies everywhere, documented so that direct examination can walk through it step by step and cross-examination can test each of those steps against the cited record. Retention is open to plaintiff and defense counsel on equal terms.

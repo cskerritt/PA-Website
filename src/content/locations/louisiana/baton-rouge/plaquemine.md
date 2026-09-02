@@ -13,6 +13,8 @@ townSlug: "plaquemine"
 county: "Iberville Parish"
 ---
 
+A serious Plaquemine injury case tends to raise vocational, care-planning, and economic questions all at once, and answers that ignore one another invite cross-examination. Purinton Analytics coordinates those disciplines for Iberville Parish counsel under one engagement structure, on identical terms for plaintiff and defense.
+
 ## Damages Proof Rarely Fits One Discipline
 
 A serious injury claim arising in Plaquemine seldom reduces to a single expert question. Whether the injured party can return to work is a vocational question. What care the injury will require over a lifetime is a clinical planning question. What those losses and needs are worth is an economic question. Purinton Analytics structures Plaquemine engagements so the disciplines answer each other instead of talking past each other: [vocational expert witness](/services/vocational-expert-witness/) analysis of employability and earning capacity, [life care planning](/services/life-care-planning/) for catastrophic and chronic injuries, and [coordinated damages engagements](/services/coordinated-damages-assessment/) in which independent economist partners perform and sign the economic analysis while the vocational and care-planning work proceeds under one engagement structure. Plaintiff and defense counsel retain the firm on identical terms, and the coordination discipline is the same regardless of which side issues the retention letter.

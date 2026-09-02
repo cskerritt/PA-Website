@@ -13,6 +13,8 @@ townSlug: "denham-springs"
 county: "Livingston Parish"
 ---
 
+Before a Denham Springs referral goes out, counsel are entitled to know what comes back. Purinton Analytics serves this Livingston Parish community by appointment, and what comes back is specific: a defined scope, cited data, and opinions that either side of the caption can examine.
+
 ## What a Referral Actually Gets You
 
 Counsel referring a Denham Springs case receives a defined process, not a promise. The engagement opens with a documented conflict check, moves to a written scope keyed to the referral questions, and continues with a records request tailored to the claims, so the eventual opinion rests on a record either side can examine. That process supports [vocational expert witness](/services/vocational-expert-witness/) work, [life care planning](/services/life-care-planning/), and [medical cost projection](/services/medical-cost-projection/) for injured parties who live and work in Denham Springs, and it operates identically whether the retaining lawyer represents the plaintiff or the defense.

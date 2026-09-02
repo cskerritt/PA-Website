@@ -13,6 +13,8 @@ townSlug: "central"
 county: "East Baton Rouge Parish"
 ---
 
+Central is one of the larger suburban communities in East Baton Rouge Parish, and when its residents are the injured parties in litigation, the vocational and care-planning questions follow them home. Purinton Analytics takes up those questions for Central counsel by appointment, preparing opinions meant to be read closely at the opposing table.
+
 ## A Vocational Expert for Central Evaluees
 
 When the injured party in a case lives in Central, the vocational and care-planning questions begin at home: what work the evaluee performed before the injury, what functional capacity remains, and what employment realistically exists for a resident of one of the larger suburban communities in East Baton Rouge Parish. Purinton Analytics provides [vocational expert](/services/vocational-expert-witness/) and [life care planning](/services/life-care-planning/) opinions for counsel litigating matters that arise in Central and throughout the [Baton Rouge metro](/locations/louisiana/baton-rouge/), retained by plaintiff and defense alike. The analysis is built for scrutiny, because every report is written on the assumption that opposing counsel will read it closely.

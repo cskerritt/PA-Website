@@ -13,6 +13,8 @@ townSlug: "breckenridge"
 county: "Wilkin County"
 ---
 
+Breckenridge sits on the Minnesota side of a metropolitan area whose principal city lies in North Dakota, and that geography shapes every vocational question its cases raise. Purinton Analytics serves Breckenridge counsel by appointment, for plaintiff and defense retentions alike, with analyses built to respect a labor market that crosses a state line.
+
 ## A Minnesota Town in a Cross-Border Metro
 
 Breckenridge presents a question that many vocational disputes never have to face: what happens to an earning capacity analysis when the relevant labor market straddles a state line. The town sits on the Minnesota side of a metropolitan area whose principal city, Wahpeton, lies in North Dakota, so the occupations realistically open to a Breckenridge evaluee cannot be described by looking at either state alone. Purinton Analytics frames its [vocational expert](/services/vocational-expert-witness/) opinions for Breckenridge cases around that cross-border reality from the outset, and where catastrophic injury requires it, adds [life care planning](/services/life-care-planning/) or [coordinated damages engagements](/services/coordinated-damages-assessment/) in which independent economist partners perform and sign the economic analysis while the vocational and care-planning work proceeds under one engagement structure. Referrals from plaintiff counsel and defense counsel are handled on identical terms, because the methodology does not change with the side of the caption.

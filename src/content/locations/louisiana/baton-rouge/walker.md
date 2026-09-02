@@ -13,6 +13,8 @@ townSlug: "walker"
 county: "Livingston Parish"
 ---
 
+A Walker engagement is judged by what can be checked. Purinton Analytics serves this Livingston Parish community by appointment, and it treats the signed report, with its listed records, explained methods, and cited data, as the deliverable the entire engagement exists to support.
+
 ## The Written Opinion Is the Product
 
 In a Walker case, what the firm ultimately delivers is a document: a written opinion that states its referral questions, lists the records reviewed, explains its methods, cites its data, and reasons its way to conclusions a reader can check. Everything else in the engagement exists to make that document sound. Purinton Analytics prepares [vocational expert](/services/vocational-expert-witness/) reports and [life care plans](/services/life-care-planning/) to that standard for Walker matters, and offers [rebuttal and peer review](/services/rebuttal-peer-review/) when counsel needs an opposing expert's report held to the same measure. Plaintiff and defense engagements are accepted on identical terms.

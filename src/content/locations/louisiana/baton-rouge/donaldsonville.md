@@ -13,6 +13,8 @@ townSlug: "donaldsonville"
 county: "Ascension Parish"
 ---
 
+A Donaldsonville retention is accepted on one governing assumption: the lawyer across the table will eventually take the expert's deposition. Purinton Analytics builds its Ascension Parish opinions for that moment, and its practice of serving plaintiff and defense counsel in equal measure keeps the assumption honest.
+
 ## An Expert Both Sides Can Depose
 
 The test of an expert opinion in a Donaldsonville case is not how it reads to the retaining lawyer; it is how it holds up when the other side's lawyer takes the deposition. Purinton Analytics accepts retention from plaintiff and defense counsel in equal measure, and that two-sided practice disciplines every report: the [vocational expert](/services/vocational-expert-witness/) findings, the [life care plan](/services/life-care-planning/), and any [rebuttal or peer review](/services/rebuttal-peer-review/) of an opposing expert are all prepared as if the firm might be examining its own work from across the table, because in the next case it may be.

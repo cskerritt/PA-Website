@@ -13,6 +13,8 @@ townSlug: "st-gabriel"
 county: "Iberville Parish"
 ---
 
+St. Gabriel is an Iberville Parish community whose injury cases often turn less on liability than on the price of a lifetime of care. Purinton Analytics quantifies that price for counsel on either side, through care plans and cost projections grounded in cited sources, adding vocational analysis where earning capacity is also disputed.
+
 ## Planning a Lifetime of Care from St. Gabriel
 
 Some St. Gabriel cases begin with a single question: what will this injury cost to live with? Answering it takes a [life care plan](/services/life-care-planning/) that inventories future medical, therapeutic, and daily-living needs item by item, a [medical cost projection](/services/medical-cost-projection/) that prices those needs from cited sources, and, where earning capacity is also in dispute, a [vocational expert](/services/vocational-expert-witness/) analysis to complete the damages picture. Purinton Analytics prepares each of these analyses for counsel litigating St. Gabriel matters, and prepares them the same way for plaintiff and defense, because a care plan is only as persuasive as it is neutral.

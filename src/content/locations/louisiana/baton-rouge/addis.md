@@ -13,6 +13,8 @@ townSlug: "addis"
 county: "West Baton Rouge Parish"
 ---
 
+Addis is a small West Baton Rouge Parish suburb, and no forensic vocational practice keeps an office there. Purinton Analytics does not pretend otherwise: it serves Addis counsel by appointment, bringing the same disciplined workup to a small-suburb case that it applies in the largest venues it covers.
+
 ## Methodology Travels Better Than Offices
 
 A small suburb like Addis will never host a forensic vocational office, and it does not need one. What an Addis case needs is methodology that arrives intact: a transferable skills analysis run the same way it would be run for a case in any major city, a life care plan built on the same clinical foundations, and a report written to the same standard of documentation. Purinton Analytics delivers exactly that to West Baton Rouge Parish counsel, offering [vocational expert](/services/vocational-expert-witness/) opinions, [life care planning](/services/life-care-planning/), and [expert testimony and litigation consulting](/services/expert-testimony-litigation-consulting/) to plaintiff and defense attorneys alike.

@@ -13,6 +13,8 @@ townSlug: "baker"
 county: "East Baton Rouge Parish"
 ---
 
+Every credible expert opinion in a Baker case starts with the file: the medical documentation, the earnings history, the education and training. Purinton Analytics builds its Baker work from that record up, serving East Baton Rouge Parish counsel on both sides of the caption through a remote-first practice.
+
 ## The File Determines the Findings
 
 A vocational or care-planning opinion is only as sound as the record beneath it, so a Baker engagement begins by assembling that record: the medical documentation that establishes functional capacity, the employment and earnings history that establishes the pre-injury baseline, and the education and training that establish which skills can transfer to other work. From that foundation, Purinton Analytics prepares [vocational expert](/services/vocational-expert-witness/) opinions and [life care planning](/services/life-care-planning/) for Baker matters, and offers [coordinated damages engagements](/services/coordinated-damages-assessment/) in which independent economist partners perform and sign the economic analysis while the vocational and care-planning work proceeds under one engagement structure. Plaintiff and defense referrals are accepted on the same terms, and the record-first discipline is identical for both.

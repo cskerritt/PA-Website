@@ -13,7 +13,7 @@ townSlug: "red-bank"
 county: "Hamilton County"
 ---
 
-Expert work is calendar work. A vocational or life care planning opinion in a Red Bank case is only useful if it is disclosed on time, supplemented properly, and ready for deposition when the notice arrives, so Purinton Analytics builds every engagement backward from the dates counsel provides. For this Hamilton County suburb in the Chattanooga metropolitan area, that means asking about the scheduling order before asking almost anything else. Referrals arrive from plaintiff and defense counsel in roughly equal spirit, and both receive [vocational expert](/services/vocational-expert-witness/) and [life care planning](/services/life-care-planning/) work planned to hold up under cross-examination and under deadline pressure alike.
+A vocational or life care planning opinion in a Red Bank case is only useful if it is disclosed on time, supplemented properly, and ready for deposition when the notice arrives, so Purinton Analytics lets the dates counsel provides dictate the shape of the engagement. For this Hamilton County suburb in the Chattanooga metropolitan area, that means asking about the scheduling order before asking almost anything else. Referrals arrive from plaintiff and defense counsel in roughly equal spirit, and both receive [vocational expert](/services/vocational-expert-witness/) and [life care planning](/services/life-care-planning/) work planned to hold up under cross-examination and under deadline pressure alike.
 
 ## Where Red Bank cases are heard
 

@@ -13,7 +13,7 @@ townSlug: "madras"
 county: "Jefferson County"
 ---
 
-Expert work is calendar work. By the time counsel in a Madras case starts looking for a vocational expert or life care planner, a disclosure deadline is usually already fixed, and the question is whether a careful opinion can be produced before it arrives. Purinton Analytics accepts [vocational expert](/services/vocational-expert-witness/) and [life care planning](/services/life-care-planning/) engagements involving Madras parties from plaintiff and defense counsel, and it builds each engagement backward from the dates that govern it: disclosure, deposition, and trial.
+A Madras case usually comes with a disclosure deadline already fixed, and the question counsel face is whether a careful opinion can be produced before it arrives. Purinton Analytics accepts [vocational expert](/services/vocational-expert-witness/) and [life care planning](/services/life-care-planning/) engagements involving Madras parties from plaintiff and defense counsel, and it sequences each engagement against the dates that govern it: disclosure, deposition, and trial.
 
 ## Jefferson County and the forums available
 
