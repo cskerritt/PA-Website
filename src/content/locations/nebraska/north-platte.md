@@ -10,6 +10,17 @@ metroSlug: "north-platte"
 counties: ["Lincoln County", "Logan County"]
 ---
 
+North Platte anchors litigation filed in Lincoln County and Logan County,
+and the firm treats a case from either county with the same documented
+process it applies across the practice. The District Court in each county
+and the United States District Court for the District of Nebraska are the
+venues these engagements are prepared for, spanning vocational opinions,
+life care plans, and testimony support for either side of the caption. What
+follows covers how engagements in the North Platte micropolitan area begin,
+how each county is served, how appointment-based logistics run from the
+Kansas City home office, and how the labor market evidence behind each
+opinion is documented.
+
 ## Serving Litigation in the North Platte Area
 
 The venue comes before the opinion. A case filed in the District Court of Lincoln County reads differently to a jury than the same facts would elsewhere, and a credible expert report has to be grounded in the labor market the evaluee actually faces. That is the starting point for the firm's work in the North Platte micropolitan area, where counsel on either side of the caption retain [vocational expert witness](/services/vocational-expert-witness/) analysis, [life care planning](/services/life-care-planning/), and [expert testimony and litigation consulting](/services/expert-testimony-litigation-consulting/) for injury, employment, and family law matters. The [Nebraska practice page](/locations/nebraska/) describes the statewide framework these engagements sit within.

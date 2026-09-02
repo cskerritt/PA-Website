@@ -10,6 +10,16 @@ metroSlug: "beatrice"
 counties: ["Gage County"]
 ---
 
+Beatrice anchors the Gage County docket, and the firm's vocational expert
+and life care planning work there follows the same intake discipline it
+applies everywhere in the practice. Attorneys with matters pending in the
+District Court in Gage County or the United States District Court for the
+District of Nebraska can retain that work without a local office standing
+between the case and the analysis. The sections below cover how engagements
+begin, which courts and counties are served, how appointment-based
+logistics work from the Kansas City home office, and how labor market
+findings are grounded before a conflict check starts the file.
+
 ## How Beatrice Engagements Begin
 
 Process is the promise. Every engagement in the Beatrice micropolitan area starts with a documented conflict check, a scope fixed in writing, and a records request tailored to the claims, so that the eventual opinion rests on a record both sides can examine. Within that structure the firm provides [vocational expert witness](/services/vocational-expert-witness/) analysis, [life care planning](/services/life-care-planning/), and [expert testimony and litigation consulting](/services/expert-testimony-litigation-consulting/) for injury, employment, and family law matters, accepting referrals from plaintiff and defense counsel without preference. The [Nebraska practice page](/locations/nebraska/) explains how these local engagements connect to the statewide work.

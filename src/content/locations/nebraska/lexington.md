@@ -10,6 +10,17 @@ metroSlug: "lexington"
 counties: ["Dawson County", "Gosper County"]
 ---
 
+Lexington sits within Dawson County and Gosper County, and matters reaching
+the firm from either county receive the same documented intake process used
+everywhere in the practice. The District Court in each county and the
+United States District Court for the District of Nebraska are the venues
+these engagements are prepared for, whether the assignment is a vocational
+opinion, a life care plan, or a review of an opposing expert's report. What
+follows explains how those engagements begin, how that shared county
+footprint is covered venue by venue, how appointment-based logistics run
+from the Kansas City home office, and how labor market findings are
+documented for a Lexington-area evaluee.
+
 ## What the Firm Does for Lexington Cases
 
 The work itself is the best introduction. For matters arising in the Lexington micropolitan area, the firm prepares [vocational expert witness](/services/vocational-expert-witness/) opinions on employability, transferable skills, and earning capacity; [life care plans](/services/life-care-planning/) that itemize future care needs with sourced costs; and [medical cost projections](/services/medical-cost-projection/) for cases that need future-care pricing without a full plan. When damages require an economist, the firm offers [coordinated damages engagements](/services/coordinated-damages-assessment/) in which independent economist partners perform and sign the economic analysis while the vocational and care-planning work proceeds under the same engagement structure. Plaintiff and defense referrals are accepted on identical terms, and the [Nebraska practice page](/locations/nebraska/) sets out the statewide approach.

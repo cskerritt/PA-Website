@@ -10,6 +10,18 @@ metroSlug: "scottsbluff"
 counties: ["Banner County", "Scotts Bluff County"]
 ---
 
+Scottsbluff sits within Banner County and Scotts Bluff County, and the firm
+applies the same publication standard to matters from this micropolitan
+area that it applies to the largest metropolitan dockets. The District
+Court in either county and the United States District Court for the
+District of Nebraska are the venues these engagements are prepared for,
+covering vocational opinions on employability and earning capacity, life
+care planning for catastrophic injury, and medical cost projections. What
+follows explains how those engagements begin, how the venue footprint
+across each county is covered, how by-appointment logistics run from the
+Kansas City home office, and how labor market research grounds each
+opinion.
+
 ## Expert Services for Scottsbluff Counsel
 
 Smaller markets deserve the same expert discipline that the largest metropolitan dockets receive, and that conviction shapes how the firm serves the Scottsbluff micropolitan area. Attorneys here retain [vocational expert witness](/services/vocational-expert-witness/) opinions on employability and earning capacity, [life care planning](/services/life-care-planning/) for catastrophic injury, and [medical cost projections](/services/medical-cost-projection/) built to the same publication standard the practice applies everywhere: every report is written to withstand the scrutiny of opposing counsel. Plaintiff and defense engagements are accepted on equal terms, and the methodology does not change with the side of the caption. Counsel can review the full [Nebraska practice overview](/locations/nebraska/) for statewide context.

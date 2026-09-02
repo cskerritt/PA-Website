@@ -10,12 +10,11 @@ metroSlug: "albany"
 counties: ["Albany County", "Rensselaer County", "Saratoga County", "Schenectady County", "Schoharie County"]
 ---
 
-Expert work is calendar work. Disclosure deadlines, deposition notices, and
-trial settings determine when an opinion is useful, and Purinton Analytics
-builds its Albany-Schenectady-Troy engagements around those dates from the
-outset: scope, records requests, and evaluation scheduling are all set
-against the litigation calendar confirmed at intake. Within that structure
-the firm provides
+The Albany-Schenectady-Troy metro spans a broad, multi-county docket, and no
+single courthouse defines the practice here. Purinton Analytics prepares
+each engagement for whichever of those courts the caption lands in, with
+scope, records requests, and evaluation scheduling fixed at intake before
+the file moves forward. Within that structure the firm provides
 [vocational evaluations](/services/vocational-expert-witness/) on
 employability and earning capacity,
 [life care planning](/services/life-care-planning/) in catastrophic injury
